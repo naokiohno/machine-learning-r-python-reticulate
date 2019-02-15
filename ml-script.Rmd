@@ -1,0 +1,75 @@
+---
+title: "Machine Learning with R and Python"
+date: "February, 2019"
+author: "Naoki Ohno"
+output: html_notebook
+---
+
+## Loading data
+
+```{r include=FALSE}
+library(tidyverse)
+library(reticulate)
+```
+
+```{r}
+## Data preparation
+
+# Reading in the data
+test_init <- read_csv("data/test.csv")
+train_init <- read_csv("data/train.csv")
+
+test_init$Survived <- NA
+data <- rbind(train_init, test_init)
+
+# Order columns 
+data <- data %>% select(-Survived, Survived)
+data <- as.data.frame(data)
+```
+
+## Feature engineering
+
+```{r}
+data <- data %>% mutate(no_family = SibSp + Parch)
+data <- data %>% select(-c(PassengerId, SibSp, Parch, Ticket, Cabin))
+
+data$Pclass <- factor(data$Pclass)
+data$Name <- factor(data$Name)
+data$Sex <- factor(data$Sex)
+data$Embarked <- factor(data$Embarked)
+data$Survived <- factor(data$Survived)
+```
+
+```{r}
+data %>% filter(Pclass == 3, Embarked == "S") %>% drop_na(Fare) %>% summarise(median_fare = median(Fare))
+data[is.na(data$Fare), 'Fare'] <- 8.05
+```
+
+```{r}
+data$Name <- as.character(data$Name)
+data$title <- sub("^.*, ", "", data$Name)
+data$title <- sub("\\..*", "", data$title)
+
+data$title <- gsub("Mlle", "Miss", data$title)
+data$title <- gsub("Mme", "Mrs", data$title)
+data$title <- gsub("Ms", "Miss", data$title)
+
+# Aggregating important people
+data$title <- gsub("Capt|Col|Don|Dona|Dr|Jonkheer|Lady|Major|Rev|Sir|the Countess", "High_rank", data$title)
+
+data[is.na(data$Embarked), "Embarked"] <- "C"
+
+## Imputing missing age
+age_lm <- lm(Age ~ Sex + Fare + no_family + title, data = na.omit(data))
+data[is.na(data$Age), "Age"] <- predict(age_lm, data[is.na(data$Age),])
+
+# If age is negative, turn into 0
+data$Age <- ifelse(data$Age < 0, 0, data$Age)
+
+# Round age to half number
+data$Age <- round(data$Age, 1)
+```
+
+The dataset is now clean and can be used for machine learning. The feature engineering is not yet ideal but it's good enough to run initial models using Python's Scikit-learn package.
+
+

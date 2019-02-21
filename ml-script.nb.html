@@ -1771,89 +1771,60 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyMgRGF0YSBwcmVwYXJhdGlvblxuXG4jIFJlYWRpbmcgaW4gdGhlIGRhdGFcbnRlc3RfaW5pdCA8LSByZWFkX2NzdihcImRhdGEvdGVzdC5jc3ZcIilcbnRyYWluX2luaXQgPC0gcmVhZF9jc3YoXCJkYXRhL3RyYWluLmNzdlwiKVxuXG50ZXN0X2luaXQkU3Vydml2ZWQgPC0gTkFcbmRhdGEgPC0gcmJpbmQodHJhaW5faW5pdCwgdGVzdF9pbml0KVxuXG4jIE9yZGVyIGNvbHVtbnMgXG5kYXRhIDwtIGRhdGEgJT4lIHNlbGVjdCgtU3Vydml2ZWQsIFN1cnZpdmVkKVxuZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGRhdGEpXG5gYGAifQ== -->
-<pre class="r"><code>## Data preparation
-
-# Reading in the data
-test_init &lt;- read_csv(&quot;data/test.csv&quot;)
-train_init &lt;- read_csv(&quot;data/train.csv&quot;)
-
-test_init$Survived &lt;- NA
-data &lt;- rbind(train_init, test_init)
-
-# Order columns 
-data &lt;- data %&gt;% select(-Survived, Survived)
-data &lt;- as.data.frame(data)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyMgRGF0YSBwcmVwYXJhdGlvblxuXG4jIFJlYWRpbmcgaW4gdGhlIGRhdGFcbnRlc3RfaW5pdCA8LSByZWFkX2NzdihcXGRhdGEvdGVzdC5jc3ZcXClcbnRyYWluX2luaXQgPC0gcmVhZF9jc3YoXFxkYXRhL3RyYWluLmNzdlxcKVxuXG50ZXN0X2luaXQkU3Vydml2ZWQgPC0gTkFcbmRhdGEgPC0gcmJpbmQodHJhaW5faW5pdCwgdGVzdF9pbml0KVxuXG4jIE9yZGVyIGNvbHVtbnMgXG5kYXRhIDwtIGRhdGEgJT4lIHNlbGVjdCgtU3Vydml2ZWQsIFN1cnZpdmVkKVxuZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGRhdGEpXG5gYGBcbmBgYCJ9 -->
+<p><code>r</code>r ## Data preparation</p>
+</div>
+<div id="reading-in-the-data" class="section level1">
+<h1>Reading in the data</h1>
+<p>test_init &lt;- read_csv(/test.csv) train_init &lt;- read_csv(/train.csv)</p>
+<p>test_init$Survived &lt;- NA data &lt;- rbind(train_init, test_init)</p>
+</div>
+<div id="order-columns" class="section level1">
+<h1>Order columns</h1>
+<p>data &lt;- data %&gt;% select(-Survived, Survived) data &lt;- as.data.frame(data)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-</div>
 <div id="feature-engineering" class="section level2">
 <h2>Feature engineering</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSBkYXRhICU+JSBtdXRhdGUobm9fZmFtaWx5ID0gU2liU3AgKyBQYXJjaClcbmRhdGEgPC0gZGF0YSAlPiUgc2VsZWN0KC1jKFBhc3NlbmdlcklkLCBTaWJTcCwgUGFyY2gsIFRpY2tldCwgQ2FiaW4pKVxuXG5kYXRhJFBjbGFzcyA8LSBmYWN0b3IoZGF0YSRQY2xhc3MpXG5kYXRhJE5hbWUgPC0gZmFjdG9yKGRhdGEkTmFtZSlcbmRhdGEkU2V4IDwtIGZhY3RvcihkYXRhJFNleClcbmRhdGEkRW1iYXJrZWQgPC0gZmFjdG9yKGRhdGEkRW1iYXJrZWQpXG5kYXRhJFN1cnZpdmVkIDwtIGZhY3RvcihkYXRhJFN1cnZpdmVkKVxuYGBgIn0= -->
-<pre class="r"><code>data &lt;- data %&gt;% mutate(no_family = SibSp + Parch)
-data &lt;- data %&gt;% select(-c(PassengerId, SibSp, Parch, Ticket, Cabin))
-
-data$Pclass &lt;- factor(data$Pclass)
-data$Name &lt;- factor(data$Name)
-data$Sex &lt;- factor(data$Sex)
-data$Embarked &lt;- factor(data$Embarked)
-data$Survived &lt;- factor(data$Survived)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YSA8LSBkYXRhICU+JSBtdXRhdGUobm9fZmFtaWx5ID0gU2liU3AgKyBQYXJjaClcbmRhdGEgPC0gZGF0YSAlPiUgc2VsZWN0KC1jKFBhc3NlbmdlcklkLCBTaWJTcCwgUGFyY2gsIFRpY2tldCwgQ2FiaW4pKVxuXG5kYXRhJFBjbGFzcyA8LSBmYWN0b3IoZGF0YSRQY2xhc3MpXG5kYXRhJE5hbWUgPC0gZmFjdG9yKGRhdGEkTmFtZSlcbmRhdGEkU2V4IDwtIGZhY3RvcihkYXRhJFNleClcbmRhdGEkRW1iYXJrZWQgPC0gZmFjdG9yKGRhdGEkRW1iYXJrZWQpXG5kYXRhJFN1cnZpdmVkIDwtIGZhY3RvcihkYXRhJFN1cnZpdmVkKVxuYGBgXG5gYGAifQ== -->
+<p><code>r</code>r data &lt;- data %&gt;% mutate(no_family = SibSp + Parch) data &lt;- data %&gt;% select(-c(PassengerId, SibSp, Parch, Ticket, Cabin))</p>
+<p>data<span class="math inline">\(Pclass &lt;- factor(data\)</span>Pclass) data<span class="math inline">\(Name &lt;- factor(data\)</span>Name) data<span class="math inline">\(Sex &lt;- factor(data\)</span>Sex) data<span class="math inline">\(Embarked &lt;- factor(data\)</span>Embarked) data<span class="math inline">\(Survived &lt;- factor(data\)</span>Survived)</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSAlPiUgZmlsdGVyKFBjbGFzcyA9PSAzLCBFbWJhcmtlZCA9PSBcIlNcIikgJT4lIGRyb3BfbmEoRmFyZSkgJT4lIHN1bW1hcmlzZShtZWRpYW5fZmFyZSA9IG1lZGlhbihGYXJlKSlcbmBgYCJ9 -->
-<pre class="r"><code>data %&gt;% filter(Pclass == 3, Embarked == &quot;S&quot;) %&gt;% drop_na(Fare) %&gt;% summarise(median_fare = median(Fare))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YSAlPiUgZmlsdGVyKFBjbGFzcyA9PSAzLCBFbWJhcmtlZCA9PSBcXFNcXCkgJT4lIGRyb3BfbmEoRmFyZSkgJT4lIHN1bW1hcmlzZShtZWRpYW5fZmFyZSA9IG1lZGlhbihGYXJlKSlcbmBgYFxuYGBgclxuZGF0YVtpcy5uYShkYXRhJEZhcmUpLCAnRmFyZSddIDwtIDguMDVcbmBgYFxuYGBgIn0= -->
+<p><code>r</code>r data %&gt;% filter(Pclass == 3, Embarked == ) %&gt;% drop_na(Fare) %&gt;% summarise(median_fare = median(Fare)) <code></code>r data[is.na(data$Fare), ‘Fare’] &lt;- 8.05</p>
+<pre><code></code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibmNvbCI6MSwibnJvdyI6MX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJsMVBTdzZDTUJBZENtakErRWxjdWZNQ3NEQWV3SVVuY01YT1ZDaEtoSmFVRXIyS0hoYWRramJSZHRHWmVabjM1cjNUTWR2RldRd0FCUHlRQVBHeERRaCtIZ1FRNmZvRThOY2pBTERROWJEZHZQQzluY1dRMDRaMTJLeCt3Rm5EaW9yeWMwa2xjL1lqS1I2cDVjek5BYzhWeld2YXVhSnhRUlZOUzRsY25BYUhNaFd0cWdSSEV0RzJRNGZzU1FkWTlseTdLSkw4MXZON3N0Y0hqQnY0ZCthNkpCOGpGUnFwQ2VQWGlqUHJ2YVlYVnB0aGdXbkhzR2tySzY1c0VrUzdWQWxGN1Y2Y2k5b2lZellZdnA1aGVsZWtBUUFBIn0= -->
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjoiZGF0YS5mcmFtZSIsIm5jb2wiOjEsIm5yb3ciOjF9LCJyZGYiOiJINHNJQUFBQUFBQUFCbDFQU3c2Q01CQWRDbWpBK0VsY3VmTUNzREFld0lVbmNNWE9WQ2hLaEphVUVyMktIaGFka2piUmR0R1plWm4zNXIzVE1kdkZXUXdBQlB5UUFQR3hEUWgrSGdRUTZmb0U4TmNqQUxEUTliRGR2UEM5bmNXUTA0WjEyS3grd0ZuRGlvcnljMGtsYy9ZaktSNnA1Y3pOQWM4VnpXdmF1YUp4UVJWTlM0bGNuQWFITWhXdHFnUkhFdEcyUTRmc1NRZFk5bHk3S0pMODF2TjdzdGNIakJ2NGQrYTZKQjhqRlJxcENlUFhpalBydmFZWFZwdGhnV25Ic0drcks2NXNFa1M3VkFsRjdWNmNpOW9pWXpZWXZwNWhlbGVrQVFBQSJ9 -->
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["median_fare"],"name":[1],"type":["dbl"],"align":["right"]}],"data":[{"1":"8.05"}],"options":{"columns":{"min":{},"max":[10],"total":[1]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
   </script>
 </div>
 <!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YVtpcy5uYShkYXRhJEZhcmUpLCAnRmFyZSddIDwtIDguMDVcbmBgYCJ9 -->
-<pre class="r"><code>data[is.na(data$Fare), &#39;Fare&#39;] &lt;- 8.05</code></pre>
-<!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSROYW1lIDwtIGFzLmNoYXJhY3RlcihkYXRhJE5hbWUpXG5kYXRhJHRpdGxlIDwtIHN1YihcIl4uKiwgXCIsIFwiXCIsIGRhdGEkTmFtZSlcbmRhdGEkdGl0bGUgPC0gc3ViKFwiXFxcXC4uKlwiLCBcIlwiLCBkYXRhJHRpdGxlKVxuXG5kYXRhJHRpdGxlIDwtIGdzdWIoXCJNbGxlXCIsIFwiTWlzc1wiLCBkYXRhJHRpdGxlKVxuZGF0YSR0aXRsZSA8LSBnc3ViKFwiTW1lXCIsIFwiTXJzXCIsIGRhdGEkdGl0bGUpXG5kYXRhJHRpdGxlIDwtIGdzdWIoXCJNc1wiLCBcIk1pc3NcIiwgZGF0YSR0aXRsZSlcblxuIyBBZ2dyZWdhdGluZyBpbXBvcnRhbnQgcGVvcGxlXG5kYXRhJHRpdGxlIDwtIGdzdWIoXCJDYXB0fENvbHxEb258RG9uYXxEcnxKb25raGVlcnxMYWR5fE1ham9yfFJldnxTaXJ8dGhlIENvdW50ZXNzXCIsIFwiSGlnaF9yYW5rXCIsIGRhdGEkdGl0bGUpXG5cbmRhdGFbaXMubmEoZGF0YSRFbWJhcmtlZCksIFwiRW1iYXJrZWRcIl0gPC0gXCJDXCJcblxuIyMgSW1wdXRpbmcgbWlzc2luZyBhZ2VcbmFnZV9sbSA8LSBsbShBZ2UgfiBTZXggKyBGYXJlICsgbm9fZmFtaWx5ICsgdGl0bGUsIGRhdGEgPSBuYS5vbWl0KGRhdGEpKVxuZGF0YVtpcy5uYShkYXRhJEFnZSksIFwiQWdlXCJdIDwtIHByZWRpY3QoYWdlX2xtLCBkYXRhW2lzLm5hKGRhdGEkQWdlKSxdKVxuXG4jIElmIGFnZSBpcyBuZWdhdGl2ZSwgdHVybiBpbnRvIDBcbmRhdGEkQWdlIDwtIGlmZWxzZShkYXRhJEFnZSA8IDAsIDAsIGRhdGEkQWdlKVxuXG4jIFJvdW5kIGFnZSB0byBoYWxmIG51bWJlclxuZGF0YSRBZ2UgPC0gcm91bmQoZGF0YSRBZ2UsIDEpXG5gYGAifQ== -->
-<pre class="r"><code>data$Name &lt;- as.character(data$Name)
-data$title &lt;- sub(&quot;^.*, &quot;, &quot;&quot;, data$Name)
-data$title &lt;- sub(&quot;\\..*&quot;, &quot;&quot;, data$title)
-
-data$title &lt;- gsub(&quot;Mlle&quot;, &quot;Miss&quot;, data$title)
-data$title &lt;- gsub(&quot;Mme&quot;, &quot;Mrs&quot;, data$title)
-data$title &lt;- gsub(&quot;Ms&quot;, &quot;Miss&quot;, data$title)
-
-# Aggregating important people
-data$title &lt;- gsub(&quot;Capt|Col|Don|Dona|Dr|Jonkheer|Lady|Major|Rev|Sir|the Countess&quot;, &quot;High_rank&quot;, data$title)
-
-data[is.na(data$Embarked), &quot;Embarked&quot;] &lt;- &quot;C&quot;
-
-## Imputing missing age
-age_lm &lt;- lm(Age ~ Sex + Fare + no_family + title, data = na.omit(data))
-data[is.na(data$Age), &quot;Age&quot;] &lt;- predict(age_lm, data[is.na(data$Age),])
-
-# If age is negative, turn into 0
-data$Age &lt;- ifelse(data$Age &lt; 0, 0, data$Age)
-
-# Round age to half number
-data$Age &lt;- round(data$Age, 1)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZGF0YSROYW1lIDwtIGFzLmNoYXJhY3RlcihkYXRhJE5hbWUpXG5kYXRhJHRpdGxlIDwtIHN1YihcXF4uKlxuYGBgIn0= -->
+<p><code>r</code>r data<span class="math inline">\(Name &lt;- as.character(data\)</span>Name) data$title &lt;- sub(^.* ```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>The dataset is now clean and can be used for machine learning. The feature engineering is not yet ideal but it’s good enough to run initial models using Python’s Scikit-learn package.</p>
+<p>The dataset is now clean and can be used for machine learning. The feature engineering is not yet ideal but it’s good enough to run initial models using Python’s Scikit-learn package. Test</p>
 <!-- rnb-text-end -->
 </div>
+</div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1hY2hpbmUgTGVhcm5pbmcgd2l0aCBSIGFuZCBQeXRob24iDQpkYXRlOiAiRmVicnVhcnksIDIwMTkiDQphdXRob3I6ICJOYW9raSBPaG5vIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KIyMgTG9hZGluZyBkYXRhDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkocmV0aWN1bGF0ZSkNCmBgYA0KDQpgYGB7cn0NCiMjIERhdGEgcHJlcGFyYXRpb24NCg0KIyBSZWFkaW5nIGluIHRoZSBkYXRhDQp0ZXN0X2luaXQgPC0gcmVhZF9jc3YoImRhdGEvdGVzdC5jc3YiKQ0KdHJhaW5faW5pdCA8LSByZWFkX2NzdigiZGF0YS90cmFpbi5jc3YiKQ0KDQp0ZXN0X2luaXQkU3Vydml2ZWQgPC0gTkENCmRhdGEgPC0gcmJpbmQodHJhaW5faW5pdCwgdGVzdF9pbml0KQ0KDQojIE9yZGVyIGNvbHVtbnMgDQpkYXRhIDwtIGRhdGEgJT4lIHNlbGVjdCgtU3Vydml2ZWQsIFN1cnZpdmVkKQ0KZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGRhdGEpDQpgYGANCg0KIyMgRmVhdHVyZSBlbmdpbmVlcmluZw0KDQpgYGB7cn0NCmRhdGEgPC0gZGF0YSAlPiUgbXV0YXRlKG5vX2ZhbWlseSA9IFNpYlNwICsgUGFyY2gpDQpkYXRhIDwtIGRhdGEgJT4lIHNlbGVjdCgtYyhQYXNzZW5nZXJJZCwgU2liU3AsIFBhcmNoLCBUaWNrZXQsIENhYmluKSkNCg0KZGF0YSRQY2xhc3MgPC0gZmFjdG9yKGRhdGEkUGNsYXNzKQ0KZGF0YSROYW1lIDwtIGZhY3RvcihkYXRhJE5hbWUpDQpkYXRhJFNleCA8LSBmYWN0b3IoZGF0YSRTZXgpDQpkYXRhJEVtYmFya2VkIDwtIGZhY3RvcihkYXRhJEVtYmFya2VkKQ0KZGF0YSRTdXJ2aXZlZCA8LSBmYWN0b3IoZGF0YSRTdXJ2aXZlZCkNCmBgYA0KDQpgYGB7cn0NCmRhdGEgJT4lIGZpbHRlcihQY2xhc3MgPT0gMywgRW1iYXJrZWQgPT0gIlMiKSAlPiUgZHJvcF9uYShGYXJlKSAlPiUgc3VtbWFyaXNlKG1lZGlhbl9mYXJlID0gbWVkaWFuKEZhcmUpKQ0KZGF0YVtpcy5uYShkYXRhJEZhcmUpLCAnRmFyZSddIDwtIDguMDUNCmBgYA0KDQpgYGB7cn0NCmRhdGEkTmFtZSA8LSBhcy5jaGFyYWN0ZXIoZGF0YSROYW1lKQ0KZGF0YSR0aXRsZSA8LSBzdWIoIl4uKiwgIiwgIiIsIGRhdGEkTmFtZSkNCmRhdGEkdGl0bGUgPC0gc3ViKCJcXC4uKiIsICIiLCBkYXRhJHRpdGxlKQ0KDQpkYXRhJHRpdGxlIDwtIGdzdWIoIk1sbGUiLCAiTWlzcyIsIGRhdGEkdGl0bGUpDQpkYXRhJHRpdGxlIDwtIGdzdWIoIk1tZSIsICJNcnMiLCBkYXRhJHRpdGxlKQ0KZGF0YSR0aXRsZSA8LSBnc3ViKCJNcyIsICJNaXNzIiwgZGF0YSR0aXRsZSkNCg0KIyBBZ2dyZWdhdGluZyBpbXBvcnRhbnQgcGVvcGxlDQpkYXRhJHRpdGxlIDwtIGdzdWIoIkNhcHR8Q29sfERvbnxEb25hfERyfEpvbmtoZWVyfExhZHl8TWFqb3J8UmV2fFNpcnx0aGUgQ291bnRlc3MiLCAiSGlnaF9yYW5rIiwgZGF0YSR0aXRsZSkNCg0KZGF0YVtpcy5uYShkYXRhJEVtYmFya2VkKSwgIkVtYmFya2VkIl0gPC0gIkMiDQoNCiMjIEltcHV0aW5nIG1pc3NpbmcgYWdlDQphZ2VfbG0gPC0gbG0oQWdlIH4gU2V4ICsgRmFyZSArIG5vX2ZhbWlseSArIHRpdGxlLCBkYXRhID0gbmEub21pdChkYXRhKSkNCmRhdGFbaXMubmEoZGF0YSRBZ2UpLCAiQWdlIl0gPC0gcHJlZGljdChhZ2VfbG0sIGRhdGFbaXMubmEoZGF0YSRBZ2UpLF0pDQoNCiMgSWYgYWdlIGlzIG5lZ2F0aXZlLCB0dXJuIGludG8gMA0KZGF0YSRBZ2UgPC0gaWZlbHNlKGRhdGEkQWdlIDwgMCwgMCwgZGF0YSRBZ2UpDQoNCiMgUm91bmQgYWdlIHRvIGhhbGYgbnVtYmVyDQpkYXRhJEFnZSA8LSByb3VuZChkYXRhJEFnZSwgMSkNCmBgYA0KDQpUaGUgZGF0YXNldCBpcyBub3cgY2xlYW4gYW5kIGNhbiBiZSB1c2VkIGZvciBtYWNoaW5lIGxlYXJuaW5nLiBUaGUgZmVhdHVyZSBlbmdpbmVlcmluZyBpcyBub3QgeWV0IGlkZWFsIGJ1dCBpdCdzIGdvb2QgZW5vdWdoIHRvIHJ1biBpbml0aWFsIG1vZGVscyB1c2luZyBQeXRob24ncyBTY2lraXQtbGVhcm4gcGFja2FnZS4NCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk1hY2hpbmUgTGVhcm5pbmcgd2l0aCBSIGFuZCBQeXRob24iDQpkYXRlOiAiRmVicnVhcnksIDIwMTkiDQphdXRob3I6ICJOYW9raSBPaG5vIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KIyMgTG9hZGluZyBkYXRhDQoNCmBgYHtyIGluY2x1ZGU9RkFMU0V9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkocmV0aWN1bGF0ZSkNCmBgYA0KDQpgYGB7cn0NCiMjIERhdGEgcHJlcGFyYXRpb24NCg0KIyBSZWFkaW5nIGluIHRoZSBkYXRhDQp0ZXN0X2luaXQgPC0gcmVhZF9jc3YoImRhdGEvdGVzdC5jc3YiKQ0KdHJhaW5faW5pdCA8LSByZWFkX2NzdigiZGF0YS90cmFpbi5jc3YiKQ0KDQp0ZXN0X2luaXQkU3Vydml2ZWQgPC0gTkENCmRhdGEgPC0gcmJpbmQodHJhaW5faW5pdCwgdGVzdF9pbml0KQ0KDQojIE9yZGVyIGNvbHVtbnMgDQpkYXRhIDwtIGRhdGEgJT4lIHNlbGVjdCgtU3Vydml2ZWQsIFN1cnZpdmVkKQ0KZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGRhdGEpDQpgYGANCg0KIyMgRmVhdHVyZSBlbmdpbmVlcmluZw0KDQpgYGB7cn0NCmRhdGEgPC0gZGF0YSAlPiUgbXV0YXRlKG5vX2ZhbWlseSA9IFNpYlNwICsgUGFyY2gpDQpkYXRhIDwtIGRhdGEgJT4lIHNlbGVjdCgtYyhQYXNzZW5nZXJJZCwgU2liU3AsIFBhcmNoLCBUaWNrZXQsIENhYmluKSkNCg0KZGF0YSRQY2xhc3MgPC0gZmFjdG9yKGRhdGEkUGNsYXNzKQ0KZGF0YSROYW1lIDwtIGZhY3RvcihkYXRhJE5hbWUpDQpkYXRhJFNleCA8LSBmYWN0b3IoZGF0YSRTZXgpDQpkYXRhJEVtYmFya2VkIDwtIGZhY3RvcihkYXRhJEVtYmFya2VkKQ0KZGF0YSRTdXJ2aXZlZCA8LSBmYWN0b3IoZGF0YSRTdXJ2aXZlZCkNCmBgYA0KDQpgYGB7cn0NCmRhdGEgJT4lIGZpbHRlcihQY2xhc3MgPT0gMywgRW1iYXJrZWQgPT0gIlMiKSAlPiUgZHJvcF9uYShGYXJlKSAlPiUgc3VtbWFyaXNlKG1lZGlhbl9mYXJlID0gbWVkaWFuKEZhcmUpKQ0KZGF0YVtpcy5uYShkYXRhJEZhcmUpLCAnRmFyZSddIDwtIDguMDUNCmBgYA0KDQpgYGB7cn0NCmRhdGEkTmFtZSA8LSBhcy5jaGFyYWN0ZXIoZGF0YSROYW1lKQ0KZGF0YSR0aXRsZSA8LSBzdWIoIl4uKiwgIiwgIiIsIGRhdGEkTmFtZSkNCmRhdGEkdGl0bGUgPC0gc3ViKCJcXC4uKiIsICIiLCBkYXRhJHRpdGxlKQ0KDQpkYXRhJHRpdGxlIDwtIGdzdWIoIk1sbGUiLCAiTWlzcyIsIGRhdGEkdGl0bGUpDQpkYXRhJHRpdGxlIDwtIGdzdWIoIk1tZSIsICJNcnMiLCBkYXRhJHRpdGxlKQ0KZGF0YSR0aXRsZSA8LSBnc3ViKCJNcyIsICJNaXNzIiwgZGF0YSR0aXRsZSkNCg0KIyBBZ2dyZWdhdGluZyBpbXBvcnRhbnQgcGVvcGxlDQpkYXRhJHRpdGxlIDwtIGdzdWIoIkNhcHR8Q29sfERvbnxEb25hfERyfEpvbmtoZWVyfExhZHl8TWFqb3J8UmV2fFNpcnx0aGUgQ291bnRlc3MiLCAiSGlnaF9yYW5rIiwgZGF0YSR0aXRsZSkNCg0KZGF0YVtpcy5uYShkYXRhJEVtYmFya2VkKSwgIkVtYmFya2VkIl0gPC0gIkMiDQoNCiMjIEltcHV0aW5nIG1pc3NpbmcgYWdlDQphZ2VfbG0gPC0gbG0oQWdlIH4gU2V4ICsgRmFyZSArIG5vX2ZhbWlseSArIHRpdGxlLCBkYXRhID0gbmEub21pdChkYXRhKSkNCmRhdGFbaXMubmEoZGF0YSRBZ2UpLCAiQWdlIl0gPC0gcHJlZGljdChhZ2VfbG0sIGRhdGFbaXMubmEoZGF0YSRBZ2UpLF0pDQoNCiMgSWYgYWdlIGlzIG5lZ2F0aXZlLCB0dXJuIGludG8gMA0KZGF0YSRBZ2UgPC0gaWZlbHNlKGRhdGEkQWdlIDwgMCwgMCwgZGF0YSRBZ2UpDQoNCiMgUm91bmQgYWdlIHRvIGhhbGYgbnVtYmVyDQpkYXRhJEFnZSA8LSByb3VuZChkYXRhJEFnZSwgMSkNCmBgYA0KDQpUaGUgZGF0YXNldCBpcyBub3cgY2xlYW4gYW5kIGNhbiBiZSB1c2VkIGZvciBtYWNoaW5lIGxlYXJuaW5nLiBUaGUgZmVhdHVyZSBlbmdpbmVlcmluZyBpcyBub3QgeWV0IGlkZWFsIGJ1dCBpdCdzIGdvb2QgZW5vdWdoIHRvIHJ1biBpbml0aWFsIG1vZGVscyB1c2luZyBQeXRob24ncyBTY2lraXQtbGVhcm4gcGFja2FnZS4gVGVzdA0KDQoNCg==</div>
 
 
 

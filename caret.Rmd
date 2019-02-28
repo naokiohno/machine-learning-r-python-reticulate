@@ -1,0 +1,181 @@
+---
+title: "Caret"
+output: html_notebook
+---
+
+## Loading data
+
+```{r include=FALSE}
+library(tidyverse)
+library(caret)
+```
+
+```{r}
+## Data preparation
+
+# Reading in the data
+test_init <- read_csv("data/test.csv")
+train_init <- read_csv("data/train.csv")
+
+test_init$Survived <- NA
+data <- rbind(train_init, test_init)
+
+# Order columns 
+data <- data %>% select(-Survived, Survived)
+data <- as.data.frame(data)
+```
+
+## Feature engineering
+
+```{r}
+data <- data %>% mutate(no_family = SibSp + Parch)
+data <- data %>% select(-c(PassengerId, SibSp, Parch, Ticket, Cabin))
+
+data$Pclass <- factor(data$Pclass)
+data$Name <- factor(data$Name)
+data$Sex <- factor(data$Sex)
+data$Embarked <- factor(data$Embarked)
+data$Survived <- factor(data$Survived)
+```
+
+```{r}
+data %>% filter(Pclass == 3, Embarked == "S") %>% drop_na(Fare) %>% summarise(median_fare = median(Fare))
+data[is.na(data$Fare), 'Fare'] <- 8.05
+```
+
+```{r}
+data$Name <- as.character(data$Name)
+data$title <- sub("^.*, ", "", data$Name)
+data$title <- sub("\\..*", "", data$title)
+
+data$title <- gsub("Mlle", "Miss", data$title)
+data$title <- gsub("Mme", "Mrs", data$title)
+data$title <- gsub("Ms", "Miss", data$title)
+
+# Aggregating important people
+data$title <- gsub("Capt|Col|Don|Dona|Dr|Jonkheer|Lady|Major|Rev|Sir|the Countess", "High_rank", data$title)
+
+data[is.na(data$Embarked), "Embarked"] <- "C"
+
+## Imputing missing age
+age_lm <- lm(Age ~ Sex + Fare + no_family + title, data = na.omit(data))
+data[is.na(data$Age), "Age"] <- predict(age_lm, data[is.na(data$Age),])
+
+# If age is negative, turn into 0
+data$Age <- ifelse(data$Age < 0, 0, data$Age)
+
+# Round age to half number
+data$Age <- round(data$Age, 1)
+
+data <- data %>% select(Survived, Sex, Age, Fare, Embarked, no_family, title)
+
+train <- data[1:nrow(train_init),]
+test <- data %>% anti_join(train)
+```
+
+## Building the Machine Learning Model
+
+```{r}
+svm_fit <- train(Survived ~ .,
+                 data = train,
+                 method = "svmRadial",
+                 preProc = c("center", "scale"),
+                 tuneLength = 10,
+                 trControl = trainControl(method = "repeatedcv", repeats = 10))
+```
+
+```{r}
+svm_fit
+```
+
+```{r}
+plot(svm_fit, scales = list(x = list(log = 2)))
+```
+
+```{r}
+predicted_values <- predict(svm_fit, test)
+str(predicted_values)
+```
+
+```{r}
+confusionMatrix(svm_fit)
+```
+This looks like quite good performance.
+
+```{r}
+output <- data.frame(PassengerID = test_init$PassengerId, Survived = predicted_values)
+```
+
+Great, this solution advanced me to the 4042th position on Kaggle's competition. A tuned SVM with 10 repeated 10-fold cross validation improved the accuracy a lot.
+
+## Trying Random Forest
+
+```{r}
+ranf_fit <- train(Survived ~ .,
+                 data = train,
+                 method = "rf",
+                 tuneLength = 5,
+                 trControl = trainControl(method = "repeatedcv", repeats = 10))
+```
+
+```{r}
+ranf_fit
+```
+
+```{r}
+confusionMatrix(ranf_fit)
+```
+The average accuracy looks better than the SVM.
+
+```{r}
+predicted_values <- predict(ranf_fit, test)
+str(predicted_values)
+output <- data.frame(PassengerID = test_init$PassengerId, Survived = predicted_values)
+write_csv(output, "output_rf.csv")
+```
+
+The Random Forest Model is not an improvement over the SVM.
+
+## Comparing the Random Forest Model with the SVM model
+
+```{r}
+resamp <- resamples(list(SVM = svm_fit, Random_forest = ranf_fit))
+summary(resamp)
+```
+
+```{r}
+model_differences <- diff(resamp)
+summary(model_differences)
+```
+
+There is no significant difference in model performance based on cross-validation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

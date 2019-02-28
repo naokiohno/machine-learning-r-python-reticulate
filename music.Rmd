@@ -1,0 +1,86 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+```{r}
+library(caret)
+library(tidyverse)
+library(AppliedPredictiveModeling)
+```
+
+## Data
+
+A database of 60 music performers has been prepared for the competition. The material is divided into six categories: classical music, jazz, blues, pop, rock and heavy metal. For each of the performers 15-20 music pieces have been collected. All music pieces are partitioned into 20 segments and parameterized. The descriptors used in parametrization also those formulated within the MPEG-7 standard, are only listed here since they have already been thoroughly reviewed and explained in many studies. 
+
+The feature vector consists of 191 parameters, the first 127 parameters are based on the MPEG-7 standard, the remaining ones are cepstral coefficients descriptors and time-related dedicated parameters:
+
+a) parameter 1: Temporal Centroid, 
+b) parameter 2: Spectral Centroid average value, 
+c) parameter 3: Spectral Centroid variance, 
+d) parameters 4-37: Audio Spectrum Envelope (ASE) average values in 34 frequency bands
+e) parameter 38: ASE average value (averaged for all frequency bands)
+f) parameters 39-72: ASE variance values in 34 frequency bands
+g) parameter 73: averaged ASE variance parameters
+h) parameters 74,75: Audio Spectrum Centroid – average and variance values
+i) parameters 76,77: Audio Spectrum Spread – average and variance values
+j) parameters 78-101: Spectral Flatness Measure (SFM) average values for 24 frequency bands
+k) parameter 102: SFM average value (averaged for all frequency bands)
+l) parameters 103-126: Spectral Flatness Measure (SFM) variance values for 24 frequency bands
+m) parameter 127: averaged SFM variance parameters
+n) parameters 128-147: 20 first mel cepstral coefficients average values 
+o) parameters 148-167: the same as 128-147
+p) parameters 168-191: dedicated parameters in time domain based of the analysis of the distribution of the envelope in relation to the rms value.
+
+Column to predict: GENRE
+
+
+```{r}
+train <- read_csv("data/music/genresTrain.csv")
+test <- read_csv("data/music/genresTest.csv")
+```
+
+
+The training and test set both contain approximately 10000 records.
+
+```{r}
+unique(train$GENRE)
+```
+
+The authors were confident about the amount of data on their hands so they created a massive test set.
+
+## Data Splitting / Resampling
+
+## Model Selection
+
+As there is an absolutely massive number of features, classical statistical techniques such as linear regression
+are out of the picture. If regression techniques were to be used, dimensionality reduction should be performed
+using PCA, alternatively, penalised regression models such as Lasso, Ridge or Elastic Net could be used.
+
+As the data is complex with no interpretability of individual variables, there is no incentive to favor a more
+interpretable model to a complex model.
+
+Potential candidates:
+
+* Random Forest
+* SVM
+* XGBoost
+
+Boosted trees and support vector machines are very flexible models that have a very high likelyhood of producing
+the best results. 
+
+As a baseline, I would try Random Forest as it is the absolute most widely used industry standard algorithm. 
+I would follow these up with Support Vector Machines and finally XGBoost, two models with very high flexibility
+and very low interpretability.
+
+Machine learning is a very empirical science. XGBoost just seems to work very well across multiple problem domains.
+The winners of many Kaggle competitions used this model and mentioned: "When in doubt, use XGBoost".
+The question is when is XGBoost not the best model?
+
+
+
+
+
+
+
+

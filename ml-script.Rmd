@@ -10,6 +10,10 @@ output: html_notebook
 ```{r include=FALSE}
 library(tidyverse)
 library(reticulate)
+
+#use_python("C:/Users/naoki.ohno/AppData/Local/Continuum/anaconda3/envs/py37/python.exe")
+use_condaenv("py37")
+py_config()
 ```
 
 ```{r}
@@ -68,8 +72,34 @@ data$Age <- ifelse(data$Age < 0, 0, data$Age)
 
 # Round age to half number
 data$Age <- round(data$Age, 1)
+
+data <- data %>% select(Survived, Sex, Age, Fare, Embarked, no_family, title)
+
+train <- data[1:nrow(train_init),]
 ```
 
-The dataset is now clean and can be used for machine learning. The feature engineering is not yet ideal but it's good enough to run initial models using Python's Scikit-learn package. Test
+The dataset is now clean and can be used for machine learning. The feature engineering is not yet ideal but it's good enough to run initial models using Python's Scikit-learn package.
+
+```{python}
+#train = r.train
+
+import numpy as np
+import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+
+
+```
+
+```{python}
+
+```
+
+Ok, I think a different approach might work better. I will follow this book instead of going off into my own tangent.
+
+You can either learn machine learning with R or Pandas and Numpy.
+It would be very hard to start with Scikit learn using Python.
+
+
+
 
 

@@ -1,5 +1,5 @@
-# Machine learning with R and Python 
-Machine learning using R and Python in the same RStudio session using the Reticulate package.
+# Machine Learning Exercises from Applied Predictive Modeling
 
-* R's Tidyverse packages are used to load, analyse, visualise the data and for feature engineering
-* The machine learning is performed using Python's Scikit-learn package
+* Machine learning with R using the caret package
+* Integrating R and Python using Reticulate
+* Machine Learning using Scikit-Learn

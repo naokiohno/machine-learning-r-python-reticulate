@@ -9,7 +9,12 @@ library(tidyverse)
 library(AppliedPredictiveModeling)
 library(mlbench)
 library(corrplot)
+library(PerformanceAnalytics)
 ```
+
+# Finding the best EDA tools
+
+## Correlation matrices / Scatter plots
 
 ```{r}
 data(Glass)
@@ -18,6 +23,22 @@ data <- Glass
 data$Type <- as.numeric(as.character(data$Type))
 corrplot(cor(data), method = "number")
 ```
+
+```{r}
+chart.Correlation(data, histogram=TRUE)
+```
+
+```{r}
+psych::pairs.panels(data, 
+  method = "pearson",
+  hist.col = "#00AFBB",
+  density = T,
+  ellipses = F,
+  smooth = F)
+```
+I will take this. It's pretty good.
+
+
 
 We have 4 seemingly important predictors:
 
@@ -32,14 +53,10 @@ Relationships between predictors:
 * Ca and Refractive index - Possibly, the added Calcium makes it cloudy as CaCo3 is very opaque.
 
 ```{r}
-pairs(data)
+pairs(Glass)
 ```
 
 The response variable glass type is a categorical variable, therefore linear regression is not applicable.
-
-```{r}
-GGally::ggpairs(data, progress = F)
-```
 
 These initial plots are super important.
 
@@ -56,5 +73,192 @@ Outliers: Negative values possibly, nothing to note.
 There is a linear relationship between type and Si as well as Al.
 
 I guess I could transform the variables with Box-Cox transformation but it won't really do anything for tree-based models.
+I know centering and scaling features is important with neural nets but I don't know if it also needs to be made closer to normal distribution.
 
-I don't get it. Doesn't the box cox transformation mess the original data up? How do we know?
+**Is skewness a problem with neural networks?**
+
+## Soybean data
+
+```{r}
+data("Soybean")
+data <- Soybean
+```
+
+```{r}
+str(data)
+```
+
+The dataset consists of a bunch of categorical variables one-hot encoded. It does not really help me understand the problem but 
+so is data. This is a multiclass classification problem.
+
+19 distinct plant disease classes.
+
+Note to self: Continuous variables are much easier to interpret. This is a bit messy.
+
+### Frequency distributions
+
+```{r}
+data_num <- sapply(data, as.numeric)
+
+#cor(na.omit(data_num))
+```
+
+There were a few signs of degenerate categorical fequency distributions:
+
+* There are very few instances in one of the two categories. If it's a multiclass problem, there are very few instances in a class. (Near zero variance predictor)
+
+I need to tally up the number and percentage of each classes. How is this done most efficiently if I don't want to go over all 36 variables?
+
+**Near zero variance**
+
+```{r}
+nearZeroVar(data)
+```
+Let's examine these columns in detail.
+
+```{r}
+names(data[19])
+names(data[26])
+names(data[28])
+```
+
+```{r}
+data %>% count(leaf.mild)
+data %>% count(mycelium)
+data %>% count(sclerotia)
+```
+
+
+
+```{r}
+data %>% count(Class)
+```
+
+* Ratio of first to second is very high (20)
+* Fraction of unique values over the sample size is low (10%)
+
+### Correlation
+
+```{r}
+corrplot::corrplot(cor(na.omit(data_num)), method = "color", order = "hclust")
+```
+
+There are a number of correlated variables. These should / could be removed?
+
+```{r}
+high_cor <- findCorrelation(cor(na.omit(data_num)), cutoff = .75)
+length(high_cor)
+```
+
+There are only 4 variables with correlation above 0.75. Is this the right cutoff point?
+
+* Show NAs
+* Show near 0 variance
+* Show correlation plot / scatter plot
+
+```{r}
+summary(data)
+```
+
+```{r}
+missing_col <- data %>%
+gather(col, value) %>%
+group_by(col) %>%
+summarize(missing_share = mean(is.na(value))) %>%
+arrange(desc(missing_share))
+
+missing_col
+```
+
+```{r}
+missing_col_within <- 
+data %>% filter(is.na(hail)) %>%
+gather(col, value) %>%
+group_by(col) %>%
+summarize(missing_share = mean(is.na(value))) %>%
+arrange(desc(missing_share))
+
+missing_col_within
+```
+
+Yes, indeed. Hodging, Seed tmt, sever and germ are also missing. Furthermore, 
+
+```{r}
+missing_col %>% inner_join(missing_col_within, by = "col") %>% mutate(diff = missing_share.y - missing_share.x)
+```
+
+The conclusion is that it is definitely worth removing these missing values from the dataset as they are low quality across the board and introduce missing values in other places as well.
+
+Steps
+
+## Remove all missing Hail and go from there.
+
+```{r}
+# Remove missing hail rows
+data <- data %>% filter(!is.na(hail))
+
+# Test again
+missing_col <- data %>%
+gather(col, value) %>%
+group_by(col) %>%
+summarize(missing_share = mean(is.na(value))) %>%
+arrange(desc(missing_share))
+
+missing_col
+```
+
+Removing these instances absolutely eliminated my missing data issue. Good riddance. No need for imputation.
+If I were to impute, how would I do it? I did it with a linear model before. The mice package has really good tools for this.
+
+
+# QSAR Data
+
+```{r}
+data(BloodBrain)
+data <- bbbDescr
+
+data <- data.frame(logBBB, data)
+```
+
+The solution is contained within logBBB.
+
+The dataset contains 134 chemical characteristics. I think the jist of it all is that you don't need to dig
+into veins and brain tissue to get samples, they are not easy to do. If you can predict the concentration
+based only on its chemical characteristics, you can design drugs much easier.
+
+The point with such high number of predictors is that you're not supposed to know what they mean and
+still come up with an effective machine learning model.
+
+## Degenerate distributions
+
+```{r}
+nearZeroVar(data)
+```
+According to this function, only 6 variables have degenerate distributions.
+
+## Missingness
+
+```{r}
+data %>%
+gather(col, value) %>%
+group_by(col) %>%
+summarize(missing_share = mean(is.na(value))) %>%
+arrange(desc(missing_share))
+```
+There is no missing data. Amazing!
+
+```{r}
+corrplot::corrplot(cor(data), method = "color", order = "hclust")
+```
+This plot is not the easiest to interpret obviously as it shows 135 variables. 
+What we can conclude from this is that most variables are correlated with other variables
+one way or the other. The solution to this problem is obviously dimensionality reduction.
+
+A clear candidate for this is PCA.
+
+
+
+
+
+
+

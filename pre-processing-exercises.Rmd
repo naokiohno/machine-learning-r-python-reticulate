@@ -4,6 +4,57 @@ output: html_notebook
 ---
 
 ```{r}
-library()
+library(caret)
+library(tidyverse)
+library(AppliedPredictiveModeling)
+library(mlbench)
+library(corrplot)
 ```
 
+```{r}
+data(Glass)
+data <- Glass
+
+data$Type <- as.numeric(as.character(data$Type))
+corrplot(cor(data), method = "number")
+```
+
+We have 4 seemingly important predictors:
+
+* Mg 
+* Al
+* Na
+* Ba
+
+
+Relationships between predictors:
+
+* Ca and Refractive index - Possibly, the added Calcium makes it cloudy as CaCo3 is very opaque.
+
+```{r}
+pairs(data)
+```
+
+The response variable glass type is a categorical variable, therefore linear regression is not applicable.
+
+```{r}
+GGally::ggpairs(data, progress = F)
+```
+
+These initial plots are super important.
+
+Skewed variables:
+
+* Fe
+* Ba 
+* K
+* Mg is bimodal
+* RI
+
+Outliers: Negative values possibly, nothing to note.
+
+There is a linear relationship between type and Si as well as Al.
+
+I guess I could transform the variables with Box-Cox transformation but it won't really do anything for tree-based models.
+
+I don't get it. Doesn't the box cox transformation mess the original data up? How do we know?

@@ -9,7 +9,6 @@ library(tidyverse)
 library(AppliedPredictiveModeling)
 library(mlbench)
 library(corrplot)
-library(PerformanceAnalytics)
 ```
 
 # Finding the best EDA tools
@@ -216,8 +215,6 @@ If I were to impute, how would I do it? I did it with a linear model before. The
 ```{r}
 data(BloodBrain)
 data <- bbbDescr
-
-data <- data.frame(logBBB, data)
 ```
 
 The solution is contained within logBBB.
@@ -256,9 +253,67 @@ one way or the other. The solution to this problem is obviously dimensionality r
 
 A clear candidate for this is PCA.
 
+```{r}
+findCorrelation(cor(data), cutoff = 1) %>% length()
+```
+There is no variable perfectly correlated.
+
+```{r}
+cols_to_delete <- findCorrelation(cor(data), cutoff = 0.75)
+findCorrelation(cor(data), cutoff = 0.75) %>% length()
+```
+66 variables have a correlation coefficient higher than 0.75. These could be removed.
+
+```{r}
+filtered_data <- data[, -cols_to_delete]
+```
+And thus, 68 variables remain.
+
+```{r}
+corrplot::corrplot(cor(filtered_data), method = "color", order = "hclust")
+```
+
+```{r}
+nearZeroVar(filtered_data)
+```
+
+```{r}
+filtered_data <- filtered_data[, -nearZeroVar(filtered_data)]
+filtered_data <- data.frame(logBBB, filtered_data)
+```
+This method is now finished.
+
+## Principal Coefficient Analysis
+
+PCA is sensitive to skewed data as well as data on different scales.
+Therefore, it is a must to trasnsform, scale and center the data before PCA.
+
+```{r}
+pca_object <- prcomp(data, center = T, scale. = T)
+```
 
 
+```{r}
+library(e1071)
+trans <- preProcess(data, 
+                    method = c("BoxCox", "center", "scale", "pca"))
+```
 
+```{r}
+trans
+```
+This is very consistent with the correlation removal method. 31 components encode 62 of the variables.
+It's very good that 95% of the variance is accounted for.
 
+```{r}
+transformed <- predict(trans, data)
+```
 
+I really like this. The dimensionality is now reduced to only 31 principal coefficients. It's not interpretable now at all but it's so numerically pure.
+
+Question: Which coefficients were used? In what order?
+
+```{r}
+
+```
 

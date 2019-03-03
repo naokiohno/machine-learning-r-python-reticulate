@@ -79,7 +79,87 @@ Machine learning is a very empirical science. XGBoost just seems to work very we
 The winners of many Kaggle competitions used this model and mentioned: "When in doubt, use XGBoost".
 The question is when is XGBoost not the best model?
 
+## Exploration and Preprocessing
 
+```{r}
+test_filled <- test %>% mutate(GENRE = NA)
+data <- rbind(train, test_filled)
+
+colnames(data) <- tolower(colnames(data))
+
+corrplot(cor(data[, -ncol(data)]), method = "color", tl.col = "white")
+```
+
+```{r}
+sum(is.na(data))
+```
+There are no missing values in the data apart from the missing labels in the test set.
+
+Judging by the correlation plots, there is going to be some heavy dimensionality reduction in order to remove correlated features.
+
+```{r}
+findCorrelation(cor(data[, -ncol(data)]), cutoff = 0.75)
+length(findCorrelation(cor(data[, -ncol(data)]), cutoff = 0.75))
+```
+
+There are 93 highly correlated features out of 192. The preprocessing techniques will be discussed later.
+
+## Data Splitting
+
+We have a fairly high number of observations: 12495 for the training set.
+This means a simple 10-fold cross-validation might be fine for our purposes without repeats.
+
+Running a random forest on this one should be fine with 10-fold cross validation
+
+```{r}
+labels <- data$genre 
+labels_train <- train$GENRE
+
+data <- data %>% select(-genre)
+```
+
+```{r}
+library(e1071)
+data <- as.data.frame(data)
+trans <- preProcess(data, 
+                    method = c("BoxCox", "center", "scale", "pca"))
+```
+
+```{r}
+trans
+```
+
+```{r}
+data_trans <- predict(trans, data)
+train_trans <- data.frame(genre = labels_train, data_trans[1:nrow(train),])
+test_trans <- data_trans[(nrow(train)+1):nrow(data_trans),]
+```
+
+
+```{r}
+ranf_fit <- train(genre ~ .,
+                 data = train_trans,
+                 method = "rf",
+                 tuneLength = 1,
+                 trControl = trainControl(method = "cv", number = 5, verboseIter = T))
+```
+
+This is taking absolutely forever. I'll reduce the dimensionality in order to get a better computational time.
+
+```{r}
+ranf_fit
+```
+
+```{r}
+confusionMatrix(ranf_fit)
+```
+This is amazing accuracy. Maybe even human level. I'm quite happy with this.
+
+```{r}
+results <- predict(ranf_fit, test_trans)
+```
+
+Here are my predictions. I think I can consider this exercise solved.
 
 
 

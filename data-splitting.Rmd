@@ -1,0 +1,108 @@
+---
+title: "Data Splitting"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+library(AppliedPredictiveModeling)
+library(corrplot)
+library(e1071)
+```
+
+```{r}
+data("permeability")
+```
+
+```{r}
+data <- fingerprints
+dim(data)
+```
+The data has 165 rows and 1107 columns. 
+
+```{r}
+corrplot(data, method = "color", tl.col = "white")
+```
+
+```{r}
+nearZeroVar(data) %>% length()
+```
+
+```{r}
+toremove <- nearZeroVar(data)
+data <- data[, -toremove]
+
+data <- as.data.frame(data)
+```
+
+```{r}
+sum(is.na(data))
+```
+There are no missing values in the data.
+
+```{r}
+corrplot(cor(data), method = "color", tl.col = "white")
+```
+
+
+```{r}
+findCorrelation(cor(data), cutoff = 0.75) %>% length()
+cor_to_remove <- findCorrelation(cor(data), cutoff = 0.75)
+```
+
+```{r}
+data <- data[, -cor_to_remove]
+```
+
+```{r}
+corrplot(cor(data), method = "color", tl.col = "white")
+```
+
+There are a small number of observations, therefore, I would use a 10-fold cross-validation repeated 10 times.
+
+```{r}
+data_full <- data.frame(permeability, data)
+```
+
+```{r}
+ranf_fit <- train(permeability ~ .,
+                  data = data_full,
+                  method = "rf",
+                  tuneLength = 5,
+                  importance = T,
+                  trControl = trainControl(method = "repeatedcv", repeats = 5, number = 10, verboseIter = T)
+)
+```
+
+```{r}
+ranf_fit
+```
+
+The model is now ready.
+
+```{r}
+plot(ranf_fit)
+```
+
+```{r}
+summary(permeability)
+```
+
+```{r}
+qplot(permeability)
+```
+
+A mean absolute error of 7.1 doesn't seem to be that great considering.
+
+```{r}
+var_importance <- varImp(ranf_fit, scale = F)
+plot(var_importance)
+```
+
+```{r}
+cor(data_full$permeability, data_full$X6)
+cor(data_full$permeability, data_full$X138)
+cor(data_full$permeability, data_full$X36)
+```
+

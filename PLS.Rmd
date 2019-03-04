@@ -1,0 +1,85 @@
+---
+title: "Partial Least Squares"
+output: html_notebook
+---
+
+```{r}
+library(caret)
+library(tidyverse)
+library(AppliedPredictiveModeling)
+library(e1071)
+library(corrplot)
+```
+
+```{r}
+data("ChemicalManufacturingProcess")
+data <- ChemicalManufacturingProcess
+```
+
+The dataset only contains continuous variables.
+
+```{r}
+corrplot(cor(na.omit(data)), method = "color", tl.col = "white")
+```
+
+There are definitely some correlated features going on.
+
+## Brief
+
+(a) Using the “one-standard error”method, what number of PLS components
+provides the most parsimonious model?
+
+(b) Compute the tolerance values for this example. If a 10 % loss in R2 is
+acceptable, then what is the optimal number of PLS components?
+
+(c) Several other models (discussed in Part II) with varying degrees of complexity were trained and tuned and the results are presented in Fig. 4.13.
+If the goal is to select the model that optimizes R2, then which model(s)
+would you choose, and why?
+
+(d) Prediction time, as well as model complexity (Sect. 4.8) are other factors
+to consider when selecting the optimal model(s). Given each model’s prediction time, model complexity, and R2 estimates, which model(s) would
+you choose, and why?
+
+# Oil exercise
+
+```{r}
+data(oil)
+```
+
+```{r}
+str(oilType)
+```
+
+```{r}
+table(oilType)
+```
+
+```{r}
+random <- sample(oilType, 60)
+table(random)
+```
+
+```{r}
+plot(oilType)
+plot(random)
+```
+They are close but not perfect.
+
+```{r}
+part <- createDataPartition(oilType, list = F, p = 0.58)
+```
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+
+

@@ -3,4 +3,113 @@ title: "Regression Exercises"
 output: html_notebook
 ---
 
+```{r}
+library(tidyverse)
+library(caret)
+```
+
 This document serves as my notes on this chapter as well as the worked exercises.
+
+Note: R^2 value shows the percentage of the variation explained by the model. I belive this comes
+with an extra layer of difficulty as the flexible models can overfit, thereby increasing the value.
+It also doesn't provide information on predictive accuracy.
+
+## Variance-Bias Trade-off
+
+The mean squared error (MSE) has 3 components
+
+* Irreducible noise
+* Model variance
+* Model bias
+
+The simple average had a very low variance as it is quite stable but high bias.
+The moving average on the other hand had low bias (followed the data reasonably well)
+but small changes in the data threw it out of control - high variance.
+
+Collinearity issues can increase model variance.
+
+Underfitting: Low variance, High bias
+Overfitting: High variance, Low bias
+
+```{r}
+observed <- c(0.22, 0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
+ 0.62, 0.99, -0.18, 0.32, 0.34, -0.30, 0.04, -0.87,
+ 0.55, -1.30, -1.15, 0.20)
+
+predicted <- c(0.24, 0.78, -0.66, 0.53, 0.70, -0.75, -0.41, -0.43,
+0.49, 0.79, -1.19, 0.06, 0.75, -0.07, 0.43, -0.42,
+-0.25, -0.64, -1.26, -0.07)
+
+results <- data.frame(observed, predicted)
+```
+
+```{r}
+ggplot(results, aes(x = observed, y = predicted)) +
+  geom_point() +
+  geom_abline(intercept = 0, slope = 1, col = "grey") +
+  ggtitle("Observed vs Predicted Results")
+```
+
+```{r}
+residuals_pred <- data.frame(residual_values, predicted)
+
+ggplot(residuals_pred, aes(x = predicted, y = residual_values)) +
+  geom_point() +
+  #geom_smooth(method = "lm") +
+  geom_hline(yintercept = 0, col = "grey") +
+  ggtitle("Residuals vs Predicted Values")
+```
+
+This plot is essentially the last plot with its axis rotated towards predicted.
+It looks relatively random but it seems to slightly underpredict at the higher end of the prediction range.
+
+```{r}
+residual_values <- observed - predicted
+summary(residual_values)
+```
+
+```{r}
+RMSE(predicted, observed)
+R2(predicted, observed)
+```
+
+## Linear Models
+
+Why would you use a linear model? It's because their coefficient estimates are highly interpretable and has real life implication.
+They are good if your variables are not correlated and if there is a linear relationship between the independent and dependent variable.
+Failing that, this method is not ideal. 
+
+**Ordinary least squares regression aims to minimise bias!**
+
+It also needs to have a lower number of predictors than observations. Collinearity needs to be mitigated.
+PCA can be used for this purpose as well as removing the most correlated variables.
+
+Furthermore, the variance inflation factor can diagnose multicollinearity.
+
+Alternatively, dimensionality reduction regression techniques such as ridge, lasso and elastic net regression models can be used.
+
+**Another issue is when the relationship between dependent and independent predictors are not linear**
+In this case, individual relationships need to be observed. A diagnostic plot is the predicted vs residual plot. If there is a curve in the plot,
+the relationship is probably not linear.
+
+If the relationship is really complex, it's better to use more flexible models such as SVM and Neural nets.
+
+Outliers can also mess up linear regression, as it tries to minimise sum of squared errors, things that are far are going to weigh a lot.
+There is a method called Huber that can mitigate the effect of outliers.
+
+There are no tuning parameters. But we need to be really careful using this model as there are many things that can go wrong.
+
+The correlated variables can actually cause the model predictions to be worse.
+In case of the highly correlated dataset, the conclusion was simply that a model that can tolerate collinearity would be much more useful.
+
+PCA works well with linear regression because the principal components created will be uncorrelated. However, it really hurts the interpretability of
+the model, which is the biggest advantage of using linear regression. Furthermore, PCA doesn't consider the reponse variable, only
+the variability of the predictor space.
+
+So overall, the author doesn't recommend using PCA with linear regression, instead he recommends using PLS when there are many variables or 
+correlated variables.
+
+
+
+
+

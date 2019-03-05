@@ -109,6 +109,22 @@ the variability of the predictor space.
 So overall, the author doesn't recommend using PCA with linear regression, instead he recommends using PLS when there are many variables or 
 correlated variables.
 
+PLS is like PCA but instead of finding the best combinations of variables in the predictor space, it finds the best
+variables in respect to the dependent variable. 
+
+PCR = Principal Component Regression.
+
+In PLS as well as PCR, predictors should be centered and scaled.
+Essentially, what they say is that PLS is superior to PCR.
+
+The predictive power of PLS and PCR are very similar, PLS models are simpler than PCR.
+
+These chapters really make me think that most of these introductory methods are simply not the best way to go, but 
+they are mentioned first because it's simpler, more interpretable and just basic.
+
+
+
+
 
 
 

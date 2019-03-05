@@ -1,0 +1,77 @@
+---
+title: "Regression Models"
+output: html_notebook
+---
+
+Insight: If there was a hypothetical variable that contributed a great deal to the model fit, which was unknown to us,
+the error terms using the other two variables would look like random scatter. Wouldn't it?
+
+Let's simulate the data generation process. This would give me a great deal of insights.
+The easiest thing to do would be to reverse-engineer a linear model.
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+x1 <- rnorm(20, 50, 10)
+x2 <- rnorm(20, 50, 10)
+
+b0 <- 50
+b1 <- 50
+b2 <- 50
+# sigma <- 0
+
+eps <- 0
+
+y <- b0 + b1*x1 + b2*x2
+```
+
+```{r}
+plot(y ~ x1)
+```
+
+```{r}
+plot(y ~ x2)
+```
+
+```{r}
+model <- lm(y ~ x1 + x2)
+```
+
+```{r}
+summary(model)
+```
+
+The multiple R2 value shows that all of the variance in the data is accounted for. Variance in what?
+The dependent variable. It just means that 
+
+```{r}
+plot(density(y))
+```
+
+It shows that all of this variation can be explained by mathematical formulas.
+
+```{r}
+sample(y, 10)
+```
+When you have no preconceptions on the data generation process, this just looks like random noise. 
+You can however also look at the shape of the distribution. This by itself doesn't assume anything about how the data is generated.
+
+This is the equivalent of measuring heights or school performances of children. We can note: Interesting, but what causes some children to perform 
+well and other children to perform worse?
+
+We need **predictors** of academic performance. How do we go about obtaining those?
+Well, we could measure other characteristics of each child and see if something changes along with performance, in other words, is correlated with the performance.
+I'm using correlation broadly, there is not necessarily only linear correlation, there are many other shapes of correlation.
+
+We measure their IQ for example and plot the results. We see that there is a linear relation, with plenty of scatter around the trendline. We could look at a model and conclude what proportion of variance is explained by IQ. This is a very robust method for showing predictor - effect relationships.
+
+This classical statistics approach fails only when the underlying data generation process is very complicated and we fail to find variables that easily explain
+the variation of the dependent variable with any reasonable certainty.
+
+In this case, a machine learning approach might be warranted if our only goal is to predict a variable. The issue is that the models can get very complicated and the 
+underlying relationship will not be interpretable to us humans. This is not necessarily an issue. It has a profound indication that we are not intelligent enough as humans
+to perceive a multitude of complicated relationships within the data, the data generation process remains a mystery.
+
+In this sense, what machine learning does is help transcend our limitations as humans and extend our abilities. It is transcending the limitations of our brains.

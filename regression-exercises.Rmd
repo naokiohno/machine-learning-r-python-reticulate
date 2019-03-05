@@ -1,0 +1,6 @@
+---
+title: "Regression Exercises"
+output: html_notebook
+---
+
+This document serves as my notes on this chapter as well as the worked exercises.

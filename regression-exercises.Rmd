@@ -6,6 +6,9 @@ output: html_notebook
 ```{r}
 library(tidyverse)
 library(caret)
+library(AppliedPredictiveModeling)
+library(corrplot)
+library(MASS)
 ```
 
 This document serves as my notes on this chapter as well as the worked exercises.
@@ -121,6 +124,117 @@ The predictive power of PLS and PCR are very similar, PLS models are simpler tha
 
 These chapters really make me think that most of these introductory methods are simply not the best way to go, but 
 they are mentioned first because it's simpler, more interpretable and just basic.
+
+## Computing
+
+### Loading the data
+```{r}
+data(solubility)
+
+# This gives us the names of all objects in a  regex way, quite cool.
+ls(pattern = "^solT")
+```
+
+### Ordinary Linear Regression
+
+```{r}
+training_data <- solTrainXtrans
+training_data$solubility <- solTrainY
+```
+
+```{r}
+corrplot(cor(training_data), method = "color", order = "hclust")
+```
+
+Most variables are not highly correlated, but there is definitely multicollinearity within the data.
+
+```{r}
+lm_fit_all_predictors <- lm(solubility ~ ., data = training_data)
+summary(lm_fit_all_predictors)
+```
+
+```{r}
+lm_pred_1 <- predict(lm_fit_all_predictors, solTestXtrans)
+head(lm_pred_1)
+```
+
+```{r}
+lm_values_1 <- data.frame(obs = solTestY, pred = lm_pred_1)
+defaultSummary(lm_values_1)
+```
+
+This prediction captured 87% of variance in the dependent variable. It's not too bad.
+
+Using the robust linear model. What is the robust linear model again? Huber approach?
+
+```{r}
+rlm_fit_all_predictors <- rlm(solubility ~ ., data = training_data)
+```
+
+```{r}
+ctrl <- trainControl(method = "cv", number = 10)
+
+lm_fit_1 <- train(x = solTrainXtrans, y = solTrainY,
+                  method = "lm", trControl = ctrl)
+```
+
+```{r}
+lm_fit_1
+```
+This is slightly better than the train/test split linear model.
+
+For models built to explain, we need to look at residuals.
+
+For models built to predict, residuals give us an idea about areas where the model doesn't perform well.
+
+```{r}
+plot(lm_fit_1$finalModel$residuals, lm_fit_1$pred)
+```
+They look random enough to me, I don't think there are any problems.
+
+```{r}
+xyplot(solTrainY ~ predict(lm_fit_1),
+ type = c("p", "g"),
+ xlab = "Predicted", ylab = "Observed")
+```
+The plot shows real vs predicted values. They are meant to fall along the diagonal line and randomly distributed along the line.
+
+
+```{r}
+xyplot(resid(lm_fit_1) ~ predict(lm_fit_1),
+        type = c("p", "g"),
+        xlab = "Predicted", ylab = "Residuals")
+```
+
+The residuals are meant to be randomly scattered along the horizontal axis. It's the same as the previous plot except flipped.
+
+```{r}
+cor_thres <- 0.9
+too_high <- findCorrelation(cor(solTrainXtrans), cor_thres)
+
+too_high
+```
+
+```{r}
+corrpred <- names(solTrainXtrans[too_high])
+corrpred
+```
+These are the columns that are recommended to be removed based on the correlation threshold.
+
+```{r}
+train_x_filtered <- solTrainXtrans[, -too_high]
+
+lm_filtered <- train(train_x_filtered, solTrainY, method = "lm",
+                     trControl = ctrl)
+
+lm_filtered
+```
+This is a mistake in the book. The predictors were not filtered.
+There doesn't seem to be any difference in predictive accuracy though.
+
+**Robust Linear Regression**
+
+RLM doesn't allow the covariance matrix to be singular. What is this guy talking about?
 
 
 

@@ -236,6 +236,237 @@ There doesn't seem to be any difference in predictive accuracy though.
 
 RLM doesn't allow the covariance matrix to be singular. What is this guy talking about?
 
+```{r}
+# Build the RLM
+
+rlm_pca <- train(train_x_filtered, solTrainY,
+                 method = "rlm",
+                 preProcess = "pca",
+                 trControl = ctrl)
+
+rlm_pca
+```
+MAE and RMSE are very similar. RLM gives much more accurate predictions, quite nice.
+
+### Partial Least Squares
+
+This will be the alternative of the PCR, aka principal coefficient regression. It functions similarly to PCA in practice, but
+it is supervised. It is in theory better than PCR. Let's check it out.
+
+```{r}
+library(pls)
+
+pls_fit <- plsr(solubility ~ ., data = training_data)
+
+predict(pls_fit, solTestXtrans[1:5,], ncomp = 1:2)
+```
+
+```{r}
+pls_tune <- train(solTrainXtrans, solTrainY,
+                  method = "pls",
+                  tuneLength = 20,
+                  trControl = ctrl,
+                  preProcess = c("center", "scale"))
+
+plot(pls_tune)
+pls_tune
+```
+PLS gave us better results than PCR. I shall remember that. But why would you use PLS if you could use random forest?
+
+```{r}
+ranf_model <- train(solTrainXtrans, solTrainY,
+                  method = "rf",
+                  tuneLength = 10,
+                  trControl = ctrl)
+```
+
+
+### Penalised regression models
+
+Ridge regression
+
+
+The MASS package contains 
+
+## Exercises
+
+### 6.1 IR spectroscopy
+
+```{r}
+data(tecator)
+```
+
+```{r}
+corrplot(cor(absorp), method = "color")
+```
+Jesus Christ, what is this? lol
+
+Everything is positively correlated with everything.
+
+1. Use PCA to determine the effective dimension of the data
+
+```{r}
+data <- as.data.frame(absorp)
+
+trans <- preProcess(x = data,
+                    method = c("BoxCox", "center", "scale", "pca"))
+
+trans
+```
+Yep, as the correlation plot suggested, it only needs 2 variables to capture 95% of the variance within the data.
+The dataset is very redundant.
+
+```{r}
+processed_data <- predict(trans, data)
+
+corrplot(cor(processed_data), method = "color")
+```
+
+They are completely uncorrelated.
+
+### Models
+
+**OLS Regression**
+
+```{r}
+ols_model_1 <- train(data, endpoints[,1],
+                   method = "lm",
+                   trControl = trainControl(method = "cv", number = 10))
+
+ols_model_1
+```
+97% of the variation was explained. I wouldn't trust it. I don't know if it's adjusted R^2 or not.
+
+```{r}
+ols_model_2 <- train(data, endpoints[,2],
+                   method = "lm",
+                   trControl = trainControl(method = "cv", number = 10))
+
+ols_model_2
+```
+
+```{r}
+ols_model_3 <-  train(data, endpoints[,3],
+                   method = "lm",
+                   trControl = trainControl(method = "cv", number = 10))
+
+ols_model_3
+```
+
+Ok, next I will only use the first column. There are too many variables.
+
+**OLS with centering, scaling and PCA**
+
+```{r}
+ols_model_processed <- train(data, endpoints[,1],
+                             method = "lm",
+                             trControl = trainControl(method = "cv", number = 10),
+                             preProcess = c("BoxCox", "center", "scale", "pca"))
+
+ols_model_processed
+```
+What is going on with this? The predictions are so much worse. So much for preprocessing.
+
+**PLS**
+
+```{r}
+pls_model <- train(data, endpoints[,1],
+                   method = "pls",
+                   tuneLength = 40,
+                   trControl = trainControl(method = "cv", number = 10),
+                   preProcess = c("BoxCox", "center", "scale"))
+
+pls_model
+```
+
+```{r}
+plot(pls_model)
+```
+
+This is the best one yet, PLS with preprocessing.
+
+**Ridge regression**
+
+```{r}
+ridgeGrid <- data.frame(.lambda = seq(0, 0.1, length = 15))
+
+ridge_model <- train(data, endpoints[,1],
+                     method = "ridge",
+                     tuneGrid = ridgeGrid,
+                     trControl = trainControl(method = "cv", number = 10),
+                     preProcess = c("BoxCox", "center", "scale"))
+
+ridge_model
+```
+It worked with a reasonable MAE value. Not as good as PLS but not as bad as ordinary regression and PCR.
+
+Though, what does Lambda 0 mean? It means there is no penalty term for coefficients. Therefore, this is ordinary regression. Great.
+
+**Lasso regression**
+
+```{r}
+lasso_grid <- data.frame(.fraction = seq(0, 0.1, length = 15))
+
+lasso_model <- train(data, endpoints[,1],
+                     method = "lasso",
+                     tuneGrid = lasso_grid,
+                     trControl = trainControl(method = "cv", number = 10),
+                     preProcess = c("BoxCox", "center", "scale"))
+
+lasso_model
+```
+Yes! I beat PLS with lasso.
+
+**Elastic net**
+
+This is the final model. It's time for the elastic net.
+
+```{r}
+enet_grid <- data.frame(.fraction = seq(0, 0.1, length = 15))
+
+enet_model <- train(data, endpoints[,1],
+                     method = "enet",
+                     tuneLength = 30,
+                     trControl = trainControl(method = "cv", number = 10),
+                     preProcess = c("BoxCox", "center", "scale"))
+
+enet_model
+```
+The two models are practically identical. Lambda set to 0 caused the model to behave as a lasso model,
+no ridge parameter. The lasso fraction estimate is close to 0 again. That was all of the models.
+
+**Model comparison**
+
+```{r}
+models <- resamples(list(OLS = ols_model_1, PCR = ols_model_processed, PLS = pls_model, ridge = ridge_model, lasso = lasso_model, elastic_net = enet_model))
+
+summary(models)
+```
+
+```{r}
+model_differences <- diff(models)
+summary(model_differences)
+```
+
+These results suggest that it's actually quite accurate at predicting the performance.
+There is no significant difference between the performance of lasso, ridge and elastic net models.
+I think this is good enough.
+
+The models are absolutely great at determining the content of water as a beginning.
+I'm done with these exercises.
+
+Thoughts: People use the Free lunch theorem as if there wasn't an inherent difference in models. It's a safe bet I think to use a random forest model instead of any
+type of linear regression model.
+
+```{r}
+
+```
+
+
+
+
+
+
 
 
 

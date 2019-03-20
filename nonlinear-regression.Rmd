@@ -239,7 +239,165 @@ They are able to capture nonlinear relationships.
 ```{r}
 training_data <- mlbench.friedman1(200, sd = 1)
 training_data$x <- as.data.frame(training_data$x)
+
+featurePlot(training_data$x, training_data$y)
 ```
+Ok, what is this supposed to mean?
+
+```{r}
+test_data <- mlbench.friedman1(5000, sd = 1)
+test_data$x <- data.frame(test_data$x)
+```
+
+Let's check for highly correlated variables. That's what we did in computing.
+
+```{r}
+corrplot::corrplot(cor(training_data$x), method = "number")
+```
+It looks great, there is no need to remove correlated predictors, I have
+been handed clean data.
+
+**KNN**
+
+```{r}
+## Tune example model on the data
+## I only have 200 observations, so cross-validate heavily
+knn_model <- train(training_data$x, training_data$y,
+                   method = "knn",
+                   preProc = c("center", "scale"),
+                   tuneLength = 10,
+                   trControl = trainControl(method = "repeatedcv", 
+                                            number = 10, 
+                                            repeats = 10))
+
+knn_model
+```
+
+Is the MAE of 2.5 considered good? I would have to check my data for that.
+
+```{r}
+qplot(training_data$y)
+```
+```{r}
+summary(training_data$y)
+```
+It's not horrible but also not very good.
+
+```{r}
+2.53 / (max(training_data$y) - min(training_data$y)) * 100
+```
+It tells us about 10% of the range. It could be improved.
+
+**Random Forest**
+
+```{r}
+workers = makeCluster(4, type = "SOCK")
+registerDoParallel(workers)
+
+ranf_model <- train(training_data$x, training_data$y,
+                    method = "rf",
+                    tuneLength = 5,
+                    verboseIter = T,
+                    trainCtrl = trainControl(method = "repeatedcv",
+                                             number = 10,
+                                             repeats = 10))
+```
+
+That was pretty quick. I'm pushing this poor T420 with these full CPU load parallel model training processes.
+
+```{r}
+ranf_model
+```
+Much better than KNN. Yeah, KNN was crap before and crap now.
+
+**SVM**
+
+This one is a heavy-hitter. Let's see what it's capable of.
+
+```{r}
+svm_model <- train(training_data$x, training_data$y,
+                   method = "svmRadial",
+                   preProcess = c("center", "scale"),
+                   tuneLength = 20,
+                   trControl = trainControl(method = "repeatedcv",
+                                            number = 10,
+                                            repeats = 10))
+
+svm_model
+```
+SVM training is so quick. Why is it so quick?
+
+Yes, SVM is a real winner. I'm starting to like SVM a lot. They are really quick to train and they have pretty much peak accuracy.
+
+**OLS regression**
+
+Let's do this.
+
+```{r}
+ols_model <- train(training_data$x, training_data$y,
+                   method = "lm",
+                   preProcess = c("center", "scale"),
+                   trControl = trainControl(method = "repeatedcv",
+                                            number = 10,
+                                            repeats = 10))
+ols_model
+```
+Not bad. Weirdly enough it's still better than random forest and KNN.
+
+**MARS**
+
+This worked pretty well last time. Let's check it out.
+
+```{r}
+mars_model <- train(training_data$x, training_data$y,
+                    method = "earth",
+                    tuneLength = 30,
+                    trControl = trainControl(method = "repeatedcv",
+                                             number = 10,
+                                             repeats = 10))
+mars_model
+```
+Damn. This is better than the SVM. These MARS models are really no joke.
+I never even heard of this model outside of statistical testbooks but these are good. Absolutely no joke.
+
+It might be quite dataset dependent. Anyway, I will not disrespect MARS ever again.
+
+**Neural Net**
+
+i would rather not run it at home, my laptop won't take it. 
+
+```{r}
+
+```
+
+I pretty much ran out of model for these chapters. Let's try one more thing.
+
+**XGBoost**
+
+```{r}
+xgb_model <- train(training_data$x, training_data$y,
+                   method = "xgbTree",
+                   tuneLength = 5,
+                   trControl = trainControl(method = "cv",
+                                            number = 10))
+
+xgb_model
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

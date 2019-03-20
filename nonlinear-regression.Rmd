@@ -1,0 +1,106 @@
+---
+title: "Nonlinear regression"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+library(AppliedPredictiveModeling)
+library(doParallel)
+library(earth)
+```
+
+# Computing
+
+## Neural networks
+
+1. Remove highly correlated predictors
+2. Preprocessing: center and scale
+
+Yes, averaged models or neural nets in general are very susceptible to highly correlated variables. Therefore, it is necessary 
+to remove highly correlated variables.
+
+```{r}
+data(solubility)
+```
+
+```{r}
+# Finding correlations
+
+too_high <- findCorrelation(cor(solTrainXtrans), 0.75)
+
+length(too_high)
+# 87 variables need to be removed
+train <- solTrainXtrans[, -too_high]
+test <- solTestXtrans[, -too_high]
+
+train_sol <- solTrainY
+test_sol <- solTestY
+```
+
+Alright, all the data is ready to feed into the model.
+
+Now let's create some grid search parameters for the neural net.
+
+```{r}
+# This is essentially a cartesian product
+nnet_grid <- expand.grid(.decay = c(0, 0.01, 0.1),
+                         .size = c(1:10),
+                         .bag = FALSE)
+
+
+indx <- createFolds(train_sol, returnTrain = TRUE)
+ctrl <- trainControl(method = "cv", index = indx)
+```
+
+```{r}
+workers=makeCluster(16,type="SOCK")
+registerDoParallel(workers)
+```
+
+```{r}
+nnet_tune <- train(train, train_sol,
+                   method = "avNNet",
+                   tuneGrid = nnet_grid,
+                   trControl = ctrl,
+                   preProc = c("center", "scale"),
+                   linout = T,
+                   trace = T,
+                   MaxNWts = 10 * (ncol(train) + 1) + 10 + 1,
+                   maxit = 100)
+```
+
+Lesson learned: Neural networks take forever to finish
+
+```{r}
+nnet_tune
+```
+
+MAE is 0.57 with cross-validation. This is actually way better than my linear regression models.
+But does the increased accuracy warrant the added complexity and computational time?
+
+## Random Forest
+
+```{r}
+ranf_model <- train(train, train_sol,
+                    method = "rf",
+                    tuneLength = 10,
+                    trControl = trainControl(method = "cv", number = 10))
+
+ranf_model
+```
+Actually, my random forest does a better job than the neural network. This is pretty amazing.
+I will have to try these methods on my Titanic dataset.
+
+## MARS
+
+Do I need to preprocess for MARS? The author doesn't.
+
+
+```{r}
+mars_fit <- earth()
+```
+
+
+

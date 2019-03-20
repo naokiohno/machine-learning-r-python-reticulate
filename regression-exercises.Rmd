@@ -458,9 +458,7 @@ I'm done with these exercises.
 Thoughts: People use the Free lunch theorem as if there wasn't an inherent difference in models. It's a safe bet I think to use a random forest model instead of any
 type of linear regression model.
 
-```{r}
 
-```
 
 
 

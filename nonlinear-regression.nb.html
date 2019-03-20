@@ -11,7 +11,7 @@
 
 
 
-<title>Regression Exercises</title>
+<title>Nonlinear regression</title>
 
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
@@ -1729,7 +1729,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("regression-exercises.Rmd");
+  window.initializeSourceEmbed("nonlinear-regression.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>
@@ -1761,7 +1761,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Regression Exercises</h1>
+<h1 class="title toc-ignore">Nonlinear regression</h1>
 
 </div>
 
@@ -1769,789 +1769,178 @@ $(document).ready(function () {
 <!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5gYGAifQ== -->
-<pre class="r"><code>library(tidyverse)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXHUwMDFiWzMwbS0tIFx1MDAxYlsxbUF0dGFjaGluZyBwYWNrYWdlc1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZSAxLjIuMSAtLVx1MDAxYlszOW1cblx1MDAxYlszMG1cdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWdncGxvdDJcdTAwMWJbMzBtIDMuMS4wICAgICAgIFx1MDAxYlszMm12XHUwMDFiWzMwbSBcdTAwMWJbMzRtcHVycnIgIFx1MDAxYlszMG0gMC4zLjIgIFxuXHUwMDFiWzMybXZcdTAwMWJbMzBtIFx1MDAxYlszNG10aWJibGUgXHUwMDFiWzMwbSAyLjEuMSAgICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bWRwbHlyICBcdTAwMWJbMzBtIDAuOC4wLlx1MDAxYlszMW0xXHUwMDFiWzMwbVxuXHUwMDFiWzMybXZcdTAwMWJbMzBtIFx1MDAxYlszNG10aWR5ciAgXHUwMDFiWzMwbSAwLjguMyAgICAgICBcdTAwMWJbMzJtdlx1MDAxYlszMG0gXHUwMDFiWzM0bXN0cmluZ3JcdTAwMWJbMzBtIDEuNC4wICBcblx1MDAxYlszMm12XHUwMDFiWzMwbSBcdTAwMWJbMzRtcmVhZHIgIFx1MDAxYlszMG0gMS4zLjEgICAgICAgXHUwMDFiWzMybXZcdTAwMWJbMzBtIFx1MDAxYlszNG1mb3JjYXRzXHUwMDFiWzMwbSAwLjQuMCAgXHUwMDFiWzM5bVxuXHUwMDFiWzMwbS0tIFx1MDAxYlsxbUNvbmZsaWN0c1x1MDAxYlsyMm0gLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tIHRpZHl2ZXJzZV9jb25mbGljdHMoKSAtLVxuXHUwMDFiWzMxbXhcdTAwMWJbMzBtIFx1MDAxYlszNG1kcGx5clx1MDAxYlszMG06Olx1MDAxYlszMm1maWx0ZXIoKVx1MDAxYlszMG0gbWFza3MgXHUwMDFiWzM0bXN0YXRzXHUwMDFiWzMwbTo6ZmlsdGVyKClcblx1MDAxYlszMW14XHUwMDFiWzMwbSBcdTAwMWJbMzRtZHBseXJcdTAwMWJbMzBtOjpcdTAwMWJbMzJtbGFnKClcdTAwMWJbMzBtICAgIG1hc2tzIFx1MDAxYlszNG1zdGF0c1x1MDAxYlszMG06OmxhZygpXHUwMDFiWzM5bVxuIn0= -->
-<pre><code>[30m-- [1mAttaching packages[22m --------------------------------------- tidyverse 1.2.1 --[39m
-[30m[32mv[30m [34mggplot2[30m 3.1.0       [32mv[30m [34mpurrr  [30m 0.3.2  
-[32mv[30m [34mtibble [30m 2.1.1       [32mv[30m [34mdplyr  [30m 0.8.0.[31m1[30m
-[32mv[30m [34mtidyr  [30m 0.8.3       [32mv[30m [34mstringr[30m 1.4.0  
-[32mv[30m [34mreadr  [30m 1.3.1       [32mv[30m [34mforcats[30m 0.4.0  [39m
-[30m-- [1mConflicts[22m ------------------------------------------ tidyverse_conflicts() --
-[31mx[30m [34mdplyr[30m::[32mfilter()[30m masks [34mstats[30m::filter()
-[31mx[30m [34mdplyr[30m::[32mlag()[30m    masks [34mstats[30m::lag()[39m</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShjYXJldClcbmBgYCJ9 -->
-<pre class="r"><code>library(caret)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBsYXR0aWNlXG5cbkF0dGFjaGluZyBwYWNrYWdlOiDjpLzjuLFjYXJldOOkvOO4slxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOnB1cnJy46S847iyOlxuXG4gICAgbGlmdFxuIn0= -->
-<pre><code>Loading required package: lattice
-
-Attaching package: 㤼㸱caret㤼㸲
-
-The following object is masked from 㤼㸱package:purrr㤼㸲:
-
-    lift</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShBcHBsaWVkUHJlZGljdGl2ZU1vZGVsaW5nKVxubGlicmFyeShjb3JycGxvdClcbmBgYCJ9 -->
-<pre class="r"><code>library(AppliedPredictiveModeling)
-library(corrplot)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiY29ycnBsb3QgMC44NCBsb2FkZWRcbiJ9 -->
-<pre><code>corrplot 0.84 loaded</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShNQVNTKVxuYGBgIn0= -->
-<pre class="r"><code>library(MASS)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog46S847ixTUFTU+OkvOO4slxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDjpLzjuLFwYWNrYWdlOmRwbHly46S847iyOlxuXG4gICAgc2VsZWN0XG4ifQ== -->
-<pre><code>
-Attaching package: 㤼㸱MASS㤼㸲
-
-The following object is masked from 㤼㸱package:dplyr㤼㸲:
-
-    select</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This document serves as my notes on this chapter as well as the worked exercises.</p>
-<p>Note: R^2 value shows the percentage of the variation explained by the model. I belive this comes with an extra layer of difficulty as the flexible models can overfit, thereby increasing the value. It also doesn’t provide information on predictive accuracy.</p>
-<div id="variance-bias-trade-off" class="section level2">
-<h2>Variance-Bias Trade-off</h2>
-<p>The mean squared error (MSE) has 3 components</p>
-<ul>
-<li>Irreducible noise</li>
-<li>Model variance</li>
-<li>Model bias</li>
-</ul>
-<p>The simple average had a very low variance as it is quite stable but high bias. The moving average on the other hand had low bias (followed the data reasonably well) but small changes in the data threw it out of control - high variance.</p>
-<p>Collinearity issues can increase model variance.</p>
-<p>Underfitting: Low variance, High bias Overfitting: High variance, Low bias</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2JzZXJ2ZWQgPC0gYygwLjIyLCAwLjgzLCAtMC4xMiwgMC44OSwgLTAuMjMsIC0xLjMwLCAtMC4xNSwgLTEuNCxcbiAwLjYyLCAwLjk5LCAtMC4xOCwgMC4zMiwgMC4zNCwgLTAuMzAsIDAuMDQsIC0wLjg3LFxuIDAuNTUsIC0xLjMwLCAtMS4xNSwgMC4yMClcblxucHJlZGljdGVkIDwtIGMoMC4yNCwgMC43OCwgLTAuNjYsIDAuNTMsIDAuNzAsIC0wLjc1LCAtMC40MSwgLTAuNDMsXG4wLjQ5LCAwLjc5LCAtMS4xOSwgMC4wNiwgMC43NSwgLTAuMDcsIDAuNDMsIC0wLjQyLFxuLTAuMjUsIC0wLjY0LCAtMS4yNiwgLTAuMDcpXG5cbnJlc3VsdHMgPC0gZGF0YS5mcmFtZShvYnNlcnZlZCwgcHJlZGljdGVkKVxuYGBgIn0= -->
-<pre class="r"><code>observed &lt;- c(0.22, 0.83, -0.12, 0.89, -0.23, -1.30, -0.15, -1.4,
- 0.62, 0.99, -0.18, 0.32, 0.34, -0.30, 0.04, -0.87,
- 0.55, -1.30, -1.15, 0.20)
-
-predicted &lt;- c(0.24, 0.78, -0.66, 0.53, 0.70, -0.75, -0.41, -0.43,
-0.49, 0.79, -1.19, 0.06, 0.75, -0.07, 0.43, -0.42,
--0.25, -0.64, -1.26, -0.07)
-
-results &lt;- data.frame(observed, predicted)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5saWJyYXJ5KGNhcmV0KVxubGlicmFyeShBcHBsaWVkUHJlZGljdGl2ZU1vZGVsaW5nKVxubGlicmFyeShkb1BhcmFsbGVsKVxubGlicmFyeShlYXJ0aClcbmBgYCJ9 -->
+<pre class="r"><code>library(tidyverse)
+library(caret)
+library(AppliedPredictiveModeling)
+library(doParallel)
+library(earth)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZ2dwbG90KHJlc3VsdHMsIGFlcyh4ID0gb2JzZXJ2ZWQsIHkgPSBwcmVkaWN0ZWQpKSArXG4gIGdlb21fcG9pbnQoKSArXG4gIGdlb21fYWJsaW5lKGludGVyY2VwdCA9IDAsIHNsb3BlID0gMSwgY29sID0gXCJncmV5XCIpICtcbiAgZ2d0aXRsZShcIk9ic2VydmVkIHZzIFByZWRpY3RlZCBSZXN1bHRzXCIpXG5gYGAifQ== -->
-<pre class="r"><code>ggplot(results, aes(x = observed, y = predicted)) +
-  geom_point() +
-  geom_abline(intercept = 0, slope = 1, col = &quot;grey&quot;) +
-  ggtitle(&quot;Observed vs Predicted Results&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzaWR1YWxzX3ByZWQgPC0gZGF0YS5mcmFtZShyZXNpZHVhbF92YWx1ZXMsIHByZWRpY3RlZClcblxuZ2dwbG90KHJlc2lkdWFsc19wcmVkLCBhZXMoeCA9IHByZWRpY3RlZCwgeSA9IHJlc2lkdWFsX3ZhbHVlcykpICtcbiAgZ2VvbV9wb2ludCgpICtcbiAgI2dlb21fc21vb3RoKG1ldGhvZCA9IFwibG1cIikgK1xuICBnZW9tX2hsaW5lKHlpbnRlcmNlcHQgPSAwLCBjb2wgPSBcImdyZXlcIikgK1xuICBnZ3RpdGxlKFwiUmVzaWR1YWxzIHZzIFByZWRpY3RlZCBWYWx1ZXNcIilcbmBgYCJ9 -->
-<pre class="r"><code>residuals_pred &lt;- data.frame(residual_values, predicted)
-
-ggplot(residuals_pred, aes(x = predicted, y = residual_values)) +
-  geom_point() +
-  #geom_smooth(method = &quot;lm&quot;) +
-  geom_hline(yintercept = 0, col = &quot;grey&quot;) +
-  ggtitle(&quot;Residuals vs Predicted Values&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This plot is essentially the last plot with its axis rotated towards predicted. It looks relatively random but it seems to slightly underpredict at the higher end of the prediction range.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmVzaWR1YWxfdmFsdWVzIDwtIG9ic2VydmVkIC0gcHJlZGljdGVkXG5zdW1tYXJ5KHJlc2lkdWFsX3ZhbHVlcylcbmBgYCJ9 -->
-<pre class="r"><code>residual_values &lt;- observed - predicted
-summary(residual_values)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuUk1TRShwcmVkaWN0ZWQsIG9ic2VydmVkKVxuUjIocHJlZGljdGVkLCBvYnNlcnZlZClcbmBgYCJ9 -->
-<pre class="r"><code>RMSE(predicted, observed)
-R2(predicted, observed)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="linear-models" class="section level2">
-<h2>Linear Models</h2>
-<p>Why would you use a linear model? It’s because their coefficient estimates are highly interpretable and has real life implication. They are good if your variables are not correlated and if there is a linear relationship between the independent and dependent variable. Failing that, this method is not ideal.</p>
-<p><strong>Ordinary least squares regression aims to minimise bias!</strong></p>
-<p>It also needs to have a lower number of predictors than observations. Collinearity needs to be mitigated. PCA can be used for this purpose as well as removing the most correlated variables.</p>
-<p>Furthermore, the variance inflation factor can diagnose multicollinearity.</p>
-<p>Alternatively, dimensionality reduction regression techniques such as ridge, lasso and elastic net regression models can be used.</p>
-<p><strong>Another issue is when the relationship between dependent and independent predictors are not linear</strong> In this case, individual relationships need to be observed. A diagnostic plot is the predicted vs residual plot. If there is a curve in the plot, the relationship is probably not linear.</p>
-<p>If the relationship is really complex, it’s better to use more flexible models such as SVM and Neural nets.</p>
-<p>Outliers can also mess up linear regression, as it tries to minimise sum of squared errors, things that are far are going to weigh a lot. There is a method called Huber that can mitigate the effect of outliers.</p>
-<p>There are no tuning parameters. But we need to be really careful using this model as there are many things that can go wrong.</p>
-<p>The correlated variables can actually cause the model predictions to be worse. In case of the highly correlated dataset, the conclusion was simply that a model that can tolerate collinearity would be much more useful.</p>
-<p>PCA works well with linear regression because the principal components created will be uncorrelated. However, it really hurts the interpretability of the model, which is the biggest advantage of using linear regression. Furthermore, PCA doesn’t consider the reponse variable, only the variability of the predictor space.</p>
-<p>So overall, the author doesn’t recommend using PCA with linear regression, instead he recommends using PLS when there are many variables or correlated variables.</p>
-<p>PLS is like PCA but instead of finding the best combinations of variables in the predictor space, it finds the best variables in respect to the dependent variable.</p>
-<p>PCR = Principal Component Regression.</p>
-<p>In PLS as well as PCR, predictors should be centered and scaled. Essentially, what they say is that PLS is superior to PCR.</p>
-<p>The predictive power of PLS and PCR are very similar, PLS models are simpler than PCR.</p>
-<p>These chapters really make me think that most of these introductory methods are simply not the best way to go, but they are mentioned first because it’s simpler, more interpretable and just basic.</p>
-</div>
-<div id="computing" class="section level2">
-<h2>Computing</h2>
-<div id="loading-the-data" class="section level3">
-<h3>Loading the data</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YShzb2x1YmlsaXR5KVxuXG4jIFRoaXMgZ2l2ZXMgdXMgdGhlIG5hbWVzIG9mIGFsbCBvYmplY3RzIGluIGEgIHJlZ2V4IHdheSwgcXVpdGUgY29vbC5cbmxzKHBhdHRlcm4gPSBcIl5zb2xUXCIpXG5gYGAifQ== -->
-<pre class="r"><code>data(solubility)
-
-# This gives us the names of all objects in a  regex way, quite cool.
-ls(pattern = &quot;^solT&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="ordinary-linear-regression" class="section level3">
-<h3>Ordinary Linear Regression</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJhaW5pbmdfZGF0YSA8LSBzb2xUcmFpblh0cmFuc1xudHJhaW5pbmdfZGF0YSRzb2x1YmlsaXR5IDwtIHNvbFRyYWluWVxuYGBgIn0= -->
-<pre class="r"><code>training_data &lt;- solTrainXtrans
-training_data$solubility &lt;- solTrainY</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29ycnBsb3QoY29yKHRyYWluaW5nX2RhdGEpLCBtZXRob2QgPSBcImNvbG9yXCIsIG9yZGVyID0gXCJoY2x1c3RcIilcbmBgYCJ9 -->
-<pre class="r"><code>corrplot(cor(training_data), method = &quot;color&quot;, order = &quot;hclust&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Most variables are not highly correlated, but there is definitely multicollinearity within the data.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1fZml0X2FsbF9wcmVkaWN0b3JzIDwtIGxtKHNvbHViaWxpdHkgfiAuLCBkYXRhID0gdHJhaW5pbmdfZGF0YSlcbnN1bW1hcnkobG1fZml0X2FsbF9wcmVkaWN0b3JzKVxuYGBgIn0= -->
-<pre class="r"><code>lm_fit_all_predictors &lt;- lm(solubility ~ ., data = training_data)
-summary(lm_fit_all_predictors)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1fcHJlZF8xIDwtIHByZWRpY3QobG1fZml0X2FsbF9wcmVkaWN0b3JzLCBzb2xUZXN0WHRyYW5zKVxuaGVhZChsbV9wcmVkXzEpXG5gYGAifQ== -->
-<pre class="r"><code>lm_pred_1 &lt;- predict(lm_fit_all_predictors, solTestXtrans)
-head(lm_pred_1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1fdmFsdWVzXzEgPC0gZGF0YS5mcmFtZShvYnMgPSBzb2xUZXN0WSwgcHJlZCA9IGxtX3ByZWRfMSlcbmRlZmF1bHRTdW1tYXJ5KGxtX3ZhbHVlc18xKVxuYGBgIn0= -->
-<pre class="r"><code>lm_values_1 &lt;- data.frame(obs = solTestY, pred = lm_pred_1)
-defaultSummary(lm_values_1)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This prediction captured 87% of variance in the dependent variable. It’s not too bad.</p>
-<p>Using the robust linear model. What is the robust linear model again? Huber approach?</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmxtX2ZpdF9hbGxfcHJlZGljdG9ycyA8LSBybG0oc29sdWJpbGl0eSB+IC4sIGRhdGEgPSB0cmFpbmluZ19kYXRhKVxuYGBgIn0= -->
-<pre class="r"><code>rlm_fit_all_predictors &lt;- rlm(solubility ~ ., data = training_data)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY3RybCA8LSB0cmFpbkNvbnRyb2wobWV0aG9kID0gXCJjdlwiLCBudW1iZXIgPSAxMClcblxubG1fZml0XzEgPC0gdHJhaW4oeCA9IHNvbFRyYWluWHRyYW5zLCB5ID0gc29sVHJhaW5ZLFxuICAgICAgICAgICAgICAgICAgbWV0aG9kID0gXCJsbVwiLCB0ckNvbnRyb2wgPSBjdHJsKVxuYGBgIn0= -->
-<pre class="r"><code>ctrl &lt;- trainControl(method = &quot;cv&quot;, number = 10)
-
-lm_fit_1 &lt;- train(x = solTrainXtrans, y = solTrainY,
-                  method = &quot;lm&quot;, trControl = ctrl)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubG1fZml0XzFcbmBgYCJ9 -->
-<pre class="r"><code>lm_fit_1</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This is slightly better than the train/test split linear model.</p>
-<p>For models built to explain, we need to look at residuals.</p>
-<p>For models built to predict, residuals give us an idea about areas where the model doesn’t perform well.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChsbV9maXRfMSRmaW5hbE1vZGVsJHJlc2lkdWFscywgbG1fZml0XzEkcHJlZClcbmBgYCJ9 -->
-<pre class="r"><code>plot(lm_fit_1$finalModel$residuals, lm_fit_1$pred)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>They look random enough to me, I don’t think there are any problems.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueHlwbG90KHNvbFRyYWluWSB+IHByZWRpY3QobG1fZml0XzEpLFxuIHR5cGUgPSBjKFwicFwiLCBcImdcIiksXG4geGxhYiA9IFwiUHJlZGljdGVkXCIsIHlsYWIgPSBcIk9ic2VydmVkXCIpXG5gYGAifQ== -->
-<pre class="r"><code>xyplot(solTrainY ~ predict(lm_fit_1),
- type = c(&quot;p&quot;, &quot;g&quot;),
- xlab = &quot;Predicted&quot;, ylab = &quot;Observed&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The plot shows real vs predicted values. They are meant to fall along the diagonal line and randomly distributed along the line.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxueHlwbG90KHJlc2lkKGxtX2ZpdF8xKSB+IHByZWRpY3QobG1fZml0XzEpLFxuICAgICAgICB0eXBlID0gYyhcInBcIiwgXCJnXCIpLFxuICAgICAgICB4bGFiID0gXCJQcmVkaWN0ZWRcIiwgeWxhYiA9IFwiUmVzaWR1YWxzXCIpXG5gYGAifQ== -->
-<pre class="r"><code>xyplot(resid(lm_fit_1) ~ predict(lm_fit_1),
-        type = c(&quot;p&quot;, &quot;g&quot;),
-        xlab = &quot;Predicted&quot;, ylab = &quot;Residuals&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>The residuals are meant to be randomly scattered along the horizontal axis. It’s the same as the previous plot except flipped.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29yX3RocmVzIDwtIDAuOVxudG9vX2hpZ2ggPC0gZmluZENvcnJlbGF0aW9uKGNvcihzb2xUcmFpblh0cmFucyksIGNvcl90aHJlcylcblxudG9vX2hpZ2hcbmBgYCJ9 -->
-<pre class="r"><code>cor_thres &lt;- 0.9
-too_high &lt;- findCorrelation(cor(solTrainXtrans), cor_thres)
-
-too_high</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29ycnByZWQgPC0gbmFtZXMoc29sVHJhaW5YdHJhbnNbdG9vX2hpZ2hdKVxuY29ycnByZWRcbmBgYCJ9 -->
-<pre class="r"><code>corrpred &lt;- names(solTrainXtrans[too_high])
-corrpred</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>These are the columns that are recommended to be removed based on the correlation threshold.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHJhaW5feF9maWx0ZXJlZCA8LSBzb2xUcmFpblh0cmFuc1ssIC10b29faGlnaF1cblxubG1fZmlsdGVyZWQgPC0gdHJhaW4odHJhaW5feF9maWx0ZXJlZCwgc29sVHJhaW5ZLCBtZXRob2QgPSBcImxtXCIsXG4gICAgICAgICAgICAgICAgICAgICB0ckNvbnRyb2wgPSBjdHJsKVxuXG5sbV9maWx0ZXJlZFxuYGBgIn0= -->
-<pre class="r"><code>train_x_filtered &lt;- solTrainXtrans[, -too_high]
-
-lm_filtered &lt;- train(train_x_filtered, solTrainY, method = &quot;lm&quot;,
-                     trControl = ctrl)
-
-lm_filtered</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This is a mistake in the book. The predictors were not filtered. There doesn’t seem to be any difference in predictive accuracy though.</p>
-<p><strong>Robust Linear Regression</strong></p>
-<p>RLM doesn’t allow the covariance matrix to be singular. What is this guy talking about?</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBCdWlsZCB0aGUgUkxNXG5cbnJsbV9wY2EgPC0gdHJhaW4odHJhaW5feF9maWx0ZXJlZCwgc29sVHJhaW5ZLFxuICAgICAgICAgICAgICAgICBtZXRob2QgPSBcInJsbVwiLFxuICAgICAgICAgICAgICAgICBwcmVQcm9jZXNzID0gXCJwY2FcIixcbiAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gY3RybClcblxucmxtX3BjYVxuYGBgIn0= -->
-<pre class="r"><code># Build the RLM
-
-rlm_pca &lt;- train(train_x_filtered, solTrainY,
-                 method = &quot;rlm&quot;,
-                 preProcess = &quot;pca&quot;,
-                 trControl = ctrl)
-
-rlm_pca</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>MAE and RMSE are very similar. RLM gives much more accurate predictions, quite nice.</p>
-</div>
-<div id="partial-least-squares" class="section level3">
-<h3>Partial Least Squares</h3>
-<p>This will be the alternative of the PCR, aka principal coefficient regression. It functions similarly to PCA in practice, but it is supervised. It is in theory better than PCR. Let’s check it out.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShwbHMpXG5cbnBsc19maXQgPC0gcGxzcihzb2x1YmlsaXR5IH4gLiwgZGF0YSA9IHRyYWluaW5nX2RhdGEpXG5cbnByZWRpY3QocGxzX2ZpdCwgc29sVGVzdFh0cmFuc1sxOjUsXSwgbmNvbXAgPSAxOjIpXG5gYGAifQ== -->
-<pre class="r"><code>library(pls)
-
-pls_fit &lt;- plsr(solubility ~ ., data = training_data)
-
-predict(pls_fit, solTestXtrans[1:5,], ncomp = 1:2)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxzX3R1bmUgPC0gdHJhaW4oc29sVHJhaW5YdHJhbnMsIHNvbFRyYWluWSxcbiAgICAgICAgICAgICAgICAgIG1ldGhvZCA9IFwicGxzXCIsXG4gICAgICAgICAgICAgICAgICB0dW5lTGVuZ3RoID0gMjAsXG4gICAgICAgICAgICAgICAgICB0ckNvbnRyb2wgPSBjdHJsLFxuICAgICAgICAgICAgICAgICAgcHJlUHJvY2VzcyA9IGMoXCJjZW50ZXJcIiwgXCJzY2FsZVwiKSlcblxucGxvdChwbHNfdHVuZSlcbnBsc190dW5lXG5gYGAifQ== -->
-<pre class="r"><code>pls_tune &lt;- train(solTrainXtrans, solTrainY,
-                  method = &quot;pls&quot;,
-                  tuneLength = 20,
-                  trControl = ctrl,
-                  preProcess = c(&quot;center&quot;, &quot;scale&quot;))
-
-plot(pls_tune)
-pls_tune</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>PLS gave us better results than PCR. I shall remember that. But why would you use PLS if you could use random forest?</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFuZl9tb2RlbCA8LSB0cmFpbihzb2xUcmFpblh0cmFucywgc29sVHJhaW5ZLFxuICAgICAgICAgICAgICAgICAgbWV0aG9kID0gXCJyZlwiLFxuICAgICAgICAgICAgICAgICAgdHVuZUxlbmd0aCA9IDEwLFxuICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gY3RybClcbmBgYCJ9 -->
-<pre class="r"><code>ranf_model &lt;- train(solTrainXtrans, solTrainY,
-                  method = &quot;rf&quot;,
-                  tuneLength = 10,
-                  trControl = ctrl)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="penalised-regression-models" class="section level3">
-<h3>Penalised regression models</h3>
-<p>Ridge regression</p>
-<p>The MASS package contains</p>
-</div>
-</div>
-<div id="exercises" class="section level2">
-<h2>Exercises</h2>
-<div id="ir-spectroscopy" class="section level3">
-<h3>6.1 IR spectroscopy</h3>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSh0ZWNhdG9yKVxuYGBgIn0= -->
-<pre class="r"><code>data(tecator)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY29ycnBsb3QoY29yKGFic29ycCksIG1ldGhvZCA9IFwiY29sb3JcIilcbmBgYCJ9 -->
-<pre class="r"><code>corrplot(cor(absorp), method = &quot;color&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Jesus Christ, what is this? lol</p>
-<p>Everything is positively correlated with everything.</p>
+<div id="computing" class="section level1">
+<h1>Computing</h1>
+<div id="neural-networks" class="section level2">
+<h2>Neural networks</h2>
 <ol style="list-style-type: decimal">
-<li>Use PCA to determine the effective dimension of the data</li>
+<li>Remove highly correlated predictors</li>
+<li>Preprocessing: center and scale</li>
 </ol>
+<p>Yes, averaged models or neural nets in general are very susceptible to highly correlated variables. Therefore, it is necessary to remove highly correlated variables.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGFic29ycClcblxudHJhbnMgPC0gcHJlUHJvY2Vzcyh4ID0gZGF0YSxcbiAgICAgICAgICAgICAgICAgICAgbWV0aG9kID0gYyhcIkJveENveFwiLCBcImNlbnRlclwiLCBcInNjYWxlXCIsIFwicGNhXCIpKVxuXG50cmFuc1xuYGBgIn0= -->
-<pre class="r"><code>data &lt;- as.data.frame(absorp)
-
-trans &lt;- preProcess(x = data,
-                    method = c(&quot;BoxCox&quot;, &quot;center&quot;, &quot;scale&quot;, &quot;pca&quot;))
-
-trans</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGVuZ3RoKHRvb19oaWdoKVxuXG5gYGAifQ== -->
+<pre class="r"><code>length(too_high)
+</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiQ3JlYXRlZCBmcm9tIDIxNSBzYW1wbGVzIGFuZCAxMDAgdmFyaWFibGVzXG5cblByZS1wcm9jZXNzaW5nOlxuICAtIEJveC1Db3ggdHJhbnNmb3JtYXRpb24gKDEwMClcbiAgLSBjZW50ZXJlZCAoMTAwKVxuICAtIGlnbm9yZWQgKDApXG4gIC0gcHJpbmNpcGFsIGNvbXBvbmVudCBzaWduYWwgZXh0cmFjdGlvbiAoMTAwKVxuICAtIHNjYWxlZCAoMTAwKVxuXG5MYW1iZGEgZXN0aW1hdGVzIGZvciBCb3gtQ294IHRyYW5zZm9ybWF0aW9uOlxuICAgTWluLiAxc3QgUXUuICBNZWRpYW4gICAgTWVhbiAzcmQgUXUuICAgIE1heC4gXG4gLTEuNzAwICAtMS42MDAgIC0xLjMwMCAgLTEuMzAzICAtMS4wNzUgIC0wLjkwMCBcblxuUENBIG5lZWRlZCAyIGNvbXBvbmVudHMgdG8gY2FwdHVyZSA5NSBwZXJjZW50IG9mIHRoZSB2YXJpYW5jZVxuIn0= -->
-<pre><code>Created from 215 samples and 100 variables
-
-Pre-processing:
-  - Box-Cox transformation (100)
-  - centered (100)
-  - ignored (0)
-  - principal component signal extraction (100)
-  - scaled (100)
-
-Lambda estimates for Box-Cox transformation:
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- -1.700  -1.600  -1.300  -1.303  -1.075  -0.900 
-
-PCA needed 2 components to capture 95 percent of the variance</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDg3XG4ifQ== -->
+<pre><code>[1] 87</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Yep, as the correlation plot suggested, it only needs 2 variables to capture 95% of the variance within the data. The dataset is very redundant.</p>
+<p>Alright, all the data is ready to feed into the model.</p>
+<p>Now let’s create some grid search parameters for the neural net.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJvY2Vzc2VkX2RhdGEgPC0gcHJlZGljdCh0cmFucywgZGF0YSlcblxuY29ycnBsb3QoY29yKHByb2Nlc3NlZF9kYXRhKSwgbWV0aG9kID0gXCJjb2xvclwiKVxuYGBgIn0= -->
-<pre class="r"><code>processed_data &lt;- predict(trans, data)
-
-corrplot(cor(processed_data), method = &quot;color&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-plot-begin eyJjb25kaXRpb25zIjpbXSwiaGVpZ2h0Ijo0MzIuNjMyOSwic2l6ZV9iZWhhdmlvciI6MCwid2lkdGgiOjcwMH0= -->
-<p><img src="data:image/png;base64,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" /></p>
-<!-- rnb-plot-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>They are completely uncorrelated.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud29ya2Vycz1tYWtlQ2x1c3RlcigxNix0eXBlPVwiU09DS1wiKVxucmVnaXN0ZXJEb1BhcmFsbGVsKHdvcmtlcnMpXG5gYGAifQ== -->
+<pre class="r"><code>workers=makeCluster(16,type=&quot;SOCK&quot;)
+registerDoParallel(workers)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubm5ldF90dW5lIDwtIHRyYWluKHRyYWluLCB0cmFpbl9zb2wsXG4gICAgICAgICAgICAgICAgICAgbWV0aG9kID0gXCJhdk5OZXRcIixcbiAgICAgICAgICAgICAgICAgICB0dW5lR3JpZCA9IG5uZXRfZ3JpZCxcbiAgICAgICAgICAgICAgICAgICB0ckNvbnRyb2wgPSBjdHJsLFxuICAgICAgICAgICAgICAgICAgIHByZVByb2MgPSBjKFwiY2VudGVyXCIsIFwic2NhbGVcIiksXG4gICAgICAgICAgICAgICAgICAgbGlub3V0ID0gVCxcbiAgICAgICAgICAgICAgICAgICB0cmFjZSA9IFQsXG4gICAgICAgICAgICAgICAgICAgTWF4Tld0cyA9IDEwICogKG5jb2wodHJhaW4pICsgMSkgKyAxMCArIDEsXG4gICAgICAgICAgICAgICAgICAgbWF4aXQgPSAxMDApXG5gYGAifQ== -->
+<pre class="r"><code>nnet_tune &lt;- train(train, train_sol,
+                   method = &quot;avNNet&quot;,
+                   tuneGrid = nnet_grid,
+                   trControl = ctrl,
+                   preProc = c(&quot;center&quot;, &quot;scale&quot;),
+                   linout = T,
+                   trace = T,
+                   MaxNWts = 10 * (ncol(train) + 1) + 10 + 1,
+                   maxit = 100)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Lesson learned: Neural networks take forever to finish</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubm5ldF90dW5lXG5gYGAifQ== -->
+<pre class="r"><code>nnet_tune</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTW9kZWwgQXZlcmFnZWQgTmV1cmFsIE5ldHdvcmsgXG5cbjk1MSBzYW1wbGVzXG4xNDEgcHJlZGljdG9yc1xuXG5QcmUtcHJvY2Vzc2luZzogY2VudGVyZWQgKDE0MSksIHNjYWxlZCAoMTQxKSBcblJlc2FtcGxpbmc6IENyb3NzLVZhbGlkYXRlZCAoMTAgZm9sZCkgXG5TdW1tYXJ5IG9mIHNhbXBsZSBzaXplczogODU2LCA4NTUsIDg1NiwgODU3LCA4NTcsIDg1NiwgLi4uIFxuUmVzYW1wbGluZyByZXN1bHRzIGFjcm9zcyB0dW5pbmcgcGFyYW1ldGVyczpcblxuICBkZWNheSAgc2l6ZSAgUk1TRSAgICAgICBSc3F1YXJlZCAgIE1BRSAgICAgIFxuICAwLjAwICAgIDEgICAgMS4yNzk2NDI3ICAwLjYyNDc4MTMgIDAuOTgwOTExMFxuICAwLjAwICAgIDIgICAgMS4wMTEyNjk0ICAwLjc1ODEwNTcgIDAuNzcyOTM4NlxuICAwLjAwICAgIDMgICAgMC44OTc2ODI5ICAwLjgwNjE4NDggIDAuNjg2ODIyNFxuICAwLjAwICAgIDQgICAgMC44NDEyMzM0ICAwLjgzMDQ0NzQgIDAuNjM4OTA1OFxuICAwLjAwICAgIDUgICAgMC44MzA1NjYyICAwLjgzMjkyNDMgIDAuNjIzOTM0MVxuICAwLjAwICAgIDYgICAgMC43OTM1MzY3ICAwLjg0ODU2MzEgIDAuNjEwNzY1NVxuICAwLjAwICAgIDcgICAgMC44MDkwOTk5ICAwLjg0NDA0ODUgIDAuNjE0NjM4MlxuICAwLjAwICAgIDggICAgMC44MjQ4Nzk4ICAwLjgzOTUyMTMgIDAuNjI3NDcyMlxuICAwLjAwICAgIDkgICAgMC44MjY1Mzc2ICAwLjgzNTU4NzggIDAuNjI3MDYwNVxuICAwLjAwICAgMTAgICAgMC44MjEwNDM2ICAwLjgzNzQxMTEgIDAuNjI3NTQ1MVxuICAwLjAxICAgIDEgICAgMS4yODYzNjExICAwLjYxODMzMDMgIDAuOTc4MzM5NFxuICAwLjAxICAgIDIgICAgMC45NzY3Nzk4ICAwLjc3NjcwNDUgIDAuNzQ4MTkxOFxuICAwLjAxICAgIDMgICAgMC44OTIwMDc4ICAwLjgxMDgzNzUgIDAuNjg4NjczNVxuICAwLjAxICAgIDQgICAgMC44MTMwMjk1ICAwLjgzOTgyNjAgIDAuNjIwNjg0NFxuICAwLjAxICAgIDUgICAgMC44MjgwMTEzICAwLjgzMzcyOTIgIDAuNjI2MjUwNVxuICAwLjAxICAgIDYgICAgMC44MjUwMzIwICAwLjgzNzM1ODggIDAuNjIzODU0N1xuICAwLjAxICAgIDcgICAgMC44MDA2NDQ0ICAwLjg0NjEzMTQgIDAuNjA3NTEzNFxuICAwLjAxICAgIDggICAgMC43OTcyODczICAwLjg0ODk2NzYgIDAuNTk5MzEyM1xuICAwLjAxICAgIDkgICAgMC44Mjg5NTk5ICAwLjgzNTM3OTYgIDAuNjE5MTU4N1xuICAwLjAxICAgMTAgICAgMC44MjQ0NjQ1ICAwLjgzODU5NjIgIDAuNjMwMjQ5NlxuICAwLjEwICAgIDEgICAgMS4yNDQ5MDYwICAwLjYzODQ0MjUgIDAuOTQ4NjM5MFxuICAwLjEwICAgIDIgICAgMS4wMDM3NzQ5ICAwLjc2MzEyODggIDAuNzc1MTI2NVxuICAwLjEwICAgIDMgICAgMC44NjczMDMwICAwLjgxOTUzMDAgIDAuNjU4MDMzM1xuICAwLjEwICAgIDQgICAgMC44NDI4NjM2ICAwLjgzMDA2NDcgIDAuNjM0NTc0N1xuICAwLjEwICAgIDUgICAgMC43NjQ4MDk2ICAwLjg1ODk2OTggIDAuNTcyOTEwMFxuICAwLjEwICAgIDYgICAgMC43ODYxMDg0ICAwLjg1MDcxNTggIDAuNTk5ODUyMVxuICAwLjEwICAgIDcgICAgMC43ODU2MTc3ICAwLjg1MjE3MDcgIDAuNTkzMDUyNFxuICAwLjEwICAgIDggICAgMC43ODEyOTA1ICAwLjg1Mzc1ODYgIDAuNTg1MDEyMVxuICAwLjEwICAgIDkgICAgMC44MTkwMTA0ICAwLjgzOTcwNjcgIDAuNjEwMDYzOFxuICAwLjEwICAgMTAgICAgMC43ODM3MjQyICAwLjg1MjU4MzAgIDAuNTkyMDg0MVxuXG5UdW5pbmcgcGFyYW1ldGVyICdiYWcnIHdhcyBoZWxkIGNvbnN0YW50IGF0IGEgdmFsdWUgb2YgRkFMU0VcblJNU0Ugd2FzIHVzZWQgdG8gc2VsZWN0IHRoZSBvcHRpbWFsIG1vZGVsIHVzaW5nIHRoZSBzbWFsbGVzdCB2YWx1ZS5cblRoZSBmaW5hbCB2YWx1ZXMgdXNlZCBmb3IgdGhlIG1vZGVsIHdlcmUgc2l6ZSA9IDUsIGRlY2F5ID0gMC4xIGFuZCBiYWcgPSBGQUxTRS5cbiJ9 -->
+<pre><code>Model Averaged Neural Network 
+
+951 samples
+141 predictors
+
+Pre-processing: centered (141), scaled (141) 
+Resampling: Cross-Validated (10 fold) 
+Summary of sample sizes: 856, 855, 856, 857, 857, 856, ... 
+Resampling results across tuning parameters:
+
+  decay  size  RMSE       Rsquared   MAE      
+  0.00    1    1.2796427  0.6247813  0.9809110
+  0.00    2    1.0112694  0.7581057  0.7729386
+  0.00    3    0.8976829  0.8061848  0.6868224
+  0.00    4    0.8412334  0.8304474  0.6389058
+  0.00    5    0.8305662  0.8329243  0.6239341
+  0.00    6    0.7935367  0.8485631  0.6107655
+  0.00    7    0.8090999  0.8440485  0.6146382
+  0.00    8    0.8248798  0.8395213  0.6274722
+  0.00    9    0.8265376  0.8355878  0.6270605
+  0.00   10    0.8210436  0.8374111  0.6275451
+  0.01    1    1.2863611  0.6183303  0.9783394
+  0.01    2    0.9767798  0.7767045  0.7481918
+  0.01    3    0.8920078  0.8108375  0.6886735
+  0.01    4    0.8130295  0.8398260  0.6206844
+  0.01    5    0.8280113  0.8337292  0.6262505
+  0.01    6    0.8250320  0.8373588  0.6238547
+  0.01    7    0.8006444  0.8461314  0.6075134
+  0.01    8    0.7972873  0.8489676  0.5993123
+  0.01    9    0.8289599  0.8353796  0.6191587
+  0.01   10    0.8244645  0.8385962  0.6302496
+  0.10    1    1.2449060  0.6384425  0.9486390
+  0.10    2    1.0037749  0.7631288  0.7751265
+  0.10    3    0.8673030  0.8195300  0.6580333
+  0.10    4    0.8428636  0.8300647  0.6345747
+  0.10    5    0.7648096  0.8589698  0.5729100
+  0.10    6    0.7861084  0.8507158  0.5998521
+  0.10    7    0.7856177  0.8521707  0.5930524
+  0.10    8    0.7812905  0.8537586  0.5850121
+  0.10    9    0.8190104  0.8397067  0.6100638
+  0.10   10    0.7837242  0.8525830  0.5920841
+
+Tuning parameter &#39;bag&#39; was held constant at a value of FALSE
+RMSE was used to select the optimal model using the smallest value.
+The final values used for the model were size = 5, decay = 0.1 and bag = FALSE.</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>MAE is 0.57 with cross-validation. This is actually way better than my linear regression models. But does the increased accuracy warrant the added complexity and computational time?</p>
 </div>
-<div id="models" class="section level3">
-<h3>Models</h3>
-<p><strong>OLS Regression</strong></p>
+<div id="random-forest" class="section level2">
+<h2>Random Forest</h2>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2xzX21vZGVsXzFcblxuYGBgIn0= -->
-<pre class="r"><code>ols_model_1
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmFuZl9tb2RlbFxuXG5gYGAifQ== -->
+<pre class="r"><code>ranf_model
 </code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIFJlZ3Jlc3Npb24gXG5cbjIxNSBzYW1wbGVzXG4xMDAgcHJlZGljdG9yc1xuXG5ObyBwcmUtcHJvY2Vzc2luZ1xuUmVzYW1wbGluZzogQ3Jvc3MtVmFsaWRhdGVkICgxMCBmb2xkKSBcblN1bW1hcnkgb2Ygc2FtcGxlIHNpemVzOiAxOTQsIDE5MywgMTkzLCAxOTUsIDE5MiwgMTk0LCAuLi4gXG5SZXNhbXBsaW5nIHJlc3VsdHM6XG5cbiAgUk1TRSAgICAgIFJzcXVhcmVkICAgTUFFICAgICBcbiAgMS44MDAzMjIgIDAuOTcwMzAzOSAgMS4yNTU3MTdcblxuVHVuaW5nIHBhcmFtZXRlciAnaW50ZXJjZXB0JyB3YXMgaGVsZCBjb25zdGFudCBhdCBhIHZhbHVlIG9mIFRSVUVcbiJ9 -->
-<pre><code>Linear Regression 
+<!-- rnb-output-begin eyJkYXRhIjoiUmFuZG9tIEZvcmVzdCBcblxuOTUxIHNhbXBsZXNcbjE0MSBwcmVkaWN0b3JzXG5cbk5vIHByZS1wcm9jZXNzaW5nXG5SZXNhbXBsaW5nOiBDcm9zcy1WYWxpZGF0ZWQgKDEwIGZvbGQpIFxuU3VtbWFyeSBvZiBzYW1wbGUgc2l6ZXM6IDg1NSwgODU3LCA4NTYsIDg1NSwgODU1LCA4NTYsIC4uLiBcblJlc2FtcGxpbmcgcmVzdWx0cyBhY3Jvc3MgdHVuaW5nIHBhcmFtZXRlcnM6XG5cbiAgbXRyeSAgUk1TRSAgICAgICBSc3F1YXJlZCAgIE1BRSAgICAgIFxuICAgIDIgICAxLjE5MTU3MjggIDAuNzczMTEyNCAgMC45MjM4ODI0XG4gICAxNyAgIDAuNzgzMzM1NSAgMC44NjIxODc5ICAwLjU4NjU4MDZcbiAgIDMyICAgMC43NTA3MzEzICAwLjg3MDczMzAgIDAuNTU3NDAyNFxuICAgNDggICAwLjc0NTg0MTYgIDAuODcxMjI1NyAgMC41NTEzMTY1XG4gICA2MyAgIDAuNzQ1MTc5MiAgMC44NzA4ODczICAwLjU0OTA3NDZcbiAgIDc5ICAgMC43Mzk2OTY3ICAwLjg3MjU1MjcgIDAuNTQyMDkyMFxuICAgOTQgICAwLjc0NzMzODIgIDAuODY5NzkwNCAgMC41NDc3NzYyXG4gIDExMCAgIDAuNzUwMzQ0NiAgMC44Njg1NzE2ICAwLjU0Njg5NDlcbiAgMTI1ICAgMC43NTIyMzk3ICAwLjg2NzYyODggIDAuNTQ4NzM3NlxuICAxNDEgICAwLjc1NjI5ODkgIDAuODY2MDAyMCAgMC41NTE2MDE1XG5cblJNU0Ugd2FzIHVzZWQgdG8gc2VsZWN0IHRoZSBvcHRpbWFsIG1vZGVsIHVzaW5nIHRoZSBzbWFsbGVzdCB2YWx1ZS5cblRoZSBmaW5hbCB2YWx1ZSB1c2VkIGZvciB0aGUgbW9kZWwgd2FzIG10cnkgPSA3OS5cbiJ9 -->
+<pre><code>Random Forest 
 
-215 samples
-100 predictors
+951 samples
+141 predictors
 
 No pre-processing
 Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 194, 193, 193, 195, 192, 194, ... 
-Resampling results:
-
-  RMSE      Rsquared   MAE     
-  1.800322  0.9703039  1.255717
-
-Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>97% of the variation was explained. I wouldn’t trust it. I don’t know if it’s adjusted R^2 or not.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2xzX21vZGVsXzJcblxuYGBgIn0= -->
-<pre class="r"><code>ols_model_2
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIFJlZ3Jlc3Npb24gXG5cbjIxNSBzYW1wbGVzXG4xMDAgcHJlZGljdG9yc1xuXG5ObyBwcmUtcHJvY2Vzc2luZ1xuUmVzYW1wbGluZzogQ3Jvc3MtVmFsaWRhdGVkICgxMCBmb2xkKSBcblN1bW1hcnkgb2Ygc2FtcGxlIHNpemVzOiAxOTUsIDE5NSwgMTkzLCAxOTIsIDE5MywgMTk0LCAuLi4gXG5SZXNhbXBsaW5nIHJlc3VsdHM6XG5cbiAgUk1TRSAgICAgIFJzcXVhcmVkICAgTUFFICAgICBcbiAgMi41MjYyOTcgIDAuOTYxMzYxNiAgMS43NDkxODZcblxuVHVuaW5nIHBhcmFtZXRlciAnaW50ZXJjZXB0JyB3YXMgaGVsZCBjb25zdGFudCBhdCBhIHZhbHVlIG9mIFRSVUVcbiJ9 -->
-<pre><code>Linear Regression 
-
-215 samples
-100 predictors
-
-No pre-processing
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 195, 195, 193, 192, 193, 194, ... 
-Resampling results:
-
-  RMSE      Rsquared   MAE     
-  2.526297  0.9613616  1.749186
-
-Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2xzX21vZGVsXzNcblxuYGBgIn0= -->
-<pre class="r"><code>ols_model_3
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIFJlZ3Jlc3Npb24gXG5cbjIxNSBzYW1wbGVzXG4xMDAgcHJlZGljdG9yc1xuXG5ObyBwcmUtcHJvY2Vzc2luZ1xuUmVzYW1wbGluZzogQ3Jvc3MtVmFsaWRhdGVkICgxMCBmb2xkKSBcblN1bW1hcnkgb2Ygc2FtcGxlIHNpemVzOiAxOTQsIDE5MywgMTk1LCAxOTMsIDE5NCwgMTkzLCAuLi4gXG5SZXNhbXBsaW5nIHJlc3VsdHM6XG5cbiAgUk1TRSAgICAgUnNxdWFyZWQgICBNQUUgICAgICBcbiAgMS4xMzM1MiAgMC44Njc4NzUzICAwLjcyNjg3NjVcblxuVHVuaW5nIHBhcmFtZXRlciAnaW50ZXJjZXB0JyB3YXMgaGVsZCBjb25zdGFudCBhdCBhIHZhbHVlIG9mIFRSVUVcbiJ9 -->
-<pre><code>Linear Regression 
-
-215 samples
-100 predictors
-
-No pre-processing
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 194, 193, 195, 193, 194, 193, ... 
-Resampling results:
-
-  RMSE     Rsquared   MAE      
-  1.13352  0.8678753  0.7268765
-
-Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Ok, next I will only use the first column. There are too many variables.</p>
-<p><strong>OLS with centering, scaling and PCA</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxub2xzX21vZGVsX3Byb2Nlc3NlZFxuXG5gYGAifQ== -->
-<pre class="r"><code>ols_model_processed
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiTGluZWFyIFJlZ3Jlc3Npb24gXG5cbjIxNSBzYW1wbGVzXG4xMDAgcHJlZGljdG9yc1xuXG5QcmUtcHJvY2Vzc2luZzogQm94LUNveCB0cmFuc2Zvcm1hdGlvbiAoMTAwKSwgY2VudGVyZWQgKDEwMCksIHNjYWxlZCAoMTAwKSwgcHJpbmNpcGFsIGNvbXBvbmVudCBzaWduYWwgZXh0cmFjdGlvbiAoMTAwKSBcblJlc2FtcGxpbmc6IENyb3NzLVZhbGlkYXRlZCAoMTAgZm9sZCkgXG5TdW1tYXJ5IG9mIHNhbXBsZSBzaXplczogMTk1LCAxOTMsIDE5MiwgMTk0LCAxOTQsIDE5MywgLi4uIFxuUmVzYW1wbGluZyByZXN1bHRzOlxuXG4gIFJNU0UgICAgICBSc3F1YXJlZCAgIE1BRSAgICAgXG4gIDguMTUxMjY5ICAwLjM0NTQ1MjkgIDYuNzAyMjg5XG5cblR1bmluZyBwYXJhbWV0ZXIgJ2ludGVyY2VwdCcgd2FzIGhlbGQgY29uc3RhbnQgYXQgYSB2YWx1ZSBvZiBUUlVFXG4ifQ== -->
-<pre><code>Linear Regression 
-
-215 samples
-100 predictors
-
-Pre-processing: Box-Cox transformation (100), centered (100), scaled (100), principal component signal extraction (100) 
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 195, 193, 192, 194, 194, 193, ... 
-Resampling results:
-
-  RMSE      Rsquared   MAE     
-  8.151269  0.3454529  6.702289
-
-Tuning parameter &#39;intercept&#39; was held constant at a value of TRUE</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>What is going on with this? The predictions are so much worse. So much for preprocessing.</p>
-<p><strong>PLS</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxzX21vZGVsXG5cbmBgYCJ9 -->
-<pre class="r"><code>pls_model
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUGFydGlhbCBMZWFzdCBTcXVhcmVzIFxuXG4yMTUgc2FtcGxlc1xuMTAwIHByZWRpY3RvcnNcblxuUHJlLXByb2Nlc3Npbmc6IEJveC1Db3ggdHJhbnNmb3JtYXRpb24gKDEwMCksIGNlbnRlcmVkICgxMDApLCBzY2FsZWQgKDEwMCkgXG5SZXNhbXBsaW5nOiBDcm9zcy1WYWxpZGF0ZWQgKDEwIGZvbGQpIFxuU3VtbWFyeSBvZiBzYW1wbGUgc2l6ZXM6IDE5MywgMTkyLCAxOTUsIDE5NCwgMTk1LCAxOTIsIC4uLiBcblJlc2FtcGxpbmcgcmVzdWx0cyBhY3Jvc3MgdHVuaW5nIHBhcmFtZXRlcnM6XG5cbiAgbmNvbXAgIFJNU0UgICAgICBSc3F1YXJlZCAgIE1BRSAgICAgIFxuICAgMSAgICAgOC41MzU3NDIgIDAuMjc0MjUyNCAgNy4xMTY3MDk2XG4gICAyICAgICA2LjM0MTc4OCAgMC42MDc5NTcxICA1LjI3ODQ4NTBcbiAgIDMgICAgIDMuOTU2NDk3ICAwLjg0MTEzMjUgIDMuMDUwOTQwM1xuICAgNCAgICAgMy40NTY3NDEgIDAuODg2NzE1NCAgMi43MzM5NzI4XG4gICA1ICAgICAyLjU2MzQ4MiAgMC45NDE0OTUzICAxLjk5NzY5MjJcbiAgIDYgICAgIDIuNTM4MTY4ICAwLjk0MTc1MjAgIDEuOTU1ODU2NFxuICAgNyAgICAgMi4zODM5OTMgIDAuOTUyNzM3MCAgMS44MzQzMDc4XG4gICA4ICAgICAyLjI3MDUyNiAgMC45NTQ0MDgzICAxLjcxODgwNTVcbiAgIDkgICAgIDEuOTg5NjA0ICAwLjk2NTQyNjggIDEuNDc3MTMyN1xuICAxMCAgICAgMS44OTA1MzAgIDAuOTY4MjgzNSAgMS40MTMwMzQxXG4gIDExICAgICAxLjc5MzU3NiAgMC45NzE4Njk2ICAxLjI5MTM3MDNcbiAgMTIgICAgIDEuNzQxMDk5ICAwLjk3Mzg2ODIgIDEuMjc5MjcyOFxuICAxMyAgICAgMS41ODI3MTYgIDAuOTc4NzcwNSAgMS4xNzY0NTE4XG4gIDE0ICAgICAxLjQ4ODI1OCAgMC45ODA1NTk1ICAxLjExODUwNzdcbiAgMTUgICAgIDEuNDY3Mjg1ICAwLjk4MDgxOTggIDEuMDk4OTExM1xuICAxNiAgICAgMS4zMjQxOTYgIDAuOTg0MzE4NyAgMC45OTUxMzM0XG4gIDE3ICAgICAxLjIyMjg5NyAgMC45ODY3MTg4ICAwLjk0MDI5NTRcbiAgMTggICAgIDEuMTc4MzYyICAwLjk4NzE4NDEgIDAuOTA1MjkyOFxuICAxOSAgICAgMS4xMzMxNDIgIDAuOTg3NzcwMSAgMC44NDk0OTA5XG4gIDIwICAgICAxLjExMjA2MCAgMC45ODgyNjc2ICAwLjg0Njg5MDVcbiAgMjEgICAgIDEuMTI0OTI2ICAwLjk4ODAwMjEgIDAuODUzMTAyM1xuICAyMiAgICAgMS4wOTcwOTggIDAuOTg4NDE0OSAgMC44Mzk5NzA3XG4gIDIzICAgICAxLjEwMjc1NiAgMC45ODg0MjI1ICAwLjg0MTI1ODRcbiAgMjQgICAgIDEuMTAwNTYxICAwLjk4ODE4NDMgIDAuODM5NzQzNlxuICAyNSAgICAgMS4xMDU4NjggIDAuOTg3OTA4NSAgMC44Mzk0Mjg3XG4gIDI2ICAgICAxLjA3ODEyMyAgMC45ODg0NDY3ICAwLjgxNjU3NjJcbiAgMjcgICAgIDEuMDkxNTk1ICAwLjk4ODAyMzIgIDAuODI2NTYwNVxuICAyOCAgICAgMS4xMjcyOTkgIDAuOTg3MDAzMyAgMC44NDAzNjIwXG4gIDI5ICAgICAxLjEzMzk1MiAgMC45ODY2Mjk5ICAwLjgzNDM2MzhcbiAgMzAgICAgIDEuMTUyNDk4ICAwLjk4NTgyNjEgIDAuODI4MzE4MVxuICAzMSAgICAgMS4xNTI5NjEgIDAuOTg1ODc2NyAgMC44NDI1MjY2XG4gIDMyICAgICAxLjE1MDE0MSAgMC45ODYwNDcwICAwLjg0NTIwMjRcbiAgMzMgICAgIDEuMTQ0NDg0ICAwLjk4NjM1MTEgIDAuODUyNjQ2MVxuICAzNCAgICAgMS4xMzkxMTYgIDAuOTg2NTM2NiAgMC44NjUxNTg4XG4gIDM1ICAgICAxLjE1MDY3MyAgMC45ODYzNjAwICAwLjg3MjY3NzBcbiAgMzYgICAgIDEuMTY5MDc5ICAwLjk4NTkyNjggIDAuODg3Nzg2M1xuICAzNyAgICAgMS4xODUyNDIgIDAuOTg1NTUyMCAgMC44OTg1MDc0XG4gIDM4ICAgICAxLjIwNzYyMCAgMC45ODQ5NTU5ICAwLjkxMzYxNDlcbiAgMzkgICAgIDEuMjE0OTM2ICAwLjk4NDgyNTYgIDAuOTE3NDYxN1xuICA0MCAgICAgMS4yMzc0ODUgIDAuOTg0MjcwNSAgMC45MzQyMzQ5XG5cblJNU0Ugd2FzIHVzZWQgdG8gc2VsZWN0IHRoZSBvcHRpbWFsIG1vZGVsIHVzaW5nIHRoZSBzbWFsbGVzdCB2YWx1ZS5cblRoZSBmaW5hbCB2YWx1ZSB1c2VkIGZvciB0aGUgbW9kZWwgd2FzIG5jb21wID0gMjYuXG4ifQ== -->
-<pre><code>Partial Least Squares 
-
-215 samples
-100 predictors
-
-Pre-processing: Box-Cox transformation (100), centered (100), scaled (100) 
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 193, 192, 195, 194, 195, 192, ... 
+Summary of sample sizes: 855, 857, 856, 855, 855, 856, ... 
 Resampling results across tuning parameters:
 
-  ncomp  RMSE      Rsquared   MAE      
-   1     8.535742  0.2742524  7.1167096
-   2     6.341788  0.6079571  5.2784850
-   3     3.956497  0.8411325  3.0509403
-   4     3.456741  0.8867154  2.7339728
-   5     2.563482  0.9414953  1.9976922
-   6     2.538168  0.9417520  1.9558564
-   7     2.383993  0.9527370  1.8343078
-   8     2.270526  0.9544083  1.7188055
-   9     1.989604  0.9654268  1.4771327
-  10     1.890530  0.9682835  1.4130341
-  11     1.793576  0.9718696  1.2913703
-  12     1.741099  0.9738682  1.2792728
-  13     1.582716  0.9787705  1.1764518
-  14     1.488258  0.9805595  1.1185077
-  15     1.467285  0.9808198  1.0989113
-  16     1.324196  0.9843187  0.9951334
-  17     1.222897  0.9867188  0.9402954
-  18     1.178362  0.9871841  0.9052928
-  19     1.133142  0.9877701  0.8494909
-  20     1.112060  0.9882676  0.8468905
-  21     1.124926  0.9880021  0.8531023
-  22     1.097098  0.9884149  0.8399707
-  23     1.102756  0.9884225  0.8412584
-  24     1.100561  0.9881843  0.8397436
-  25     1.105868  0.9879085  0.8394287
-  26     1.078123  0.9884467  0.8165762
-  27     1.091595  0.9880232  0.8265605
-  28     1.127299  0.9870033  0.8403620
-  29     1.133952  0.9866299  0.8343638
-  30     1.152498  0.9858261  0.8283181
-  31     1.152961  0.9858767  0.8425266
-  32     1.150141  0.9860470  0.8452024
-  33     1.144484  0.9863511  0.8526461
-  34     1.139116  0.9865366  0.8651588
-  35     1.150673  0.9863600  0.8726770
-  36     1.169079  0.9859268  0.8877863
-  37     1.185242  0.9855520  0.8985074
-  38     1.207620  0.9849559  0.9136149
-  39     1.214936  0.9848256  0.9174617
-  40     1.237485  0.9842705  0.9342349
+  mtry  RMSE       Rsquared   MAE      
+    2   1.1915728  0.7731124  0.9238824
+   17   0.7833355  0.8621879  0.5865806
+   32   0.7507313  0.8707330  0.5574024
+   48   0.7458416  0.8712257  0.5513165
+   63   0.7451792  0.8708873  0.5490746
+   79   0.7396967  0.8725527  0.5420920
+   94   0.7473382  0.8697904  0.5477762
+  110   0.7503446  0.8685716  0.5468949
+  125   0.7522397  0.8676288  0.5487376
+  141   0.7562989  0.8660020  0.5516015
 
 RMSE was used to select the optimal model using the smallest value.
-The final value used for the model was ncomp = 26.</code></pre>
+The final value used for the model was mtry = 79.</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Actually, my random forest does a better job than the neural network. This is pretty amazing. I will have to try these methods on my Titanic dataset.</p>
+</div>
+<div id="mars" class="section level2">
+<h2>MARS</h2>
+<p>Do I need to preprocess for MARS? The author doesn’t.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-plot-begin eyJjb25kaXRpb25zIjpbXSwiaGVpZ2h0Ijo0MzIuNjMyOSwic2l6ZV9iZWhhdmlvciI6MCwid2lkdGgiOjcwMH0= -->
-<p><img src="data:image/png;base64,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" /></p>
-<!-- rnb-plot-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>This is the best one yet, PLS with preprocessing.</p>
-<p><strong>Ridge regression</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucmlkZ2VfbW9kZWxcblxuYGBgIn0= -->
-<pre class="r"><code>ridge_model
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiUmlkZ2UgUmVncmVzc2lvbiBcblxuMjE1IHNhbXBsZXNcbjEwMCBwcmVkaWN0b3JzXG5cblByZS1wcm9jZXNzaW5nOiBCb3gtQ294IHRyYW5zZm9ybWF0aW9uICgxMDApLCBjZW50ZXJlZCAoMTAwKSwgc2NhbGVkICgxMDApIFxuUmVzYW1wbGluZzogQ3Jvc3MtVmFsaWRhdGVkICgxMCBmb2xkKSBcblN1bW1hcnkgb2Ygc2FtcGxlIHNpemVzOiAxOTQsIDE5NCwgMTk0LCAxOTQsIDE5NCwgMTkyLCAuLi4gXG5SZXNhbXBsaW5nIHJlc3VsdHMgYWNyb3NzIHR1bmluZyBwYXJhbWV0ZXJzOlxuXG4gIGxhbWJkYSAgICAgICBSTVNFICAgICAgUnNxdWFyZWQgICBNQUUgICAgICBcbiAgMC4wMDAwMDAwMDAgIDEuMzI4MzE5ICAwLjk4Mzc5MTIgIDAuOTg5MDgxNVxuICAwLjAwNzE0Mjg1NyAgMi43NzEwMzUgIDAuOTMyNTc2MyAgMi4xNTI1Nzg4XG4gIDAuMDE0Mjg1NzE0ICAyLjk4Njc2OSAgMC45MTg5Nzc4ICAyLjMxNjM5MzFcbiAgMC4wMjE0Mjg1NzEgIDMuMTQwMzgxICAwLjkwOTM3NTQgIDIuNDE5OTc4OFxuICAwLjAyODU3MTQyOSAgMy4yNjE2NTcgIDAuOTAxODcxNCAgMi40OTk0OTg2XG4gIDAuMDM1NzE0Mjg2ICAzLjM2NTA4NSAgMC44OTU0OTU3ICAyLjU2NjUwNDhcbiAgMC4wNDI4NTcxNDMgIDMuNDU3NjYwICAwLjg4OTc1NzQgIDIuNjI3NTc4MVxuICAwLjA1MDAwMDAwMCAgMy41NDI5NzMgIDAuODg0MzkzOCAgMi42ODgyNTY0XG4gIDAuMDU3MTQyODU3ICAzLjYyMjk5MCAgMC44NzkyNTc2ICAyLjc0NTU0ODhcbiAgMC4wNjQyODU3MTQgIDMuNjk4ODU0ICAwLjg3NDI2MjggIDIuODAxMTMzNlxuICAwLjA3MTQyODU3MSAgMy43NzEyNzIgIDAuODY5MzU4MyAgMi44NTU4OTg4XG4gIDAuMDc4NTcxNDI5ICAzLjg0MDcxMSAgMC44NjQ1MTMzICAyLjkxMTM2OTFcbiAgMC4wODU3MTQyODYgIDMuOTA3NDk4ICAwLjg1OTcwOTEgIDIuOTY1Njk1NVxuICAwLjA5Mjg1NzE0MyAgMy45NzE4NzYgIDAuODU0OTM1MCAgMy4wMTg5OTQxXG4gIDAuMTAwMDAwMDAwICA0LjAzNDAzNyAgMC44NTAxODQ4ICAzLjA3MDgyNjRcblxuUk1TRSB3YXMgdXNlZCB0byBzZWxlY3QgdGhlIG9wdGltYWwgbW9kZWwgdXNpbmcgdGhlIHNtYWxsZXN0IHZhbHVlLlxuVGhlIGZpbmFsIHZhbHVlIHVzZWQgZm9yIHRoZSBtb2RlbCB3YXMgbGFtYmRhID0gMC5cbiJ9 -->
-<pre><code>Ridge Regression 
-
-215 samples
-100 predictors
-
-Pre-processing: Box-Cox transformation (100), centered (100), scaled (100) 
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 194, 194, 194, 194, 194, 192, ... 
-Resampling results across tuning parameters:
-
-  lambda       RMSE      Rsquared   MAE      
-  0.000000000  1.328319  0.9837912  0.9890815
-  0.007142857  2.771035  0.9325763  2.1525788
-  0.014285714  2.986769  0.9189778  2.3163931
-  0.021428571  3.140381  0.9093754  2.4199788
-  0.028571429  3.261657  0.9018714  2.4994986
-  0.035714286  3.365085  0.8954957  2.5665048
-  0.042857143  3.457660  0.8897574  2.6275781
-  0.050000000  3.542973  0.8843938  2.6882564
-  0.057142857  3.622990  0.8792576  2.7455488
-  0.064285714  3.698854  0.8742628  2.8011336
-  0.071428571  3.771272  0.8693583  2.8558988
-  0.078571429  3.840711  0.8645133  2.9113691
-  0.085714286  3.907498  0.8597091  2.9656955
-  0.092857143  3.971876  0.8549350  3.0189941
-  0.100000000  4.034037  0.8501848  3.0708264
-
-RMSE was used to select the optimal model using the smallest value.
-The final value used for the model was lambda = 0.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>It worked with a reasonable MAE value. Not as good as PLS but not as bad as ordinary regression and PCR.</p>
-<p>Though, what does Lambda 0 mean? It means there is no penalty term for coefficients. Therefore, this is ordinary regression. Great.</p>
-<p><strong>Lasso regression</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGFzc29fbW9kZWxcblxuYGBgIn0= -->
-<pre class="r"><code>lasso_model
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiVGhlIGxhc3NvIFxuXG4yMTUgc2FtcGxlc1xuMTAwIHByZWRpY3RvcnNcblxuUHJlLXByb2Nlc3Npbmc6IEJveC1Db3ggdHJhbnNmb3JtYXRpb24gKDEwMCksIGNlbnRlcmVkICgxMDApLCBzY2FsZWQgKDEwMCkgXG5SZXNhbXBsaW5nOiBDcm9zcy1WYWxpZGF0ZWQgKDEwIGZvbGQpIFxuU3VtbWFyeSBvZiBzYW1wbGUgc2l6ZXM6IDE5NCwgMTk0LCAxOTMsIDE5MiwgMTkyLCAxOTIsIC4uLiBcblJlc2FtcGxpbmcgcmVzdWx0cyBhY3Jvc3MgdHVuaW5nIHBhcmFtZXRlcnM6XG5cbiAgZnJhY3Rpb24gICAgIFJNU0UgICAgICBSc3F1YXJlZCAgIE1BRSAgICAgIFxuICAwLjAwMDAwMDAwMCAgOS44MTA3NzMgICAgICAgIE5hTiAgOC4zMzM4NjE5XG4gIDAuMDA3MTQyODU3ICAxLjY1NzI5MCAgMC45NzQ2MzE1ICAxLjE5OTM4MDBcbiAgMC4wMTQyODU3MTQgIDEuNDU1NTM4ICAwLjk3OTk4MTcgIDEuMDczNDI1M1xuICAwLjAyMTQyODU3MSAgMS4zMjc1ODQgIDAuOTgzNTM2NSAgMC45ODU5MzIxXG4gIDAuMDI4NTcxNDI5ICAxLjIxMTMwNCAgMC45ODYyNDgxICAwLjkxMDMyNDNcbiAgMC4wMzU3MTQyODYgIDEuMTU0MTM0ICAwLjk4NzQzMDUgIDAuODc0OTk1MFxuICAwLjA0Mjg1NzE0MyAgMS4xMjYxMjggIDAuOTg3OTMwNCAgMC44NTc5NTIxXG4gIDAuMDUwMDAwMDAwICAxLjA5MzU2MSAgMC45ODg1Mzc5ICAwLjgzMjM4NTFcbiAgMC4wNTcxNDI4NTcgIDEuMDc0NzkxICAwLjk4ODg3NDcgIDAuODEyNzI1OFxuICAwLjA2NDI4NTcxNCAgMS4wNjgyMTUgIDAuOTg5MDA0NCAgMC44MDY4MzIwXG4gIDAuMDcxNDI4NTcxICAxLjA2MDE0NiAgMC45ODkxOTc1ICAwLjc5OTc4MTBcbiAgMC4wNzg1NzE0MjkgIDEuMDU0NjIwICAwLjk4OTI5MDEgIDAuNzk0NDY2N1xuICAwLjA4NTcxNDI4NiAgMS4wNTIxMTggIDAuOTg5MjczOCAgMC43OTI2MjU2XG4gIDAuMDkyODU3MTQzICAxLjA1MzQ3NiAgMC45ODkyMDIwICAwLjc5NDQyNThcbiAgMC4xMDAwMDAwMDAgIDEuMDU0MDUwICAwLjk4OTEzNjIgIDAuNzk2MjU2OFxuXG5STVNFIHdhcyB1c2VkIHRvIHNlbGVjdCB0aGUgb3B0aW1hbCBtb2RlbCB1c2luZyB0aGUgc21hbGxlc3QgdmFsdWUuXG5UaGUgZmluYWwgdmFsdWUgdXNlZCBmb3IgdGhlIG1vZGVsIHdhcyBmcmFjdGlvbiA9IDAuMDg1NzE0MjkuXG4ifQ== -->
-<pre><code>The lasso 
-
-215 samples
-100 predictors
-
-Pre-processing: Box-Cox transformation (100), centered (100), scaled (100) 
-Resampling: Cross-Validated (10 fold) 
-Summary of sample sizes: 194, 194, 193, 192, 192, 192, ... 
-Resampling results across tuning parameters:
-
-  fraction     RMSE      Rsquared   MAE      
-  0.000000000  9.810773        NaN  8.3338619
-  0.007142857  1.657290  0.9746315  1.1993800
-  0.014285714  1.455538  0.9799817  1.0734253
-  0.021428571  1.327584  0.9835365  0.9859321
-  0.028571429  1.211304  0.9862481  0.9103243
-  0.035714286  1.154134  0.9874305  0.8749950
-  0.042857143  1.126128  0.9879304  0.8579521
-  0.050000000  1.093561  0.9885379  0.8323851
-  0.057142857  1.074791  0.9888747  0.8127258
-  0.064285714  1.068215  0.9890044  0.8068320
-  0.071428571  1.060146  0.9891975  0.7997810
-  0.078571429  1.054620  0.9892901  0.7944667
-  0.085714286  1.052118  0.9892738  0.7926256
-  0.092857143  1.053476  0.9892020  0.7944258
-  0.100000000  1.054050  0.9891362  0.7962568
-
-RMSE was used to select the optimal model using the smallest value.
-The final value used for the model was fraction = 0.08571429.</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Yes! I beat PLS with lasso.</p>
-<p><strong>Elastic net</strong></p>
-<p>This is the final model. It’s time for the elastic net.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZW5ldF9ncmlkIDwtIGRhdGEuZnJhbWUoLmZyYWN0aW9uID0gc2VxKDAsIDAuMSwgbGVuZ3RoID0gMTUpKVxuXG5lbmV0X21vZGVsIDwtIHRyYWluKGRhdGEsIGVuZHBvaW50c1ssMV0sXG4gICAgICAgICAgICAgICAgICAgICBtZXRob2QgPSBcImVuZXRcIixcbiAgICAgICAgICAgICAgICAgICAgIHR1bmVMZW5ndGggPSAzMCxcbiAgICAgICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IHRyYWluQ29udHJvbChtZXRob2QgPSBcImN2XCIsIG51bWJlciA9IDEwKSxcbiAgICAgICAgICAgICAgICAgICAgIHByZVByb2Nlc3MgPSBjKFwiQm94Q294XCIsIFwiY2VudGVyXCIsIFwic2NhbGVcIikpXG5cbmVuZXRfbW9kZWxcbmBgYCJ9 -->
-<pre class="r"><code>enet_grid &lt;- data.frame(.fraction = seq(0, 0.1, length = 15))
-
-enet_model &lt;- train(data, endpoints[,1],
-                     method = &quot;enet&quot;,
-                     tuneLength = 30,
-                     trControl = trainControl(method = &quot;cv&quot;, number = 10),
-                     preProcess = c(&quot;BoxCox&quot;, &quot;center&quot;, &quot;scale&quot;))
-
-enet_model</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWFyc19maXQgPC0gZWFydGgoKVxuYGBgIn0= -->
+<pre class="r"><code>mars_fit &lt;- earth()</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>The two models are practically identical. Lambda set to 0 caused the model to behave as a lasso model, no ridge parameter. The lasso fraction estimate is close to 0 again. That was all of the models.</p>
-<p><strong>Model comparison</strong></p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtb2RlbHMpXG5cbmBgYCJ9 -->
-<pre class="r"><code>summary(models)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuc3VtbWFyeS5yZXNhbXBsZXMob2JqZWN0ID0gbW9kZWxzKVxuXG5Nb2RlbHM6IE9MUywgUENSLCBQTFMsIHJpZGdlLCBsYXNzbywgZWxhc3RpY19uZXQgXG5OdW1iZXIgb2YgcmVzYW1wbGVzOiAxMCBcblxuTUFFIFxuICAgICAgICAgICAgICAgICBNaW4uICAgMXN0IFF1LiAgICBNZWRpYW4gICAgICBNZWFuICAgM3JkIFF1LiAgICAgIE1heC4gTkEnc1xuT0xTICAgICAgICAgMS4wMDM0MDM2IDEuMTIwMzk5NyAxLjIzMzY0ODMgMS4yNTU3MTczIDEuMzM4NjEzNiAxLjY0MjkzMDMgICAgMFxuUENSICAgICAgICAgNS42MDg3MDQyIDUuOTg2ODY4OCA2Ljg5OTczMTAgNi43MDIyODk0IDcuMTIyOTQzOSA3Ljc1MzQ1MTMgICAgMFxuUExTICAgICAgICAgMC41NTc2NzE4IDAuNzg2MDEyNiAwLjg2ODk2NTIgMC44MTY1NzYyIDAuODg0NDMzOSAwLjk0Mjk3NDkgICAgMFxucmlkZ2UgICAgICAgMC42OTkxMjY1IDAuODY5NzY2MCAwLjk4NzYzMjAgMC45ODkwODE1IDEuMTAzOTE3MiAxLjIzMjIxMTAgICAgMFxubGFzc28gICAgICAgMC42MzIzNzkwIDAuNjU0OTgzNiAwLjc3MjQyNTkgMC43OTI2MjU2IDAuODUwNTAwMyAxLjIxNDA2ODEgICAgMFxuZWxhc3RpY19uZXQgMC42MTAzODA0IDAuNzE1Nzc0NSAwLjc3NDY1OTYgMC43OTcyMTk2IDAuODI0ODI2MiAxLjEzNTgzNTUgICAgMFxuXG5STVNFIFxuICAgICAgICAgICAgICAgICBNaW4uICAgMXN0IFF1LiAgICBNZWRpYW4gICAgIE1lYW4gIDNyZCBRdS4gICAgIE1heC4gTkEnc1xuT0xTICAgICAgICAgMS4yNTgyMTIzIDEuNDcxMDg1NyAxLjcxNjQ5MjQgMS44MDAzMjIgMi4wOTk4NDQgMi41MDMwNzAgICAgMFxuUENSICAgICAgICAgNi44MTA3MzIxIDYuOTIzOTgwMyA4LjU1MjIwMDkgOC4xNTEyNjkgOC44MDkyNjYgOS44NDM3MjggICAgMFxuUExTICAgICAgICAgMC42OTkzMDMxIDEuMDI3OTY4NCAxLjEyODQzMTYgMS4wNzgxMjMgMS4yMDE3NjYgMS4yNjM1OTkgICAgMFxucmlkZ2UgICAgICAgMC44NTg1MjM2IDEuMTQ4OTEyMSAxLjM5NDkyNTcgMS4zMjgzMTkgMS41MTAzMzQgMS42NzI2OTggICAgMFxubGFzc28gICAgICAgMC44NDQ4NTc1IDAuODkzMzc5NiAwLjk2MzYzMjggMS4wNTIxMTggMS4wOTQ0NjAgMS43MTM4MjIgICAgMFxuZWxhc3RpY19uZXQgMC44NzE4NTc1IDAuOTY5MDgxNyAxLjA1MTM0MzggMS4wODE5NTcgMS4xMzg0NTkgMS41NDY4OTIgICAgMFxuXG5Sc3F1YXJlZCBcbiAgICAgICAgICAgICAgICAgTWluLiAgIDFzdCBRdS4gICAgTWVkaWFuICAgICAgTWVhbiAgIDNyZCBRdS4gICAgICBNYXguIE5BJ3Ncbk9MUyAgICAgICAgIDAuOTU2NDkxNCAwLjk2MTE3OTcgMC45Njg2NzAwIDAuOTcwMzAzOSAwLjk4MDkwNjEgMC45ODIzMTcxICAgIDBcblBDUiAgICAgICAgIDAuMTYzMDc2MiAwLjIxMDE5NjkgMC4zMzI3NDAwIDAuMzQ1NDUyOSAwLjQ0OTk1ODUgMC41ODA2MDQxICAgIDBcblBMUyAgICAgICAgIDAuOTgxNzc1OSAwLjk4NTgzMTAgMC45ODk3NDgxIDAuOTg4NDQ2NyAwLjk5MTE5MzEgMC45OTQ5MjM1ICAgIDBcbnJpZGdlICAgICAgIDAuOTcyODQ4MSAwLjk3NzcxNzAgMC45ODU1ODE3IDAuOTgzNzkxMiAwLjk5MDIyMTAgMC45OTEzMzMwICAgIDBcbmxhc3NvICAgICAgIDAuOTc3ODgzNSAwLjk4NzI3MDMgMC45OTE0ODYwIDAuOTg5MjczOCAwLjk5MTkwMTUgMC45OTQ3MTAwICAgIDBcbmVsYXN0aWNfbmV0IDAuOTgwNDc5MSAwLjk4NDc2NzcgMC45ODk5MjQ3IDAuOTg4MTkzNSAwLjk5MTYxNjAgMC45OTI3Mjk3ICAgIDBcbiJ9 -->
-<pre><code>
-Call:
-summary.resamples(object = models)
-
-Models: OLS, PCR, PLS, ridge, lasso, elastic_net 
-Number of resamples: 10 
-
-MAE 
-                 Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-OLS         1.0034036 1.1203997 1.2336483 1.2557173 1.3386136 1.6429303    0
-PCR         5.6087042 5.9868688 6.8997310 6.7022894 7.1229439 7.7534513    0
-PLS         0.5576718 0.7860126 0.8689652 0.8165762 0.8844339 0.9429749    0
-ridge       0.6991265 0.8697660 0.9876320 0.9890815 1.1039172 1.2322110    0
-lasso       0.6323790 0.6549836 0.7724259 0.7926256 0.8505003 1.2140681    0
-elastic_net 0.6103804 0.7157745 0.7746596 0.7972196 0.8248262 1.1358355    0
-
-RMSE 
-                 Min.   1st Qu.    Median     Mean  3rd Qu.     Max. NA&#39;s
-OLS         1.2582123 1.4710857 1.7164924 1.800322 2.099844 2.503070    0
-PCR         6.8107321 6.9239803 8.5522009 8.151269 8.809266 9.843728    0
-PLS         0.6993031 1.0279684 1.1284316 1.078123 1.201766 1.263599    0
-ridge       0.8585236 1.1489121 1.3949257 1.328319 1.510334 1.672698    0
-lasso       0.8448575 0.8933796 0.9636328 1.052118 1.094460 1.713822    0
-elastic_net 0.8718575 0.9690817 1.0513438 1.081957 1.138459 1.546892    0
-
-Rsquared 
-                 Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
-OLS         0.9564914 0.9611797 0.9686700 0.9703039 0.9809061 0.9823171    0
-PCR         0.1630762 0.2101969 0.3327400 0.3454529 0.4499585 0.5806041    0
-PLS         0.9817759 0.9858310 0.9897481 0.9884467 0.9911931 0.9949235    0
-ridge       0.9728481 0.9777170 0.9855817 0.9837912 0.9902210 0.9913330    0
-lasso       0.9778835 0.9872703 0.9914860 0.9892738 0.9919015 0.9947100    0
-elastic_net 0.9804791 0.9847677 0.9899247 0.9881935 0.9916160 0.9927297    0</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc3VtbWFyeShtb2RlbF9kaWZmZXJlbmNlcylcblxuYGBgIn0= -->
-<pre class="r"><code>summary(model_differences)
-</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5DYWxsOlxuc3VtbWFyeS5kaWZmLnJlc2FtcGxlcyhvYmplY3QgPSBtb2RlbF9kaWZmZXJlbmNlcylcblxucC12YWx1ZSBhZGp1c3RtZW50OiBib25mZXJyb25pIFxuVXBwZXIgZGlhZ29uYWw6IGVzdGltYXRlcyBvZiB0aGUgZGlmZmVyZW5jZVxuTG93ZXIgZGlhZ29uYWw6IHAtdmFsdWUgZm9yIEgwOiBkaWZmZXJlbmNlID0gMFxuXG5NQUUgXG4gICAgICAgICAgICBPTFMgICAgICAgUENSICAgICAgIFBMUyAgICAgICByaWRnZSAgICAgbGFzc28gICAgIGVsYXN0aWNfbmV0XG5PTFMgICAgICAgICAgICAgICAgICAgLTUuNDQ2NTcyICAwLjQzOTE0MSAgMC4yNjY2MzYgIDAuNDYzMDkyICAwLjQ1ODQ5OCAgXG5QQ1IgICAgICAgICAzLjM3M2UtMDggICAgICAgICAgICA1Ljg4NTcxMyAgNS43MTMyMDggIDUuOTA5NjY0ICA1LjkwNTA3MCAgXG5QTFMgICAgICAgICAwLjAwMTAyMjcgMS44OTBlLTA4ICAgICAgICAgICAtMC4xNzI1MDUgIDAuMDIzOTUxICAwLjAxOTM1NyAgXG5yaWRnZSAgICAgICAwLjE3MDIyNTUgNC4wNTFlLTA4IDAuMTI3ODY5MyAgICAgICAgICAgIDAuMTk2NDU2ICAwLjE5MTg2MiAgXG5sYXNzbyAgICAgICAwLjAwMDgzMTUgMi4yMDllLTA4IDEuMDAwMDAwMCAwLjI5NDEwNjcgICAgICAgICAgIC0wLjAwNDU5NCAgXG5lbGFzdGljX25ldCAwLjAwNjg3NzkgMy42MTJlLTA4IDEuMDAwMDAwMCAwLjgzODAzMDUgMS4wMDAwMDAwICAgICAgICAgICAgXG5cblJNU0UgXG4gICAgICAgICAgICBPTFMgICAgICAgUENSICAgICAgIFBMUyAgICAgICByaWRnZSAgICAgbGFzc28gICAgIGVsYXN0aWNfbmV0XG5PTFMgICAgICAgICAgICAgICAgICAgLTYuMzUwOTQ3ICAwLjcyMjE5OSAgMC40NzIwMDMgIDAuNzQ4MjA1ICAwLjcxODM2NSAgXG5QQ1IgICAgICAgICAyLjY0NWUtMDcgICAgICAgICAgICA3LjA3MzE0NiAgNi44MjI5NTAgIDcuMDk5MTUyICA3LjA2OTMxMiAgXG5QTFMgICAgICAgICAwLjAwOTQ5OCAgMS4yMDJlLTA3ICAgICAgICAgICAtMC4yNTAxOTYgIDAuMDI2MDA1IC0wLjAwMzgzNCAgXG5yaWRnZSAgICAgICAwLjM1ODQ1OSAgMi45MzVlLTA3IDAuMjEwODQ3ICAgICAgICAgICAgIDAuMjc2MjAxICAwLjI0NjM2MiAgXG5sYXNzbyAgICAgICAwLjAwMTEyNSAgMi4wODJlLTA3IDEuMDAwMDAwICAwLjYxMzU4OSAgICAgICAgICAgIC0wLjAyOTgzOSAgXG5lbGFzdGljX25ldCAwLjAyMDA1MSAgMi43NjVlLTA3IDEuMDAwMDAwICAxLjAwMDAwMCAgMS4wMDAwMDAgICAgICAgICAgICAgXG5cblJzcXVhcmVkIFxuICAgICAgICAgICAgT0xTICAgICAgIFBDUiAgICAgICAgUExTICAgICAgICByaWRnZSAgICAgIGxhc3NvICAgICAgZWxhc3RpY19uZXRcbk9MUyAgICAgICAgICAgICAgICAgICAgMC42MjQ4NTEwIC0wLjAxODE0MjkgLTAuMDEzNDg3NCAtMC4wMTg5NzAwIC0wLjAxNzg4OTYgXG5QQ1IgICAgICAgICA4LjM2M2UtMDYgICAgICAgICAgICAtMC42NDI5OTM5IC0wLjYzODMzODQgLTAuNjQzODIxMCAtMC42NDI3NDA2IFxuUExTICAgICAgICAgMC4wMDIyMDMgIDUuMjc0ZS0wNiAgICAgICAgICAgICAgMC4wMDQ2NTU1IC0wLjAwMDgyNzEgIDAuMDAwMjUzMyBcbnJpZGdlICAgICAgIDAuMjk4NDE0ICA1LjczNmUtMDYgIDEuMDAwMDAwICAgICAgICAgICAgICAtMC4wMDU0ODI2IC0wLjAwNDQwMjIgXG5sYXNzbyAgICAgICAwLjAwMjAxMiAgNS42MjZlLTA2ICAxLjAwMDAwMCAgIDEuMDAwMDAwICAgICAgICAgICAgICAgMC4wMDEwODA0IFxuZWxhc3RpY19uZXQgMC4wMTkyMTMgIDUuNTEzZS0wNiAgMS4wMDAwMDAgICAxLjAwMDAwMCAgIDEuMDAwMDAwICAgICAgICAgICAgICBcbiJ9 -->
-<pre><code>
-Call:
-summary.diff.resamples(object = model_differences)
-
-p-value adjustment: bonferroni 
-Upper diagonal: estimates of the difference
-Lower diagonal: p-value for H0: difference = 0
-
-MAE 
-            OLS       PCR       PLS       ridge     lasso     elastic_net
-OLS                   -5.446572  0.439141  0.266636  0.463092  0.458498  
-PCR         3.373e-08            5.885713  5.713208  5.909664  5.905070  
-PLS         0.0010227 1.890e-08           -0.172505  0.023951  0.019357  
-ridge       0.1702255 4.051e-08 0.1278693            0.196456  0.191862  
-lasso       0.0008315 2.209e-08 1.0000000 0.2941067           -0.004594  
-elastic_net 0.0068779 3.612e-08 1.0000000 0.8380305 1.0000000            
-
-RMSE 
-            OLS       PCR       PLS       ridge     lasso     elastic_net
-OLS                   -6.350947  0.722199  0.472003  0.748205  0.718365  
-PCR         2.645e-07            7.073146  6.822950  7.099152  7.069312  
-PLS         0.009498  1.202e-07           -0.250196  0.026005 -0.003834  
-ridge       0.358459  2.935e-07 0.210847             0.276201  0.246362  
-lasso       0.001125  2.082e-07 1.000000  0.613589            -0.029839  
-elastic_net 0.020051  2.765e-07 1.000000  1.000000  1.000000             
-
-Rsquared 
-            OLS       PCR        PLS        ridge      lasso      elastic_net
-OLS                    0.6248510 -0.0181429 -0.0134874 -0.0189700 -0.0178896 
-PCR         8.363e-06            -0.6429939 -0.6383384 -0.6438210 -0.6427406 
-PLS         0.002203  5.274e-06              0.0046555 -0.0008271  0.0002533 
-ridge       0.298414  5.736e-06  1.000000              -0.0054826 -0.0044022 
-lasso       0.002012  5.626e-06  1.000000   1.000000               0.0010804 
-elastic_net 0.019213  5.513e-06  1.000000   1.000000   1.000000              </code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>These results suggest that it’s actually quite accurate at predicting the performance. There is no significant difference between the performance of lasso, ridge and elastic net models. I think this is good enough.</p>
-<p>The models are absolutely great at determining the content of water as a beginning. I’m done with these exercises.</p>
-<p>Thoughts: People use the Free lunch theorem as if there wasn’t an inherent difference in models. It’s a safe bet I think to use a random forest model instead of any type of linear regression model.</p>
 <!-- rnb-text-end -->
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJlZ3Jlc3Npb24gRXhlcmNpc2VzIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoY2FyZXQpDQpsaWJyYXJ5KEFwcGxpZWRQcmVkaWN0aXZlTW9kZWxpbmcpDQpsaWJyYXJ5KGNvcnJwbG90KQ0KbGlicmFyeShNQVNTKQ0KYGBgDQoNClRoaXMgZG9jdW1lbnQgc2VydmVzIGFzIG15IG5vdGVzIG9uIHRoaXMgY2hhcHRlciBhcyB3ZWxsIGFzIHRoZSB3b3JrZWQgZXhlcmNpc2VzLg0KDQpOb3RlOiBSXjIgdmFsdWUgc2hvd3MgdGhlIHBlcmNlbnRhZ2Ugb2YgdGhlIHZhcmlhdGlvbiBleHBsYWluZWQgYnkgdGhlIG1vZGVsLiBJIGJlbGl2ZSB0aGlzIGNvbWVzDQp3aXRoIGFuIGV4dHJhIGxheWVyIG9mIGRpZmZpY3VsdHkgYXMgdGhlIGZsZXhpYmxlIG1vZGVscyBjYW4gb3ZlcmZpdCwgdGhlcmVieSBpbmNyZWFzaW5nIHRoZSB2YWx1ZS4NCkl0IGFsc28gZG9lc24ndCBwcm92aWRlIGluZm9ybWF0aW9uIG9uIHByZWRpY3RpdmUgYWNjdXJhY3kuDQoNCiMjIFZhcmlhbmNlLUJpYXMgVHJhZGUtb2ZmDQoNClRoZSBtZWFuIHNxdWFyZWQgZXJyb3IgKE1TRSkgaGFzIDMgY29tcG9uZW50cw0KDQoqIElycmVkdWNpYmxlIG5vaXNlDQoqIE1vZGVsIHZhcmlhbmNlDQoqIE1vZGVsIGJpYXMNCg0KVGhlIHNpbXBsZSBhdmVyYWdlIGhhZCBhIHZlcnkgbG93IHZhcmlhbmNlIGFzIGl0IGlzIHF1aXRlIHN0YWJsZSBidXQgaGlnaCBiaWFzLg0KVGhlIG1vdmluZyBhdmVyYWdlIG9uIHRoZSBvdGhlciBoYW5kIGhhZCBsb3cgYmlhcyAoZm9sbG93ZWQgdGhlIGRhdGEgcmVhc29uYWJseSB3ZWxsKQ0KYnV0IHNtYWxsIGNoYW5nZXMgaW4gdGhlIGRhdGEgdGhyZXcgaXQgb3V0IG9mIGNvbnRyb2wgLSBoaWdoIHZhcmlhbmNlLg0KDQpDb2xsaW5lYXJpdHkgaXNzdWVzIGNhbiBpbmNyZWFzZSBtb2RlbCB2YXJpYW5jZS4NCg0KVW5kZXJmaXR0aW5nOiBMb3cgdmFyaWFuY2UsIEhpZ2ggYmlhcw0KT3ZlcmZpdHRpbmc6IEhpZ2ggdmFyaWFuY2UsIExvdyBiaWFzDQoNCmBgYHtyfQ0Kb2JzZXJ2ZWQgPC0gYygwLjIyLCAwLjgzLCAtMC4xMiwgMC44OSwgLTAuMjMsIC0xLjMwLCAtMC4xNSwgLTEuNCwNCiAwLjYyLCAwLjk5LCAtMC4xOCwgMC4zMiwgMC4zNCwgLTAuMzAsIDAuMDQsIC0wLjg3LA0KIDAuNTUsIC0xLjMwLCAtMS4xNSwgMC4yMCkNCg0KcHJlZGljdGVkIDwtIGMoMC4yNCwgMC43OCwgLTAuNjYsIDAuNTMsIDAuNzAsIC0wLjc1LCAtMC40MSwgLTAuNDMsDQowLjQ5LCAwLjc5LCAtMS4xOSwgMC4wNiwgMC43NSwgLTAuMDcsIDAuNDMsIC0wLjQyLA0KLTAuMjUsIC0wLjY0LCAtMS4yNiwgLTAuMDcpDQoNCnJlc3VsdHMgPC0gZGF0YS5mcmFtZShvYnNlcnZlZCwgcHJlZGljdGVkKQ0KYGBgDQoNCmBgYHtyfQ0KZ2dwbG90KHJlc3VsdHMsIGFlcyh4ID0gb2JzZXJ2ZWQsIHkgPSBwcmVkaWN0ZWQpKSArDQogIGdlb21fcG9pbnQoKSArDQogIGdlb21fYWJsaW5lKGludGVyY2VwdCA9IDAsIHNsb3BlID0gMSwgY29sID0gImdyZXkiKSArDQogIGdndGl0bGUoIk9ic2VydmVkIHZzIFByZWRpY3RlZCBSZXN1bHRzIikNCmBgYA0KDQpgYGB7cn0NCnJlc2lkdWFsc19wcmVkIDwtIGRhdGEuZnJhbWUocmVzaWR1YWxfdmFsdWVzLCBwcmVkaWN0ZWQpDQoNCmdncGxvdChyZXNpZHVhbHNfcHJlZCwgYWVzKHggPSBwcmVkaWN0ZWQsIHkgPSByZXNpZHVhbF92YWx1ZXMpKSArDQogIGdlb21fcG9pbnQoKSArDQogICNnZW9tX3Ntb290aChtZXRob2QgPSAibG0iKSArDQogIGdlb21faGxpbmUoeWludGVyY2VwdCA9IDAsIGNvbCA9ICJncmV5IikgKw0KICBnZ3RpdGxlKCJSZXNpZHVhbHMgdnMgUHJlZGljdGVkIFZhbHVlcyIpDQpgYGANCg0KVGhpcyBwbG90IGlzIGVzc2VudGlhbGx5IHRoZSBsYXN0IHBsb3Qgd2l0aCBpdHMgYXhpcyByb3RhdGVkIHRvd2FyZHMgcHJlZGljdGVkLg0KSXQgbG9va3MgcmVsYXRpdmVseSByYW5kb20gYnV0IGl0IHNlZW1zIHRvIHNsaWdodGx5IHVuZGVycHJlZGljdCBhdCB0aGUgaGlnaGVyIGVuZCBvZiB0aGUgcHJlZGljdGlvbiByYW5nZS4NCg0KYGBge3J9DQpyZXNpZHVhbF92YWx1ZXMgPC0gb2JzZXJ2ZWQgLSBwcmVkaWN0ZWQNCnN1bW1hcnkocmVzaWR1YWxfdmFsdWVzKQ0KYGBgDQoNCmBgYHtyfQ0KUk1TRShwcmVkaWN0ZWQsIG9ic2VydmVkKQ0KUjIocHJlZGljdGVkLCBvYnNlcnZlZCkNCmBgYA0KDQojIyBMaW5lYXIgTW9kZWxzDQoNCldoeSB3b3VsZCB5b3UgdXNlIGEgbGluZWFyIG1vZGVsPyBJdCdzIGJlY2F1c2UgdGhlaXIgY29lZmZpY2llbnQgZXN0aW1hdGVzIGFyZSBoaWdobHkgaW50ZXJwcmV0YWJsZSBhbmQgaGFzIHJlYWwgbGlmZSBpbXBsaWNhdGlvbi4NClRoZXkgYXJlIGdvb2QgaWYgeW91ciB2YXJpYWJsZXMgYXJlIG5vdCBjb3JyZWxhdGVkIGFuZCBpZiB0aGVyZSBpcyBhIGxpbmVhciByZWxhdGlvbnNoaXAgYmV0d2VlbiB0aGUgaW5kZXBlbmRlbnQgYW5kIGRlcGVuZGVudCB2YXJpYWJsZS4NCkZhaWxpbmcgdGhhdCwgdGhpcyBtZXRob2QgaXMgbm90IGlkZWFsLiANCg0KKipPcmRpbmFyeSBsZWFzdCBzcXVhcmVzIHJlZ3Jlc3Npb24gYWltcyB0byBtaW5pbWlzZSBiaWFzISoqDQoNCkl0IGFsc28gbmVlZHMgdG8gaGF2ZSBhIGxvd2VyIG51bWJlciBvZiBwcmVkaWN0b3JzIHRoYW4gb2JzZXJ2YXRpb25zLiBDb2xsaW5lYXJpdHkgbmVlZHMgdG8gYmUgbWl0aWdhdGVkLg0KUENBIGNhbiBiZSB1c2VkIGZvciB0aGlzIHB1cnBvc2UgYXMgd2VsbCBhcyByZW1vdmluZyB0aGUgbW9zdCBjb3JyZWxhdGVkIHZhcmlhYmxlcy4NCg0KRnVydGhlcm1vcmUsIHRoZSB2YXJpYW5jZSBpbmZsYXRpb24gZmFjdG9yIGNhbiBkaWFnbm9zZSBtdWx0aWNvbGxpbmVhcml0eS4NCg0KQWx0ZXJuYXRpdmVseSwgZGltZW5zaW9uYWxpdHkgcmVkdWN0aW9uIHJlZ3Jlc3Npb24gdGVjaG5pcXVlcyBzdWNoIGFzIHJpZGdlLCBsYXNzbyBhbmQgZWxhc3RpYyBuZXQgcmVncmVzc2lvbiBtb2RlbHMgY2FuIGJlIHVzZWQuDQoNCioqQW5vdGhlciBpc3N1ZSBpcyB3aGVuIHRoZSByZWxhdGlvbnNoaXAgYmV0d2VlbiBkZXBlbmRlbnQgYW5kIGluZGVwZW5kZW50IHByZWRpY3RvcnMgYXJlIG5vdCBsaW5lYXIqKg0KSW4gdGhpcyBjYXNlLCBpbmRpdmlkdWFsIHJlbGF0aW9uc2hpcHMgbmVlZCB0byBiZSBvYnNlcnZlZC4gQSBkaWFnbm9zdGljIHBsb3QgaXMgdGhlIHByZWRpY3RlZCB2cyByZXNpZHVhbCBwbG90LiBJZiB0aGVyZSBpcyBhIGN1cnZlIGluIHRoZSBwbG90LA0KdGhlIHJlbGF0aW9uc2hpcCBpcyBwcm9iYWJseSBub3QgbGluZWFyLg0KDQpJZiB0aGUgcmVsYXRpb25zaGlwIGlzIHJlYWxseSBjb21wbGV4LCBpdCdzIGJldHRlciB0byB1c2UgbW9yZSBmbGV4aWJsZSBtb2RlbHMgc3VjaCBhcyBTVk0gYW5kIE5ldXJhbCBuZXRzLg0KDQpPdXRsaWVycyBjYW4gYWxzbyBtZXNzIHVwIGxpbmVhciByZWdyZXNzaW9uLCBhcyBpdCB0cmllcyB0byBtaW5pbWlzZSBzdW0gb2Ygc3F1YXJlZCBlcnJvcnMsIHRoaW5ncyB0aGF0IGFyZSBmYXIgYXJlIGdvaW5nIHRvIHdlaWdoIGEgbG90Lg0KVGhlcmUgaXMgYSBtZXRob2QgY2FsbGVkIEh1YmVyIHRoYXQgY2FuIG1pdGlnYXRlIHRoZSBlZmZlY3Qgb2Ygb3V0bGllcnMuDQoNClRoZXJlIGFyZSBubyB0dW5pbmcgcGFyYW1ldGVycy4gQnV0IHdlIG5lZWQgdG8gYmUgcmVhbGx5IGNhcmVmdWwgdXNpbmcgdGhpcyBtb2RlbCBhcyB0aGVyZSBhcmUgbWFueSB0aGluZ3MgdGhhdCBjYW4gZ28gd3JvbmcuDQoNClRoZSBjb3JyZWxhdGVkIHZhcmlhYmxlcyBjYW4gYWN0dWFsbHkgY2F1c2UgdGhlIG1vZGVsIHByZWRpY3Rpb25zIHRvIGJlIHdvcnNlLg0KSW4gY2FzZSBvZiB0aGUgaGlnaGx5IGNvcnJlbGF0ZWQgZGF0YXNldCwgdGhlIGNvbmNsdXNpb24gd2FzIHNpbXBseSB0aGF0IGEgbW9kZWwgdGhhdCBjYW4gdG9sZXJhdGUgY29sbGluZWFyaXR5IHdvdWxkIGJlIG11Y2ggbW9yZSB1c2VmdWwuDQoNClBDQSB3b3JrcyB3ZWxsIHdpdGggbGluZWFyIHJlZ3Jlc3Npb24gYmVjYXVzZSB0aGUgcHJpbmNpcGFsIGNvbXBvbmVudHMgY3JlYXRlZCB3aWxsIGJlIHVuY29ycmVsYXRlZC4gSG93ZXZlciwgaXQgcmVhbGx5IGh1cnRzIHRoZSBpbnRlcnByZXRhYmlsaXR5IG9mDQp0aGUgbW9kZWwsIHdoaWNoIGlzIHRoZSBiaWdnZXN0IGFkdmFudGFnZSBvZiB1c2luZyBsaW5lYXIgcmVncmVzc2lvbi4gRnVydGhlcm1vcmUsIFBDQSBkb2Vzbid0IGNvbnNpZGVyIHRoZSByZXBvbnNlIHZhcmlhYmxlLCBvbmx5DQp0aGUgdmFyaWFiaWxpdHkgb2YgdGhlIHByZWRpY3RvciBzcGFjZS4NCg0KU28gb3ZlcmFsbCwgdGhlIGF1dGhvciBkb2Vzbid0IHJlY29tbWVuZCB1c2luZyBQQ0Egd2l0aCBsaW5lYXIgcmVncmVzc2lvbiwgaW5zdGVhZCBoZSByZWNvbW1lbmRzIHVzaW5nIFBMUyB3aGVuIHRoZXJlIGFyZSBtYW55IHZhcmlhYmxlcyBvciANCmNvcnJlbGF0ZWQgdmFyaWFibGVzLg0KDQpQTFMgaXMgbGlrZSBQQ0EgYnV0IGluc3RlYWQgb2YgZmluZGluZyB0aGUgYmVzdCBjb21iaW5hdGlvbnMgb2YgdmFyaWFibGVzIGluIHRoZSBwcmVkaWN0b3Igc3BhY2UsIGl0IGZpbmRzIHRoZSBiZXN0DQp2YXJpYWJsZXMgaW4gcmVzcGVjdCB0byB0aGUgZGVwZW5kZW50IHZhcmlhYmxlLiANCg0KUENSID0gUHJpbmNpcGFsIENvbXBvbmVudCBSZWdyZXNzaW9uLg0KDQpJbiBQTFMgYXMgd2VsbCBhcyBQQ1IsIHByZWRpY3RvcnMgc2hvdWxkIGJlIGNlbnRlcmVkIGFuZCBzY2FsZWQuDQpFc3NlbnRpYWxseSwgd2hhdCB0aGV5IHNheSBpcyB0aGF0IFBMUyBpcyBzdXBlcmlvciB0byBQQ1IuDQoNClRoZSBwcmVkaWN0aXZlIHBvd2VyIG9mIFBMUyBhbmQgUENSIGFyZSB2ZXJ5IHNpbWlsYXIsIFBMUyBtb2RlbHMgYXJlIHNpbXBsZXIgdGhhbiBQQ1IuDQoNClRoZXNlIGNoYXB0ZXJzIHJlYWxseSBtYWtlIG1lIHRoaW5rIHRoYXQgbW9zdCBvZiB0aGVzZSBpbnRyb2R1Y3RvcnkgbWV0aG9kcyBhcmUgc2ltcGx5IG5vdCB0aGUgYmVzdCB3YXkgdG8gZ28sIGJ1dCANCnRoZXkgYXJlIG1lbnRpb25lZCBmaXJzdCBiZWNhdXNlIGl0J3Mgc2ltcGxlciwgbW9yZSBpbnRlcnByZXRhYmxlIGFuZCBqdXN0IGJhc2ljLg0KDQojIyBDb21wdXRpbmcNCg0KIyMjIExvYWRpbmcgdGhlIGRhdGENCmBgYHtyfQ0KZGF0YShzb2x1YmlsaXR5KQ0KDQojIFRoaXMgZ2l2ZXMgdXMgdGhlIG5hbWVzIG9mIGFsbCBvYmplY3RzIGluIGEgIHJlZ2V4IHdheSwgcXVpdGUgY29vbC4NCmxzKHBhdHRlcm4gPSAiXnNvbFQiKQ0KYGBgDQoNCiMjIyBPcmRpbmFyeSBMaW5lYXIgUmVncmVzc2lvbg0KDQpgYGB7cn0NCnRyYWluaW5nX2RhdGEgPC0gc29sVHJhaW5YdHJhbnMNCnRyYWluaW5nX2RhdGEkc29sdWJpbGl0eSA8LSBzb2xUcmFpblkNCmBgYA0KDQpgYGB7cn0NCmNvcnJwbG90KGNvcih0cmFpbmluZ19kYXRhKSwgbWV0aG9kID0gImNvbG9yIiwgb3JkZXIgPSAiaGNsdXN0IikNCmBgYA0KDQpNb3N0IHZhcmlhYmxlcyBhcmUgbm90IGhpZ2hseSBjb3JyZWxhdGVkLCBidXQgdGhlcmUgaXMgZGVmaW5pdGVseSBtdWx0aWNvbGxpbmVhcml0eSB3aXRoaW4gdGhlIGRhdGEuDQoNCmBgYHtyfQ0KbG1fZml0X2FsbF9wcmVkaWN0b3JzIDwtIGxtKHNvbHViaWxpdHkgfiAuLCBkYXRhID0gdHJhaW5pbmdfZGF0YSkNCnN1bW1hcnkobG1fZml0X2FsbF9wcmVkaWN0b3JzKQ0KYGBgDQoNCmBgYHtyfQ0KbG1fcHJlZF8xIDwtIHByZWRpY3QobG1fZml0X2FsbF9wcmVkaWN0b3JzLCBzb2xUZXN0WHRyYW5zKQ0KaGVhZChsbV9wcmVkXzEpDQpgYGANCg0KYGBge3J9DQpsbV92YWx1ZXNfMSA8LSBkYXRhLmZyYW1lKG9icyA9IHNvbFRlc3RZLCBwcmVkID0gbG1fcHJlZF8xKQ0KZGVmYXVsdFN1bW1hcnkobG1fdmFsdWVzXzEpDQpgYGANCg0KVGhpcyBwcmVkaWN0aW9uIGNhcHR1cmVkIDg3JSBvZiB2YXJpYW5jZSBpbiB0aGUgZGVwZW5kZW50IHZhcmlhYmxlLiBJdCdzIG5vdCB0b28gYmFkLg0KDQpVc2luZyB0aGUgcm9idXN0IGxpbmVhciBtb2RlbC4gV2hhdCBpcyB0aGUgcm9idXN0IGxpbmVhciBtb2RlbCBhZ2Fpbj8gSHViZXIgYXBwcm9hY2g/DQoNCmBgYHtyfQ0KcmxtX2ZpdF9hbGxfcHJlZGljdG9ycyA8LSBybG0oc29sdWJpbGl0eSB+IC4sIGRhdGEgPSB0cmFpbmluZ19kYXRhKQ0KYGBgDQoNCmBgYHtyfQ0KY3RybCA8LSB0cmFpbkNvbnRyb2wobWV0aG9kID0gImN2IiwgbnVtYmVyID0gMTApDQoNCmxtX2ZpdF8xIDwtIHRyYWluKHggPSBzb2xUcmFpblh0cmFucywgeSA9IHNvbFRyYWluWSwNCiAgICAgICAgICAgICAgICAgIG1ldGhvZCA9ICJsbSIsIHRyQ29udHJvbCA9IGN0cmwpDQpgYGANCg0KYGBge3J9DQpsbV9maXRfMQ0KYGBgDQpUaGlzIGlzIHNsaWdodGx5IGJldHRlciB0aGFuIHRoZSB0cmFpbi90ZXN0IHNwbGl0IGxpbmVhciBtb2RlbC4NCg0KRm9yIG1vZGVscyBidWlsdCB0byBleHBsYWluLCB3ZSBuZWVkIHRvIGxvb2sgYXQgcmVzaWR1YWxzLg0KDQpGb3IgbW9kZWxzIGJ1aWx0IHRvIHByZWRpY3QsIHJlc2lkdWFscyBnaXZlIHVzIGFuIGlkZWEgYWJvdXQgYXJlYXMgd2hlcmUgdGhlIG1vZGVsIGRvZXNuJ3QgcGVyZm9ybSB3ZWxsLg0KDQpgYGB7cn0NCnBsb3QobG1fZml0XzEkZmluYWxNb2RlbCRyZXNpZHVhbHMsIGxtX2ZpdF8xJHByZWQpDQpgYGANClRoZXkgbG9vayByYW5kb20gZW5vdWdoIHRvIG1lLCBJIGRvbid0IHRoaW5rIHRoZXJlIGFyZSBhbnkgcHJvYmxlbXMuDQoNCmBgYHtyfQ0KeHlwbG90KHNvbFRyYWluWSB+IHByZWRpY3QobG1fZml0XzEpLA0KIHR5cGUgPSBjKCJwIiwgImciKSwNCiB4bGFiID0gIlByZWRpY3RlZCIsIHlsYWIgPSAiT2JzZXJ2ZWQiKQ0KYGBgDQpUaGUgcGxvdCBzaG93cyByZWFsIHZzIHByZWRpY3RlZCB2YWx1ZXMuIFRoZXkgYXJlIG1lYW50IHRvIGZhbGwgYWxvbmcgdGhlIGRpYWdvbmFsIGxpbmUgYW5kIHJhbmRvbWx5IGRpc3RyaWJ1dGVkIGFsb25nIHRoZSBsaW5lLg0KDQoNCmBgYHtyfQ0KeHlwbG90KHJlc2lkKGxtX2ZpdF8xKSB+IHByZWRpY3QobG1fZml0XzEpLA0KICAgICAgICB0eXBlID0gYygicCIsICJnIiksDQogICAgICAgIHhsYWIgPSAiUHJlZGljdGVkIiwgeWxhYiA9ICJSZXNpZHVhbHMiKQ0KYGBgDQoNClRoZSByZXNpZHVhbHMgYXJlIG1lYW50IHRvIGJlIHJhbmRvbWx5IHNjYXR0ZXJlZCBhbG9uZyB0aGUgaG9yaXpvbnRhbCBheGlzLiBJdCdzIHRoZSBzYW1lIGFzIHRoZSBwcmV2aW91cyBwbG90IGV4Y2VwdCBmbGlwcGVkLg0KDQpgYGB7cn0NCmNvcl90aHJlcyA8LSAwLjkNCnRvb19oaWdoIDwtIGZpbmRDb3JyZWxhdGlvbihjb3Ioc29sVHJhaW5YdHJhbnMpLCBjb3JfdGhyZXMpDQoNCnRvb19oaWdoDQpgYGANCg0KYGBge3J9DQpjb3JycHJlZCA8LSBuYW1lcyhzb2xUcmFpblh0cmFuc1t0b29faGlnaF0pDQpjb3JycHJlZA0KYGBgDQpUaGVzZSBhcmUgdGhlIGNvbHVtbnMgdGhhdCBhcmUgcmVjb21tZW5kZWQgdG8gYmUgcmVtb3ZlZCBiYXNlZCBvbiB0aGUgY29ycmVsYXRpb24gdGhyZXNob2xkLg0KDQpgYGB7cn0NCnRyYWluX3hfZmlsdGVyZWQgPC0gc29sVHJhaW5YdHJhbnNbLCAtdG9vX2hpZ2hdDQoNCmxtX2ZpbHRlcmVkIDwtIHRyYWluKHRyYWluX3hfZmlsdGVyZWQsIHNvbFRyYWluWSwgbWV0aG9kID0gImxtIiwNCiAgICAgICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IGN0cmwpDQoNCmxtX2ZpbHRlcmVkDQpgYGANClRoaXMgaXMgYSBtaXN0YWtlIGluIHRoZSBib29rLiBUaGUgcHJlZGljdG9ycyB3ZXJlIG5vdCBmaWx0ZXJlZC4NClRoZXJlIGRvZXNuJ3Qgc2VlbSB0byBiZSBhbnkgZGlmZmVyZW5jZSBpbiBwcmVkaWN0aXZlIGFjY3VyYWN5IHRob3VnaC4NCg0KKipSb2J1c3QgTGluZWFyIFJlZ3Jlc3Npb24qKg0KDQpSTE0gZG9lc24ndCBhbGxvdyB0aGUgY292YXJpYW5jZSBtYXRyaXggdG8gYmUgc2luZ3VsYXIuIFdoYXQgaXMgdGhpcyBndXkgdGFsa2luZyBhYm91dD8NCg0KYGBge3J9DQojIEJ1aWxkIHRoZSBSTE0NCg0KcmxtX3BjYSA8LSB0cmFpbih0cmFpbl94X2ZpbHRlcmVkLCBzb2xUcmFpblksDQogICAgICAgICAgICAgICAgIG1ldGhvZCA9ICJybG0iLA0KICAgICAgICAgICAgICAgICBwcmVQcm9jZXNzID0gInBjYSIsDQogICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IGN0cmwpDQoNCnJsbV9wY2ENCmBgYA0KTUFFIGFuZCBSTVNFIGFyZSB2ZXJ5IHNpbWlsYXIuIFJMTSBnaXZlcyBtdWNoIG1vcmUgYWNjdXJhdGUgcHJlZGljdGlvbnMsIHF1aXRlIG5pY2UuDQoNCiMjIyBQYXJ0aWFsIExlYXN0IFNxdWFyZXMNCg0KVGhpcyB3aWxsIGJlIHRoZSBhbHRlcm5hdGl2ZSBvZiB0aGUgUENSLCBha2EgcHJpbmNpcGFsIGNvZWZmaWNpZW50IHJlZ3Jlc3Npb24uIEl0IGZ1bmN0aW9ucyBzaW1pbGFybHkgdG8gUENBIGluIHByYWN0aWNlLCBidXQNCml0IGlzIHN1cGVydmlzZWQuIEl0IGlzIGluIHRoZW9yeSBiZXR0ZXIgdGhhbiBQQ1IuIExldCdzIGNoZWNrIGl0IG91dC4NCg0KYGBge3J9DQpsaWJyYXJ5KHBscykNCg0KcGxzX2ZpdCA8LSBwbHNyKHNvbHViaWxpdHkgfiAuLCBkYXRhID0gdHJhaW5pbmdfZGF0YSkNCg0KcHJlZGljdChwbHNfZml0LCBzb2xUZXN0WHRyYW5zWzE6NSxdLCBuY29tcCA9IDE6MikNCmBgYA0KDQpgYGB7cn0NCnBsc190dW5lIDwtIHRyYWluKHNvbFRyYWluWHRyYW5zLCBzb2xUcmFpblksDQogICAgICAgICAgICAgICAgICBtZXRob2QgPSAicGxzIiwNCiAgICAgICAgICAgICAgICAgIHR1bmVMZW5ndGggPSAyMCwNCiAgICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IGN0cmwsDQogICAgICAgICAgICAgICAgICBwcmVQcm9jZXNzID0gYygiY2VudGVyIiwgInNjYWxlIikpDQoNCnBsb3QocGxzX3R1bmUpDQpwbHNfdHVuZQ0KYGBgDQpQTFMgZ2F2ZSB1cyBiZXR0ZXIgcmVzdWx0cyB0aGFuIFBDUi4gSSBzaGFsbCByZW1lbWJlciB0aGF0LiBCdXQgd2h5IHdvdWxkIHlvdSB1c2UgUExTIGlmIHlvdSBjb3VsZCB1c2UgcmFuZG9tIGZvcmVzdD8NCg0KYGBge3J9DQpyYW5mX21vZGVsIDwtIHRyYWluKHNvbFRyYWluWHRyYW5zLCBzb2xUcmFpblksDQogICAgICAgICAgICAgICAgICBtZXRob2QgPSAicmYiLA0KICAgICAgICAgICAgICAgICAgdHVuZUxlbmd0aCA9IDEwLA0KICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gY3RybCkNCmBgYA0KDQoNCiMjIyBQZW5hbGlzZWQgcmVncmVzc2lvbiBtb2RlbHMNCg0KUmlkZ2UgcmVncmVzc2lvbg0KDQoNClRoZSBNQVNTIHBhY2thZ2UgY29udGFpbnMgDQoNCiMjIEV4ZXJjaXNlcw0KDQojIyMgNi4xIElSIHNwZWN0cm9zY29weQ0KDQpgYGB7cn0NCmRhdGEodGVjYXRvcikNCmBgYA0KDQpgYGB7cn0NCmNvcnJwbG90KGNvcihhYnNvcnApLCBtZXRob2QgPSAiY29sb3IiKQ0KYGBgDQpKZXN1cyBDaHJpc3QsIHdoYXQgaXMgdGhpcz8gbG9sDQoNCkV2ZXJ5dGhpbmcgaXMgcG9zaXRpdmVseSBjb3JyZWxhdGVkIHdpdGggZXZlcnl0aGluZy4NCg0KMS4gVXNlIFBDQSB0byBkZXRlcm1pbmUgdGhlIGVmZmVjdGl2ZSBkaW1lbnNpb24gb2YgdGhlIGRhdGENCg0KYGBge3J9DQpkYXRhIDwtIGFzLmRhdGEuZnJhbWUoYWJzb3JwKQ0KDQp0cmFucyA8LSBwcmVQcm9jZXNzKHggPSBkYXRhLA0KICAgICAgICAgICAgICAgICAgICBtZXRob2QgPSBjKCJCb3hDb3giLCAiY2VudGVyIiwgInNjYWxlIiwgInBjYSIpKQ0KDQp0cmFucw0KYGBgDQpZZXAsIGFzIHRoZSBjb3JyZWxhdGlvbiBwbG90IHN1Z2dlc3RlZCwgaXQgb25seSBuZWVkcyAyIHZhcmlhYmxlcyB0byBjYXB0dXJlIDk1JSBvZiB0aGUgdmFyaWFuY2Ugd2l0aGluIHRoZSBkYXRhLg0KVGhlIGRhdGFzZXQgaXMgdmVyeSByZWR1bmRhbnQuDQoNCmBgYHtyfQ0KcHJvY2Vzc2VkX2RhdGEgPC0gcHJlZGljdCh0cmFucywgZGF0YSkNCg0KY29ycnBsb3QoY29yKHByb2Nlc3NlZF9kYXRhKSwgbWV0aG9kID0gImNvbG9yIikNCmBgYA0KDQpUaGV5IGFyZSBjb21wbGV0ZWx5IHVuY29ycmVsYXRlZC4NCg0KIyMjIE1vZGVscw0KDQoqKk9MUyBSZWdyZXNzaW9uKioNCg0KYGBge3J9DQpvbHNfbW9kZWxfMSA8LSB0cmFpbihkYXRhLCBlbmRwb2ludHNbLDFdLA0KICAgICAgICAgICAgICAgICAgIG1ldGhvZCA9ICJsbSIsDQogICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gdHJhaW5Db250cm9sKG1ldGhvZCA9ICJjdiIsIG51bWJlciA9IDEwKSkNCg0Kb2xzX21vZGVsXzENCmBgYA0KOTclIG9mIHRoZSB2YXJpYXRpb24gd2FzIGV4cGxhaW5lZC4gSSB3b3VsZG4ndCB0cnVzdCBpdC4gSSBkb24ndCBrbm93IGlmIGl0J3MgYWRqdXN0ZWQgUl4yIG9yIG5vdC4NCg0KYGBge3J9DQpvbHNfbW9kZWxfMiA8LSB0cmFpbihkYXRhLCBlbmRwb2ludHNbLDJdLA0KICAgICAgICAgICAgICAgICAgIG1ldGhvZCA9ICJsbSIsDQogICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gdHJhaW5Db250cm9sKG1ldGhvZCA9ICJjdiIsIG51bWJlciA9IDEwKSkNCg0Kb2xzX21vZGVsXzINCmBgYA0KDQpgYGB7cn0NCm9sc19tb2RlbF8zIDwtICB0cmFpbihkYXRhLCBlbmRwb2ludHNbLDNdLA0KICAgICAgICAgICAgICAgICAgIG1ldGhvZCA9ICJsbSIsDQogICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gdHJhaW5Db250cm9sKG1ldGhvZCA9ICJjdiIsIG51bWJlciA9IDEwKSkNCg0Kb2xzX21vZGVsXzMNCmBgYA0KDQpPaywgbmV4dCBJIHdpbGwgb25seSB1c2UgdGhlIGZpcnN0IGNvbHVtbi4gVGhlcmUgYXJlIHRvbyBtYW55IHZhcmlhYmxlcy4NCg0KKipPTFMgd2l0aCBjZW50ZXJpbmcsIHNjYWxpbmcgYW5kIFBDQSoqDQoNCmBgYHtyfQ0Kb2xzX21vZGVsX3Byb2Nlc3NlZCA8LSB0cmFpbihkYXRhLCBlbmRwb2ludHNbLDFdLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtZXRob2QgPSAibG0iLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0ckNvbnRyb2wgPSB0cmFpbkNvbnRyb2wobWV0aG9kID0gImN2IiwgbnVtYmVyID0gMTApLA0KICAgICAgICAgICAgICAgICAgICAgICAgICAgICBwcmVQcm9jZXNzID0gYygiQm94Q294IiwgImNlbnRlciIsICJzY2FsZSIsICJwY2EiKSkNCg0Kb2xzX21vZGVsX3Byb2Nlc3NlZA0KYGBgDQpXaGF0IGlzIGdvaW5nIG9uIHdpdGggdGhpcz8gVGhlIHByZWRpY3Rpb25zIGFyZSBzbyBtdWNoIHdvcnNlLiBTbyBtdWNoIGZvciBwcmVwcm9jZXNzaW5nLg0KDQoqKlBMUyoqDQoNCmBgYHtyfQ0KcGxzX21vZGVsIDwtIHRyYWluKGRhdGEsIGVuZHBvaW50c1ssMV0sDQogICAgICAgICAgICAgICAgICAgbWV0aG9kID0gInBscyIsDQogICAgICAgICAgICAgICAgICAgdHVuZUxlbmd0aCA9IDQwLA0KICAgICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IHRyYWluQ29udHJvbChtZXRob2QgPSAiY3YiLCBudW1iZXIgPSAxMCksDQogICAgICAgICAgICAgICAgICAgcHJlUHJvY2VzcyA9IGMoIkJveENveCIsICJjZW50ZXIiLCAic2NhbGUiKSkNCg0KcGxzX21vZGVsDQpgYGANCg0KYGBge3J9DQpwbG90KHBsc19tb2RlbCkNCmBgYA0KDQpUaGlzIGlzIHRoZSBiZXN0IG9uZSB5ZXQsIFBMUyB3aXRoIHByZXByb2Nlc3NpbmcuDQoNCioqUmlkZ2UgcmVncmVzc2lvbioqDQoNCmBgYHtyfQ0KcmlkZ2VHcmlkIDwtIGRhdGEuZnJhbWUoLmxhbWJkYSA9IHNlcSgwLCAwLjEsIGxlbmd0aCA9IDE1KSkNCg0KcmlkZ2VfbW9kZWwgPC0gdHJhaW4oZGF0YSwgZW5kcG9pbnRzWywxXSwNCiAgICAgICAgICAgICAgICAgICAgIG1ldGhvZCA9ICJyaWRnZSIsDQogICAgICAgICAgICAgICAgICAgICB0dW5lR3JpZCA9IHJpZGdlR3JpZCwNCiAgICAgICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IHRyYWluQ29udHJvbChtZXRob2QgPSAiY3YiLCBudW1iZXIgPSAxMCksDQogICAgICAgICAgICAgICAgICAgICBwcmVQcm9jZXNzID0gYygiQm94Q294IiwgImNlbnRlciIsICJzY2FsZSIpKQ0KDQpyaWRnZV9tb2RlbA0KYGBgDQpJdCB3b3JrZWQgd2l0aCBhIHJlYXNvbmFibGUgTUFFIHZhbHVlLiBOb3QgYXMgZ29vZCBhcyBQTFMgYnV0IG5vdCBhcyBiYWQgYXMgb3JkaW5hcnkgcmVncmVzc2lvbiBhbmQgUENSLg0KDQpUaG91Z2gsIHdoYXQgZG9lcyBMYW1iZGEgMCBtZWFuPyBJdCBtZWFucyB0aGVyZSBpcyBubyBwZW5hbHR5IHRlcm0gZm9yIGNvZWZmaWNpZW50cy4gVGhlcmVmb3JlLCB0aGlzIGlzIG9yZGluYXJ5IHJlZ3Jlc3Npb24uIEdyZWF0Lg0KDQoqKkxhc3NvIHJlZ3Jlc3Npb24qKg0KDQpgYGB7cn0NCmxhc3NvX2dyaWQgPC0gZGF0YS5mcmFtZSguZnJhY3Rpb24gPSBzZXEoMCwgMC4xLCBsZW5ndGggPSAxNSkpDQoNCmxhc3NvX21vZGVsIDwtIHRyYWluKGRhdGEsIGVuZHBvaW50c1ssMV0sDQogICAgICAgICAgICAgICAgICAgICBtZXRob2QgPSAibGFzc28iLA0KICAgICAgICAgICAgICAgICAgICAgdHVuZUdyaWQgPSBsYXNzb19ncmlkLA0KICAgICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gdHJhaW5Db250cm9sKG1ldGhvZCA9ICJjdiIsIG51bWJlciA9IDEwKSwNCiAgICAgICAgICAgICAgICAgICAgIHByZVByb2Nlc3MgPSBjKCJCb3hDb3giLCAiY2VudGVyIiwgInNjYWxlIikpDQoNCmxhc3NvX21vZGVsDQpgYGANClllcyEgSSBiZWF0IFBMUyB3aXRoIGxhc3NvLg0KDQoqKkVsYXN0aWMgbmV0KioNCg0KVGhpcyBpcyB0aGUgZmluYWwgbW9kZWwuIEl0J3MgdGltZSBmb3IgdGhlIGVsYXN0aWMgbmV0Lg0KDQpgYGB7cn0NCmVuZXRfZ3JpZCA8LSBkYXRhLmZyYW1lKC5mcmFjdGlvbiA9IHNlcSgwLCAwLjEsIGxlbmd0aCA9IDE1KSkNCg0KZW5ldF9tb2RlbCA8LSB0cmFpbihkYXRhLCBlbmRwb2ludHNbLDFdLA0KICAgICAgICAgICAgICAgICAgICAgbWV0aG9kID0gImVuZXQiLA0KICAgICAgICAgICAgICAgICAgICAgdHVuZUxlbmd0aCA9IDMwLA0KICAgICAgICAgICAgICAgICAgICAgdHJDb250cm9sID0gdHJhaW5Db250cm9sKG1ldGhvZCA9ICJjdiIsIG51bWJlciA9IDEwKSwNCiAgICAgICAgICAgICAgICAgICAgIHByZVByb2Nlc3MgPSBjKCJCb3hDb3giLCAiY2VudGVyIiwgInNjYWxlIikpDQoNCmVuZXRfbW9kZWwNCmBgYA0KVGhlIHR3byBtb2RlbHMgYXJlIHByYWN0aWNhbGx5IGlkZW50aWNhbC4gTGFtYmRhIHNldCB0byAwIGNhdXNlZCB0aGUgbW9kZWwgdG8gYmVoYXZlIGFzIGEgbGFzc28gbW9kZWwsDQpubyByaWRnZSBwYXJhbWV0ZXIuIFRoZSBsYXNzbyBmcmFjdGlvbiBlc3RpbWF0ZSBpcyBjbG9zZSB0byAwIGFnYWluLiBUaGF0IHdhcyBhbGwgb2YgdGhlIG1vZGVscy4NCg0KKipNb2RlbCBjb21wYXJpc29uKioNCg0KYGBge3J9DQptb2RlbHMgPC0gcmVzYW1wbGVzKGxpc3QoT0xTID0gb2xzX21vZGVsXzEsIFBDUiA9IG9sc19tb2RlbF9wcm9jZXNzZWQsIFBMUyA9IHBsc19tb2RlbCwgcmlkZ2UgPSByaWRnZV9tb2RlbCwgbGFzc28gPSBsYXNzb19tb2RlbCwgZWxhc3RpY19uZXQgPSBlbmV0X21vZGVsKSkNCg0Kc3VtbWFyeShtb2RlbHMpDQpgYGANCg0KYGBge3J9DQptb2RlbF9kaWZmZXJlbmNlcyA8LSBkaWZmKG1vZGVscykNCnN1bW1hcnkobW9kZWxfZGlmZmVyZW5jZXMpDQpgYGANCg0KVGhlc2UgcmVzdWx0cyBzdWdnZXN0IHRoYXQgaXQncyBhY3R1YWxseSBxdWl0ZSBhY2N1cmF0ZSBhdCBwcmVkaWN0aW5nIHRoZSBwZXJmb3JtYW5jZS4NClRoZXJlIGlzIG5vIHNpZ25pZmljYW50IGRpZmZlcmVuY2UgYmV0d2VlbiB0aGUgcGVyZm9ybWFuY2Ugb2YgbGFzc28sIHJpZGdlIGFuZCBlbGFzdGljIG5ldCBtb2RlbHMuDQpJIHRoaW5rIHRoaXMgaXMgZ29vZCBlbm91Z2guDQoNClRoZSBtb2RlbHMgYXJlIGFic29sdXRlbHkgZ3JlYXQgYXQgZGV0ZXJtaW5pbmcgdGhlIGNvbnRlbnQgb2Ygd2F0ZXIgYXMgYSBiZWdpbm5pbmcuDQpJJ20gZG9uZSB3aXRoIHRoZXNlIGV4ZXJjaXNlcy4NCg0KVGhvdWdodHM6IFBlb3BsZSB1c2UgdGhlIEZyZWUgbHVuY2ggdGhlb3JlbSBhcyBpZiB0aGVyZSB3YXNuJ3QgYW4gaW5oZXJlbnQgZGlmZmVyZW5jZSBpbiBtb2RlbHMuIEl0J3MgYSBzYWZlIGJldCBJIHRoaW5rIHRvIHVzZSBhIHJhbmRvbSBmb3Jlc3QgbW9kZWwgaW5zdGVhZCBvZiBhbnkNCnR5cGUgb2YgbGluZWFyIHJlZ3Jlc3Npb24gbW9kZWwuDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIk5vbmxpbmVhciByZWdyZXNzaW9uIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KYGBge3J9DQpsaWJyYXJ5KHRpZHl2ZXJzZSkNCmxpYnJhcnkoY2FyZXQpDQpsaWJyYXJ5KEFwcGxpZWRQcmVkaWN0aXZlTW9kZWxpbmcpDQpsaWJyYXJ5KGRvUGFyYWxsZWwpDQpsaWJyYXJ5KGVhcnRoKQ0KYGBgDQoNCiMgQ29tcHV0aW5nDQoNCiMjIE5ldXJhbCBuZXR3b3Jrcw0KDQoxLiBSZW1vdmUgaGlnaGx5IGNvcnJlbGF0ZWQgcHJlZGljdG9ycw0KMi4gUHJlcHJvY2Vzc2luZzogY2VudGVyIGFuZCBzY2FsZQ0KDQpZZXMsIGF2ZXJhZ2VkIG1vZGVscyBvciBuZXVyYWwgbmV0cyBpbiBnZW5lcmFsIGFyZSB2ZXJ5IHN1c2NlcHRpYmxlIHRvIGhpZ2hseSBjb3JyZWxhdGVkIHZhcmlhYmxlcy4gVGhlcmVmb3JlLCBpdCBpcyBuZWNlc3NhcnkgDQp0byByZW1vdmUgaGlnaGx5IGNvcnJlbGF0ZWQgdmFyaWFibGVzLg0KDQpgYGB7cn0NCmRhdGEoc29sdWJpbGl0eSkNCmBgYA0KDQpgYGB7cn0NCiMgRmluZGluZyBjb3JyZWxhdGlvbnMNCg0KdG9vX2hpZ2ggPC0gZmluZENvcnJlbGF0aW9uKGNvcihzb2xUcmFpblh0cmFucyksIDAuNzUpDQoNCmxlbmd0aCh0b29faGlnaCkNCiMgODcgdmFyaWFibGVzIG5lZWQgdG8gYmUgcmVtb3ZlZA0KdHJhaW4gPC0gc29sVHJhaW5YdHJhbnNbLCAtdG9vX2hpZ2hdDQp0ZXN0IDwtIHNvbFRlc3RYdHJhbnNbLCAtdG9vX2hpZ2hdDQoNCnRyYWluX3NvbCA8LSBzb2xUcmFpblkNCnRlc3Rfc29sIDwtIHNvbFRlc3RZDQpgYGANCg0KQWxyaWdodCwgYWxsIHRoZSBkYXRhIGlzIHJlYWR5IHRvIGZlZWQgaW50byB0aGUgbW9kZWwuDQoNCk5vdyBsZXQncyBjcmVhdGUgc29tZSBncmlkIHNlYXJjaCBwYXJhbWV0ZXJzIGZvciB0aGUgbmV1cmFsIG5ldC4NCg0KYGBge3J9DQojIFRoaXMgaXMgZXNzZW50aWFsbHkgYSBjYXJ0ZXNpYW4gcHJvZHVjdA0Kbm5ldF9ncmlkIDwtIGV4cGFuZC5ncmlkKC5kZWNheSA9IGMoMCwgMC4wMSwgMC4xKSwNCiAgICAgICAgICAgICAgICAgICAgICAgICAuc2l6ZSA9IGMoMToxMCksDQogICAgICAgICAgICAgICAgICAgICAgICAgLmJhZyA9IEZBTFNFKQ0KDQoNCmluZHggPC0gY3JlYXRlRm9sZHModHJhaW5fc29sLCByZXR1cm5UcmFpbiA9IFRSVUUpDQpjdHJsIDwtIHRyYWluQ29udHJvbChtZXRob2QgPSAiY3YiLCBpbmRleCA9IGluZHgpDQpgYGANCg0KYGBge3J9DQp3b3JrZXJzPW1ha2VDbHVzdGVyKDE2LHR5cGU9IlNPQ0siKQ0KcmVnaXN0ZXJEb1BhcmFsbGVsKHdvcmtlcnMpDQpgYGANCg0KYGBge3J9DQpubmV0X3R1bmUgPC0gdHJhaW4odHJhaW4sIHRyYWluX3NvbCwNCiAgICAgICAgICAgICAgICAgICBtZXRob2QgPSAiYXZOTmV0IiwNCiAgICAgICAgICAgICAgICAgICB0dW5lR3JpZCA9IG5uZXRfZ3JpZCwNCiAgICAgICAgICAgICAgICAgICB0ckNvbnRyb2wgPSBjdHJsLA0KICAgICAgICAgICAgICAgICAgIHByZVByb2MgPSBjKCJjZW50ZXIiLCAic2NhbGUiKSwNCiAgICAgICAgICAgICAgICAgICBsaW5vdXQgPSBULA0KICAgICAgICAgICAgICAgICAgIHRyYWNlID0gVCwNCiAgICAgICAgICAgICAgICAgICBNYXhOV3RzID0gMTAgKiAobmNvbCh0cmFpbikgKyAxKSArIDEwICsgMSwNCiAgICAgICAgICAgICAgICAgICBtYXhpdCA9IDEwMCkNCmBgYA0KDQpMZXNzb24gbGVhcm5lZDogTmV1cmFsIG5ldHdvcmtzIHRha2UgZm9yZXZlciB0byBmaW5pc2gNCg0KYGBge3J9DQpubmV0X3R1bmUNCmBgYA0KDQpNQUUgaXMgMC41NyB3aXRoIGNyb3NzLXZhbGlkYXRpb24uIFRoaXMgaXMgYWN0dWFsbHkgd2F5IGJldHRlciB0aGFuIG15IGxpbmVhciByZWdyZXNzaW9uIG1vZGVscy4NCkJ1dCBkb2VzIHRoZSBpbmNyZWFzZWQgYWNjdXJhY3kgd2FycmFudCB0aGUgYWRkZWQgY29tcGxleGl0eSBhbmQgY29tcHV0YXRpb25hbCB0aW1lPw0KDQojIyBSYW5kb20gRm9yZXN0DQoNCmBgYHtyfQ0KcmFuZl9tb2RlbCA8LSB0cmFpbih0cmFpbiwgdHJhaW5fc29sLA0KICAgICAgICAgICAgICAgICAgICBtZXRob2QgPSAicmYiLA0KICAgICAgICAgICAgICAgICAgICB0dW5lTGVuZ3RoID0gMTAsDQogICAgICAgICAgICAgICAgICAgIHRyQ29udHJvbCA9IHRyYWluQ29udHJvbChtZXRob2QgPSAiY3YiLCBudW1iZXIgPSAxMCkpDQoNCnJhbmZfbW9kZWwNCmBgYA0KQWN0dWFsbHksIG15IHJhbmRvbSBmb3Jlc3QgZG9lcyBhIGJldHRlciBqb2IgdGhhbiB0aGUgbmV1cmFsIG5ldHdvcmsuIFRoaXMgaXMgcHJldHR5IGFtYXppbmcuDQpJIHdpbGwgaGF2ZSB0byB0cnkgdGhlc2UgbWV0aG9kcyBvbiBteSBUaXRhbmljIGRhdGFzZXQuDQoNCiMjIE1BUlMNCg0KRG8gSSBuZWVkIHRvIHByZXByb2Nlc3MgZm9yIE1BUlM/IFRoZSBhdXRob3IgZG9lc24ndC4NCg0KDQpgYGB7cn0NCm1hcnNfZml0IDwtIGVhcnRoKCkNCmBgYA0KDQoNCg0K</div>
 
 
 

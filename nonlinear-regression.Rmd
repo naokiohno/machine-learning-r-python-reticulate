@@ -9,6 +9,7 @@ library(caret)
 library(AppliedPredictiveModeling)
 library(doParallel)
 library(earth)
+library(kernlab)
 ```
 
 # Computing
@@ -99,7 +100,142 @@ Do I need to preprocess for MARS? The author doesn't.
 
 
 ```{r}
-mars_fit <- earth()
+mars_grid <- expand.grid(.degree = 1:2, .nprune = 2:38)
+
+mars_model <- train(solTrainXtrans, train_sol,
+                    method = "earth",
+                    tuneGrid = mars_grid,
+                    trControl = trainControl(method = "cv", number = 10))
+
+mars_model
+```
+
+This is even better than the random forest model. What is going on? MARS models are not actually crap?
+
+## Variable importance
+
+```{r}
+# Neural net
+varImp(nnet_tune)
+```
+
+```{r}
+# Random forest
+varImp(mars_model)
+```
+They pick completely different variables.
+
+## SVM
+
+Do I need to remove correlated predictors?
+
+```{r}
+svm_model <- train(solTrainXtrans, train_sol,
+                   method = "svmRadial",
+                   preproc = c("center", "scale"),
+                   tuneLength = 14,
+                   trControl = trainControl(method = "cv"))
+
+svm_model
+```
+You have to be kidding. This model is the best yet. When is this going to stop?
+
+What I learnt is that neural nets are difficult to run, random forests and SVM are easy, MARS is also easy.
+
+```{r}
+varImp(svm_model)
+```
+
+## KNN
+
+For this model, I will remove highly correlated variables.
+
+```{r}
+knn_model <- train(train, train_sol,
+                   method = "knn",
+                   preProc = c("center", "scale"),
+                   trControl = trainControl(method = "cv", number = 10),
+                   tuneLength = 20)
+
+knn_model
+```
+This model is kinda crap compared to the others that came before.
+
+```{r}
+varImp(knn_model)
+```
+
+
+# Exercises
+
+7.1 Support vector machine
+
+```{r}
+x <- runif(100, min = 2, max = 10)
+y <- sin(x) + rnorm(length(x)) * .25
+sinData <- data.frame(x = x, y = y)
+
+plot(x, y)
+
+## Create a grid of x values to use for prediction
+data_grid <- data.frame(x = seq(2, 10, length = 100))
+```
+
+a. Fit different 
+
+```{r}
+rbfSVM <- ksvm(x = x, y = y, data = sinData,
+               kernel ="rbfdot", kpar = "automatic",
+               C = 1000000, epsilon = 0.1)
+
+modelPrediction <- predict(rbfSVM, newdata = data_grid)
+
+## This is a matrix with one column. We can plot the
+## model predictions by adding points to the previous plot
+plot(x, y)
+points(x = data_grid$x, y = modelPrediction[,1],
+       type = "l", col = "blue")
+```
+
+There is a tiny possibility that maybe I overfit my model a little bit. Just a tiny bit. Nothing too serious.
+
+```{r}
+rbfSVM <- ksvm(x = x, y = y, data = sinData,
+               kernel ="rbfdot", kpar = "automatic",
+               C = 0.0000000001, epsilon = 0.1)
+
+modelPrediction <- predict(rbfSVM, newdata = data_grid)
+
+## This is a matrix with one column. We can plot the
+## model predictions by adding points to the previous plot
+plot(x, y)
+points(x = data_grid$x, y = modelPrediction[,1],
+       type = "l", col = "blue")
+```
+SVM with the lowest cost parameter is essentially a linear model.
+
+```{r}
+rbfSVM <- ksvm(x = x, y = y, data = sinData,
+               kernel ="rbfdot", kpar = list(sigma = 6),
+               C = 0.25, epsilon = 0.1)
+
+modelPrediction <- predict(rbfSVM, newdata = data_grid)
+
+## This is a matrix with one column. We can plot the
+## model predictions by adding points to the previous plot
+plot(x, y)
+points(x = data_grid$x, y = modelPrediction[,1],
+       type = "l", col = "blue")
+```
+This one looks quite good. I'm essentially doing manual grid search for the best parameters. The author wants me to get an intuitive understanding of what these do.
+Epsilon flattens the line.
+
+This works fine. I can't really tell the difference between different parameters. Both sigma and the cost go from 0 = underfitting / linear model to overfitting.
+They are able to capture nonlinear relationships.
+
+
+```{r}
+
 ```
 
 

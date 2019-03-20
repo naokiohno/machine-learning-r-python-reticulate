@@ -10,6 +10,7 @@ library(AppliedPredictiveModeling)
 library(doParallel)
 library(earth)
 library(kernlab)
+library(mlbench)
 ```
 
 # Computing
@@ -233,9 +234,11 @@ Epsilon flattens the line.
 This works fine. I can't really tell the difference between different parameters. Both sigma and the cost go from 0 = underfitting / linear model to overfitting.
 They are able to capture nonlinear relationships.
 
+7.2 Friedman benchmark datasets
 
 ```{r}
-
+training_data <- mlbench.friedman1(200, sd = 1)
+training_data$x <- as.data.frame(training_data$x)
 ```
 
 

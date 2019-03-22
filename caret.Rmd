@@ -8,6 +8,7 @@ output: html_notebook
 ```{r include=FALSE}
 library(tidyverse)
 library(caret)
+library(doParallel)
 ```
 
 ```{r}
@@ -70,23 +71,79 @@ data$Age <- round(data$Age, 1)
 data <- data %>% select(Survived, Sex, Age, Fare, Embarked, no_family, title)
 
 train <- data[1:nrow(train_init),]
-test <- data %>% anti_join(train)
+test_data <- data %>% anti_join(train)
+
+test_data_x <- test_data %>% select(-Survived)
+
+#train$Survived <- as.character(train$Survived)
+#train$Sex <- as.character(train$Sex)
+#train$Embarked <- as.character(train$Embarked)
+#train$title <- as.character(train$title)
+train$title <- factor(train$title)
+
+train_x <- train %>% select(-Survived)
+train_y <- train$Survived
+
+```
+
+```{r}
+workers <- makeCluster(16,type="SOCK")
+registerDoParallel(workers)
+```
+
+## xgboost
+
+```{r}
+test <- dummyVars("~ .", data = train_x)
+trsf <- data.frame(predict(test, newdata = train_x))
+
+test_data_transf <- data.frame(predict(test, newdata = test_data_x))
+
+trsf
+```
+
+```{r}
+xgb_model <- train(train_x, train_y,
+                   method = "xgbTree",
+                   metric = "ROC",
+                   tuneLength = 3,
+                   trControl = trainControl(method = "cv",
+                                            number = 10, classProbs = T))
+
+xgb_model$results %>% arrange(desc(Accuracy))
+```
+OK, let's predict the test set.
+
+```{r}
+pred_xgb <- predict(xgb_model, test_data_transf)
+```
+
+```{r}
+test_ids <- read_csv("data/gender_submission.csv")
+
+output <- data.frame(PassengerId = test_ids$PassengerId, Survived = pred_xgb)
+write_csv(output, "xgb_output.csv")
 ```
 
 ## Building the Machine Learning Model
 
 ```{r}
-svm_fit <- train(Survived ~ .,
-                 data = train,
+svm_fit <- train(trsf, train_y,
                  method = "svmRadial",
-                 preProc = c("center", "scale"),
+                 #preProc = c("center", "scale"),
                  tuneLength = 10,
-                 trControl = trainControl(method = "repeatedcv", repeats = 10))
+                 trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+svm_fit
 ```
 
 ```{r}
-svm_fit
+pred_svm <- predict(svm_fit, test_data_transf)
+
+output <- data.frame(PassengerId = test_ids$PassengerId, Survived = pred_svm)
+write_csv(output, "svm_output.csv")
 ```
+
 
 ```{r}
 plot(svm_fit, scales = list(x = list(log = 2)))

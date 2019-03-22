@@ -278,6 +278,7 @@ Is the MAE of 2.5 considered good? I would have to check my data for that.
 ```{r}
 qplot(training_data$y)
 ```
+
 ```{r}
 summary(training_data$y)
 ```
@@ -291,7 +292,7 @@ It tells us about 10% of the range. It could be improved.
 **Random Forest**
 
 ```{r}
-workers = makeCluster(4, type = "SOCK")
+workers = makeCluster(detectCores(), type = "SOCK")
 registerDoParallel(workers)
 
 ranf_model <- train(training_data$x, training_data$y,
@@ -327,7 +328,7 @@ svm_model
 ```
 SVM training is so quick. Why is it so quick?
 
-Yes, SVM is a real winner. I'm starting to like SVM a lot. They are really quick to train and they have pretty much peak accuracy.
+Yes, SVM is a real winner. I'm starting to like SVM a lot. They are really quick to train and they have pretty good accuracy. MAE of 1.71.
 
 **OLS regression**
 
@@ -342,7 +343,7 @@ ols_model <- train(training_data$x, training_data$y,
                                             repeats = 10))
 ols_model
 ```
-Not bad. Weirdly enough it's still better than random forest and KNN.
+It's not very good but sort of on par with random forest.
 
 **MARS**
 
@@ -384,13 +385,63 @@ xgb_model <- train(training_data$x, training_data$y,
 xgb_model
 ```
 
+```{r}
+xgb_model$results %>% arrange(RMSE)
+```
+The best results has a MAE of 1.354 and RMSE of 1.72
+
+xgboost is the winner so far. It has pretty amazing accuracy, but it's that much better than MARS, surprisingly even though noone talks about that model.
 
 
+## Solubility with xgboost
 
+```{r}
+data(solubility)
 
+workers = makeCluster(detectCores(), type = "SOCK")
+registerDoParallel(workers)
+```
 
+```{r}
+# Start the clock
+ptm <- proc.time()
 
+xgb_model <- train(solTrainXtrans, solTrainY,
+                   method = "xgbTree",
+                   verboseIter = T,
+                   tuneLength = 4,
+                   trControl = trainControl("repeatedcv", number = 10))
 
+# Stop the clock
+proc.time - ptm
+```
+
+Note that there are a lot of variables, 228 of them. Let's see if I can remove R = 1 for computational efficiency.
+There is nothing with R = 1, so I'll leave all of them in.
+
+```{r}
+xgb_model$results %>% arrange(RMSE)
+```
+
+As you can see, the tunelength of 4 gave me 256 different models. This means there are 4 tuning parameters. There is an extra one, gamma, which was held constant.
+
+```{r}
+xgb_model
+```
+Yeah, there are 7 tuning parameters that can be set individually. That is a lot.
+The limit here is definitely computational time. You can only do so much with a single computer.
+
+Random forest for comparison:
+
+```{r}
+ranf_model <- train(solTrainXtrans, solTrainY,
+                   method = "rf",
+                   verboseIter = T,
+                   tuneLength = 20,
+                   trControl = trainControl("repeatedcv", number = 10))
+
+ranf_model
+```
 
 
 

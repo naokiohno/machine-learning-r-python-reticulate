@@ -1,0 +1,19 @@
+---
+title: "Tree-based models"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+library(AppliedPredictiveModeling)
+library(mlbench)
+library(parallel)
+```
+
+```{r}
+# Parallel computing setup
+workers = makeCluster(detectCores(), type = "SOCK")
+registerDoParallel(workers)
+```
+

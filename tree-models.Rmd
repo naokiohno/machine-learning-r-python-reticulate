@@ -9,11 +9,76 @@ library(caret)
 library(AppliedPredictiveModeling)
 library(mlbench)
 library(parallel)
+library(doParallel)
+library(randomForest)
 ```
 
 ```{r}
 # Parallel computing setup
-workers = makeCluster(detectCores(), type = "SOCK")
+workers <- makeCluster(detectCores(), type = "SOCK")
 registerDoParallel(workers)
 ```
+
+## Exercises
+
+Load data:
+
+```{r}
+simulated <- mlbench.friedman1(200, sd = 1)
+simulated <- cbind(simulated$x, simulated$y)
+simulated <- as.data.frame(simulated) 
+
+colnames(simulated)[ncol(simulated)] <- "y"
+```
+
+```{r}
+model_1 <- randomForest(y ~ ., data = simulated,
+                        importance = T,
+                        ntree = 1000)
+
+rf_imp_1 <- varImp(model_1, scale = F)
+rf_imp_1
+```
+No, the model hasn't really used the uninformative predictors.
+
+```{r}
+model_1
+```
+
+
+```{r}
+simulated$duplicate1 <- simulated$V1 + rnorm(200) * .1
+cor(simulated$duplicate1, simulated$V1)
+```
+The correlation is indeed very high. Blimey.
+
+```{r}
+model_1 <- randomForest(y ~ ., data = simulated,
+                        importance = T,
+                        ntree = 1000)
+
+rf_imp_1 <- varImp(model_1, scale = F)
+rf_imp_1
+```
+Yep, the model sometimes split on the first variable, sometimes it split on the highly correlated variable. It reduces the feature importance.
+
+```{r}
+model_1
+```
+MSE is 7.72. The MSE also went up slightly. That shouldn't be
+the case, I don't think.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,80 @@
+---
+title: "Classification Models"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+library(AppliedPredictiveModeling)
+library(pROC)
+```
+
+```{r}
+simulated_train <- quadBoundaryFunc(500)
+simulated_test <- quadBoundaryFunc(1000)
+
+head(simulated_train)
+```
+
+```{r}
+ranf_model <- train(simulated_train[,1:2], simulated_train$class,
+                   method = "rf",
+                   trControl = trainControl(method = "cv", number = 10),
+                   tuneLength = 9)
+
+ranf_model
+```
+
+```{r}
+confusionMatrix(ranf_model)
+```
+I need a way to show the ROC curve.
+
+```{r}
+roc_curve <- roc(response = simulated_test$class,
+                 predictor = simulated_test$prob,
+                 levels = rev(levels(simulated_test$class)))
+
+plot.roc(roc_curve)
+```
+
+```{r}
+roc_curve
+```
+AUC is 0.94 which is quite high. The higher the AUC is, the better the model. I assume that when I'm deploying the model, I would use
+a threshold that maximises the tradeoff between sensitivity and specificity.
+
+There is a problem with this. What if there is a curve that has a lower area but has a point where its threshold is better than the higher AUC. 
+
+ROC curves are used to maximise the trade-off between sensitivity and specificity. If you increase sensitivity, specificity will be reduced. 
+If you increase sensitivity, a higher proportion of identified positives will be real positives. On the other hand, you get less true negatives, more false negatives. I'm way too tired for this.
+
+Alright, how do I select the best threshold given a single ROC curve?
+
+## Training models
+
+You can specify ROC to be the evaluation criteria for the models, not the accuracy. However, even after that, the probability cutoff should be selected.
+How do you do that? Is it automatically selected? Do I need to select it myself?
+
+You can also just tune your model for accuracy. BUT. What if you can also get much better results by additionally shifting class probability thresholds.
+You can do this by manually shifting the threshold. But this is post-cross validation. Therefore, wouldn't it potentially lead to overfitting the model?
+
+Ok, I read ahead a few chapters. The author uses a different holdout set of data to deal with class imbalance called the evaluation set. This comes after model training but before model testing. This is a tricky situation. In this case even though you cross-validated your model, due to the evaluation tuning, you have to test it on a separate test dataset. Interesting. I guess this is the price of dealing with data with extreme class imbalance.
+
+The class-probability shifts definitely need to be used when the cost of a false positive is not the same as the cost of a false negative.
+It could just be reclassified manually. I will dig into this a bit deeper.
+
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
+

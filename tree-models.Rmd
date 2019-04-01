@@ -11,6 +11,7 @@ library(mlbench)
 library(parallel)
 library(doParallel)
 library(randomForest)
+library(party)
 ```
 
 ```{r}
@@ -65,8 +66,131 @@ Yep, the model sometimes split on the first variable, sometimes it split on the 
 ```{r}
 model_1
 ```
-MSE is 7.72. The MSE also went up slightly. That shouldn't be
-the case, I don't think.
+This model has a higher MSE. I'm guessing, when it split on the worse variable,
+it produced a worse fit.
+
+```{r}
+model_1 <- randomForest(y ~ ., data = simulated,
+                        importance = T,
+                        ntree = 1000)
+
+rf_imp_1 <- varImp(model_1, scale = F)
+rf_imp_1
+```
+
+```{r}
+train_x_simulated <- simulated %>% select(- y)
+train_y_simulated <- simulated$y
+
+train_x <- simulated %>% select(-y, -duplicate1)
+train_y <- simulated$y
+
+cf_model <- train(train_x_simulated, train_y_simulated,
+                  method = "cforest",
+                  tuneLength = 1)
+
+cf_model
+```
+
+```{r}
+varImp(cf_model)
+```
+The variable importances look similar, except in the last model they weren't scaled.
+
+```{r}
+cf_model_nondupe <- train(train_x, train_y,
+                          method = "cforest",
+                          tuneLength = 1)
+
+cf_model_nondupe
+```
+MAE is slightly worse in this case. Overall, I don't think there is a significant difference.
+
+```{r}
+varImp(cf_model_nondupe)
+varImp(cf_model)
+```
+V1 dropped a lot in significance. Keep in mind when working with highly correlated predictors
+that the feature importance will be shared between the correlated variables. 
+
+
+```{r}
+xgb_model <- train(train_x, train_y,
+                   method = "xgbTree",
+                   tuneLength = 3,
+                   trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+xgb_model$results %>% arrange(MAE)
+```
+As usual, XGBoost is really good model.
+
+```{r}
+plot(xgb_model)
+```
+
+
+```{r}
+mars_model <- train(train_x, train_y,
+                    method = "earth",
+                    tuneLength = 40,
+                    trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+mars_model$results %>% arrange(MAE)
+```
+How is the MARS model producing better results than XGBoost? It can't overfit, it has gone through repeated cross-validation. I do not understand.
+They say it suffers from volatility in the training set.
+
+```{r}
+plot(mars_model)
+```
+
+```{r}
+ranf_model <- train(train_x, train_y,
+                    method = "rf",
+                    tuneLength = 9,
+                    trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+ranf_model$results %>% arrange(MAE)
+```
+MAE is much worse compared to MARS. I don't understand how MARS can get these great results.
+
+```{r}
+varImp(mars_model)
+```
+It did automatic feature selection.
+
+```{r}
+# Partial least squares
+
+PLS_model <- train(train_x, train_y,
+                    method = "pls",
+                    tuneLength = 50,
+                    trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+PLS_model$results %>% arrange(MAE)
+```
+It looks similar to the linear model.
+
+```{r}
+plot(PLS_model)
+```
+
+
+```{r}
+# Partial least squares
+
+tree_model <- train(train_x, train_y,
+                    method = "rpart",
+                    tuneLength = 50,
+                    trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+tree_model$results %>% arrange(MAE)
+```
+Recursive partitioning trees are absolutely horrible.
+
+```{r}
+plot(tree_model)
+```
 
 
 

@@ -1,0 +1,59 @@
+---
+title: "Class-exercises"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(AppliedPredictiveModeling)
+library(caret)
+```
+
+# 12.1
+
+```{r}
+data(hepatic)
+```
+
+## A
+
+There are 3 levels of the response variable, therefore, this is a 3 class prediction issue.
+
+```{r}
+table(injury)
+```
+There is quite an imbalance. The severe class is not highly represented.
+
+What I would use for slicing up the data into training and test sets are stratified random sampling.
+
+## B - Which classification statistic would you optimise?
+
+Things I could optimisise:
+
+* AUC - It works for 2 class models only.
+* Accuracy
+* I'm guessing the kappa statistic could also be optimised for
+
+Since I can't optimise for AUC, I would optimise for plain old accuracy.
+
+Building models:
+
+## Correlation plots
+
+```{r}
+corrplot::corrplot(cor(bio), method = "color")
+```
+
+There are some empty rows going on that should be removed.
+
+```{r}
+bio <- bio[,-nearZeroVar(bio)]
+```
+82 variables were removed
+
+```{r}
+findCorrelation(cor(bio), cutoff = 0.85) %>% length()
+```
+10 - 20 variables are highly correlated. Let's be stringent with removing variables.
+
+

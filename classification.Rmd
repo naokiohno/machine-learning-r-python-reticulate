@@ -38,6 +38,7 @@ roc_curve <- roc(response = simulated_test$class,
 
 plot.roc(roc_curve)
 ```
+This can be used quite nicely to explain class probabilities.
 
 ```{r}
 roc_curve
@@ -65,9 +66,34 @@ Ok, I read ahead a few chapters. The author uses a different holdout set of data
 The class-probability shifts definitely need to be used when the cost of a false positive is not the same as the cost of a false negative.
 It could just be reclassified manually. I will dig into this a bit deeper.
 
-```{r}
+# Nonlinear Classification Models
 
-```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

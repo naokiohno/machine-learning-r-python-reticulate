@@ -1,0 +1,11 @@
+---
+title: "Linear Classification Models"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+library(AppliedPredictiveModeling)
+```
+

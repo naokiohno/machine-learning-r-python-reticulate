@@ -1,0 +1,134 @@
+---
+title: "Titanic Further"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(caret)
+library(pROC)
+library(doParallel)
+```
+
+## Data collection
+
+```{r}
+train <- read_csv("data/train.csv")
+test <- read_csv("data/test.csv")
+
+test <- test %>% mutate(Survived = NA)
+
+data <- rbind(train, test)
+```
+
+## Building simple modlels
+
+### Gender only
+
+```{r}
+data_gender <- train %>% select(Sex, Survived)
+```
+
+```{r}
+data_gender %>%
+  ggplot(aes(x = Sex, y = Survived)) +
+    geom_bar(stat = "identity") +
+    ggtitle("Title")
+```
+
+```{r}
+logistic_model <- train(data_gender[,'Sex'], factor(data_gender$Survived),
+      method = "glm",
+      trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+
+summary(logistic_model)
+```
+
+```{r}
+confusionMatrix(logistic_model)
+```
+The average accuracy is 0.787. We could do better than that.
+
+```{r}
+data_test_gender <- test %>% select(PassengerId, Sex)
+
+data_test_gender$Survived <- predict(logistic_model, data_test_gender)
+data_test_gender <- data_test_gender %>% select(-Sex)
+write_csv(data_test_gender, "data_test_gender.csv")
+```
+
+The gender submission using logistic regression is complete and we get what we expected. Females survive, males die. Let's take this to the next level,
+incorporating another variable and see how the score improves.
+
+### Gender and Age
+
+I will first fill the missing age values with the median age.
+
+```{r}
+data_2 <- data
+
+median_age <- median(na.omit(data_2$Age))
+data_2 <- data_2 %>% mutate(Age = replace_na(Age, median_age))
+```
+
+Alright. It is time to separate the data out and start running the model with two variables this time. Still logistic regression.
+
+```{r}
+train_2 <- data_2[1:nrow(train),]
+train_2_x <- train_2 %>% select(Sex, Age)
+train_2_y <- train_2$Survived
+
+test_2 <- data_2[(nrow(train)+1):nrow(data_2),]
+
+logistic_model_gender_age <- train(train_2_x, factor(train_2_y),
+      method = "glm",
+      trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+```
+
+```{r}
+summary(logistic_model_gender_age)
+```
+Weird. Age is not a significant variable. Yep, the age model is worse than the previous one. Weird. Maybe logistic regression is not very good.
+
+```{r}
+confusionMatrix(logistic_model_gender_age)
+```
+This model is actually less accurate than the previous one.
+
+**Let's try a random forest with this data
+
+```{r}
+workers <- makeCluster(detectCores(), type = "SOCK")
+registerDoParallel(workers)
+
+train_2_x$Sex <- factor(train_2_x$Sex)
+train_2_x <- as.data.frame(train_2_x)
+
+ranf_gender_age <- train(train_2_x, factor(train_2_y),
+      method = "gbm",
+      tuneLength = 20,
+      verbose = T,
+      trControl = trainControl(method = "repeatedcv", number = 10, repeats = 10))
+```
+
+```{r}
+confusionMatrix(ranf_gender_age)
+```
+This is actually not terrible. Let's predict.
+
+```{r}
+data_test_gender <- test_2 %>% select(PassengerId, Sex, Age)
+data_test_gender$Sex <- factor(data_test_gender$Sex)
+
+data_test_gender$Survived <- predict(ranf_gender_age, data_test_gender)
+data_test_gender <- data_test_gender %>% select(-Sex, -Age)
+write_csv(data_test_gender, "data_test_gender.csv")
+```
+
+
+
+
+
+
+
+
